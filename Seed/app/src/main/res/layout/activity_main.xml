@@ -2,8 +2,7 @@
 
 <!-- Customized by SY -->
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -63,22 +62,21 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:context="com.example.seed.autoviewpager.Autoscroll">
 
-            <!--뷰페이저 추가 작성-->
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/main_act_viewpager_layout"
+            <!-- 자동 이미지 슬라이드 -->
+            <ViewFlipper
+                android:id="@+id/main_act_img_slide"
                 android:layout_width="match_parent"
-                android:layout_height="215dp">
-
-            </androidx.viewpager.widget.ViewPager>
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
                 android:id="@+id/main_act_gps_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_below="@id/main_act_viewpager_layout">
+                android:layout_below="@id/main_act_img_slide">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
