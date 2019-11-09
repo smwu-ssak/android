@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.ViewFlipper;
 
 import com.example.seed.data.MainProductData;
@@ -22,8 +23,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setScrollViewFocus();
         setflipperView();
         setProducts();
+    }
+
+    public void setScrollViewFocus(){
+        final ScrollView scrollView = findViewById(R.id.main_scrollView);
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.fullScroll(ScrollView.FOCUS_UP);
+            }
+        });
     }
 
     private ViewFlipper v_flipper;
@@ -69,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new ProductRecyclerViewDecoration(15));
         //adapter.notifyDataSetChanged();
     }
 
