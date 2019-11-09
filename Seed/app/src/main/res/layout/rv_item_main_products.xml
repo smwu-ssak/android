@@ -120,7 +120,7 @@
                         android:text="1,000" />
 
                     <TextView
-                        android:id="@+id/rv_item_main_products_price"
+                        android:id="@+id/rv_item_main_products_price_sale"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/rv_item_main_products_price_origin"
@@ -133,7 +133,7 @@
                         android:id="@+id/rv_item_main_products_price_fix"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/rv_item_main_products_price"
+                        android:layout_toRightOf="@id/rv_item_main_products_price_sale"
                         android:textColor="#46AE7F"
                         android:textSize="18dp"
                         android:text="원" />
@@ -201,15 +201,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:id="@+id/img_location_samll"
+                    android:id="@+id/img_location_small"
                     android:src="@drawable/main_location_small" />
 
                 <!--마트 이름-->
                 <TextView
+                    android:id="@+id/rv_item_main_products_place"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/img_location_samll"
+                    android:layout_toRightOf="@+id/img_location_small"
                     android:layout_marginLeft="6dp"
                     android:textSize="14dp"
                     android:textColor="#818181"
