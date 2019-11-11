@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout button = findViewById(R.id.main_act_buy_btn);
         button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(), DetailProductsActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(getApplicationContext(), DetailProductsActivity.class);
+                //startActivity(intent);
             }
         });
     }
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     public void setProducts() {
         RecyclerView recyclerView = findViewById(R.id.rv_main);
 
-        ArrayList<MainProductData> data = new ArrayList<>();
+        final ArrayList<MainProductData> data = new ArrayList<>();
 
         data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 50, "프라임마트"));
         data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 20, "눈송마트"));
@@ -90,11 +90,20 @@ public class MainActivity extends AppCompatActivity {
         data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 50, "프라임마트"));
         data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 20, "눈송마트"));
 
-        MainProductAdapter adapter = new MainProductAdapter(data);
+        final MainProductAdapter adapter = new MainProductAdapter(data);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new ProductRecyclerViewDecoration(15));
+
+        adapter.setOnItemClickListener(new OnMainProductClickListener() {
+            @Override
+            public void onItemClick(MainProductAdapter.MainProductViewHolder holder, View view, int position) {
+                MainProductData item = adapter.getItem(position);
+                Intent intent = new Intent(getApplicationContext(), DetailProductsActivity.class);
+                startActivity(intent);
+            }
+        });
         //adapter.notifyDataSetChanged();
     }
 
