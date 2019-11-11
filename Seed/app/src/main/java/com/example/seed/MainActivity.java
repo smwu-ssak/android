@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.ViewFlipper;
@@ -85,4 +87,11 @@ public class MainActivity extends AppCompatActivity {
         //adapter.notifyDataSetChanged();
     }
 
-}
+    /*
+    public void onClick (View view){
+        Intent intent = new Intent(this, SubActivity.class);
+        stratActivity(intent);
+    }
+    */
+
+    }
