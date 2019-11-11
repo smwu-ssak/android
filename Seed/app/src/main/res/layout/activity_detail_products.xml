@@ -6,4 +6,620 @@
     android:layout_height="match_parent"
     tools:context=".DetailProductsActivity">
 
+    <!--민승-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#ECECEC">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <RelativeLayout
+                android:id="@+id/main_act_topbar_mypage_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:padding="6dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="?android:selectableItemBackground">
+
+                <ImageView
+                    android:src="@drawable/main_mypage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <!--로고-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+        <!--하단 버튼-->
+        <RelativeLayout
+            android:id="@+id/main_act_buy_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="67dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <!--바구니 담기 버튼-->
+                <ImageView
+                    android:id="@+id/detail_act_basket_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     />
+
+                <!--구출하기 버튼-->
+                <ImageView
+                    android:id="@+id/detail_act_buy_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/detail_act_basket_btn"
+                     />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <!--뷰-->
+        <ScrollView
+            android:id="@+id/detail_scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="67dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--상품 이미지-->
+                <!--flipper로 할지 viewpager로 할지-->
+                <ViewFlipper
+                    android:id="@+id/detail_act_img_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!--뒤로 가기 버튼-->
+                <ImageView
+                    android:id="@+id/detail_act_back_mainpage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="18dp" />
+
+                <!--이미지 아래 아이콘-->
+                <RelativeLayout
+                    android:id="@+id/img_products_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detail_act_img_product"
+                    android:layout_marginTop="16dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true">
+
+                        <ImageView
+                            android:id="@+id/detail_act_products_icon1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                             />
+
+                        <ImageView
+                            android:id="@+id/detail_act_products_icon2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/detail_act_products_icon1"
+                             />
+
+                        <ImageView
+                            android:id="@+id/detail_act_products_icon3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/detail_act_products_icon2"
+                             />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <!--상품명-->
+                <LinearLayout
+                    android:id="@+id/detail_act_text_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/img_products_icon"
+                    android:layout_marginTop="16dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/detail_act_name_first"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/nanumbarungothicultralight_normal"
+                            android:text="우리 땅에서 자란"
+                            android:textColor="#000000"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/detail_act_name_first"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/nanumbarungothicbold_normal"
+                            android:text="싱그러운 영동 사과"
+                            android:textColor="#3A3A3A"
+                            android:textSize="22dp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <!--가게-->
+                <LinearLayout
+                    android:id="@+id/detail_act_description_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detail_act_text_layout"
+                    android:layout_marginTop="6dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true">
+
+                            <!--가게 사진-->
+                            <ImageView
+                                android:id="@+id/detail_act_img_store"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_toRightOf="@id/detail_act_img_store">
+
+                                <RelativeLayout
+                                    android:id="@+id/detail_act_store_box"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:id="@+id/store_from_fix"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/nanumbarungothicultralight_normal"
+                                        android:text="from"
+                                        android:textColor="#000000"
+                                        android:textSize="12dp" />
+
+                                    <TextView
+                                        android:id="@+id/detail_act_store_name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="3dp"
+                                        android:layout_toRightOf="@id/store_from_fix"
+                                        android:fontFamily="@font/nanumbarungothicbold_normal"
+                                        android:text="프라임 마트"
+                                        android:textColor="#000000"
+                                        android:textSize="12dp" />
+
+                                </RelativeLayout>
+
+                                <TextView
+                                    android:id="@+id/detail_act_store_location"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/detail_act_store_box"
+                                    android:fontFamily="@font/nanumbarungothicultralight_normal"
+                                    android:text="서울특별시 용산구 청파로47길 49"
+                                    android:textColor="#918B8A"
+                                    android:textSize="10dp" />
+
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <!--상세 정보 칸-->
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/detail_act_description_layout"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="#F2F2F2">
+
+                    <!--배경 이미지 자유-->
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <!--구출 요청, 수명, 구조 지점-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true">
+
+                            <!--구출 요청-->
+                            <RelativeLayout
+                                android:id="@+id/products_fix"
+                                android:layout_width="wrap_content"
+                                android:layout_height="67dp">
+
+                                <TextView
+                                    android:id="@+id/detail_act_products_quantity_top"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:textColor="#3A3A3A"
+                                    android:textSize="12dp"
+                                    android:text="구출 요청"/>
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/detail_act_products_quantity_top"
+                                    android:layout_centerInParent="true">
+
+                                    <TextView
+                                        android:id="@+id/detail_act_products_quantity"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/nanumbarungothicbold_normal"
+                                        android:textColor="#3A3A3A"
+                                        android:textSize="42dp"
+                                        android:text="5"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="3dp"
+                                        android:layout_toRightOf="@id/detail_act_products_quantity"
+                                        android:layout_alignParentBottom="true"
+                                        android:textColor="#3A3A3A"
+                                        android:textSize="12dp"
+                                        android:text="개"/>
+
+                                </RelativeLayout>
+
+                            </RelativeLayout>
+
+                            <!--수명-->
+                            <RelativeLayout
+                                android:id="@+id/timeleft_fix"
+                                android:layout_width="wrap_content"
+                                android:layout_height="67dp"
+                                android:layout_toRightOf="@id/products_fix"
+                                android:layout_marginLeft="35dp">
+
+                                <TextView
+                                    android:id="@+id/detail_act_products_timeleft_top"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:textColor="#3A3A3A"
+                                    android:textSize="12dp"
+                                    android:text="수명"/>
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/detail_act_products_timeleft_top"
+                                    android:layout_centerInParent="true">
+
+                                    <TextView
+                                        android:id="@+id/detail_act_products_timeleft"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/nanumbarungothicbold_normal"
+                                        android:textColor="#3A3A3A"
+                                        android:textSize="42dp"
+                                        android:text="4"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="3dp"
+                                        android:layout_toRightOf="@id/detail_act_products_timeleft"
+                                        android:layout_alignParentBottom="true"
+                                        android:textColor="#3A3A3A"
+                                        android:textSize="12dp"
+                                        android:text="일"/>
+
+                                </RelativeLayout>
+
+                            </RelativeLayout>
+
+                            <!--구조 지점까지-->
+                            <RelativeLayout
+                                android:id="@+id/distance_fix"
+                                android:layout_width="wrap_content"
+                                android:layout_height="67dp"
+                                android:layout_toRightOf="@id/timeleft_fix"
+                                android:layout_marginLeft="35dp">
+
+                                <TextView
+                                    android:id="@+id/detail_act_products_distance_top"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:textColor="#3A3A3A"
+                                    android:textSize="12dp"
+                                    android:text="구조 지점까지"/>
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/detail_act_products_distance_top"
+                                    android:layout_centerInParent="true">
+
+                                    <TextView
+                                        android:id="@+id/detail_act_products_distance"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/nanumbarungothicbold_normal"
+                                        android:textColor="#3A3A3A"
+                                        android:textSize="42dp"
+                                        android:text="400"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toRightOf="@id/detail_act_products_distance"
+                                        android:layout_alignParentBottom="true"
+                                        android:textColor="#3A3A3A"
+                                        android:textSize="12dp"
+                                        android:text="m"/>
+
+                                </RelativeLayout>
+
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <!--지도, 지도 설명-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp">
+
+                        <RelativeLayout
+                            android:layout_width="245dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true">
+
+                            <!--지도-->
+                            <ImageView
+                                android:id="@+id/detail_act_img_gps"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                 />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/detail_act_img_gps"
+                                android:background="#63C194">
+
+                                <TextView
+                                    android:id="@+id/detail_act_gps_store_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:fontFamily="@font/nanumbarungothicbold_normal"
+                                    android:textColor="#F7F7F7"
+                                    android:textSize="17dp"
+                                    android:text="프라임 마트"/>
+
+                                <TextView
+                                    android:id="@+id/detail_act_gps_store_location"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/detail_act_gps_store_name"
+                                    android:layout_centerHorizontal="true"
+                                    android:fontFamily="@font/nanumbarungothiclight_normal"
+                                    android:textColor="#F7F7F7"
+                                    android:textSize="12dp"
+                                    android:text="서울특별시 용산구 청파로 47길 49"/>
+
+
+                                <!--가게 번호-->
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/detail_act_gps_store_location"
+                                    android:layout_marginTop="22dp"
+                                    android:layout_marginBottom="6dp"
+                                    android:layout_centerHorizontal="true">
+
+                                    <TextView
+                                        android:id="@+id/store_num_tel_fix"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/nanumbarungothiclight_normal"
+                                        android:textColor="#F7F7F7"
+                                        android:textSize="12dp"
+                                        android:text="T." />
+
+                                    <TextView
+                                        android:id="@+id/detail_act_store_num1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toRightOf="@id/store_num_tel_fix"
+                                        android:layout_marginLeft="3dp"
+                                        android:fontFamily="@font/nanumbarungothiclight_normal"
+                                        android:textColor="#F7F7F7"
+                                        android:textSize="12dp"
+                                        android:text="02" />
+
+                                    <!--번호-->
+                                    <TextView
+                                        android:id="@+id/store_num1_right"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toRightOf="@id/detail_act_store_num1"
+                                        android:fontFamily="@font/nanumbarungothiclight_normal"
+                                        android:textColor="#F7F7F7"
+                                        android:textSize="12dp"
+                                        android:text="-" />
+
+                                    <TextView
+                                        android:id="@+id/detail_act_store_num2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toRightOf="@id/store_num1_right"
+                                        android:fontFamily="@font/nanumbarungothiclight_normal"
+                                        android:textColor="#F7F7F7"
+                                        android:textSize="12dp"
+                                        android:text="2662" />
+
+                                    <TextView
+                                        android:id="@+id/store_num2_right"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toRightOf="@id/detail_act_store_num2"
+                                        android:fontFamily="@font/nanumbarungothiclight_normal"
+                                        android:textColor="#F7F7F7"
+                                        android:textSize="12dp"
+                                        android:text="-" />
+
+                                    <TextView
+                                        android:id="@+id/detail_act_store_num3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toRightOf="@id/store_num2_right"
+                                        android:fontFamily="@font/nanumbarungothiclight_normal"
+                                        android:textColor="#F7F7F7"
+                                        android:textSize="12dp"
+                                        android:text="9826" />
+
+                                </RelativeLayout>
+
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <!--가격 설명-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="36dp"
+                        android:layout_marginBottom="26dp">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true">
+
+                            <View
+                                android:layout_width="167dp"
+                                android:layout_height="1dp"
+                                android:layout_centerHorizontal="true"
+                                android:background="#BDBDBD" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp">
+
+                                <TextView
+                                    android:id="@+id/products_price_quantity_fix"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="#46AE7F"
+                                    android:textSize="22dp"
+                                    android:text="한 개당" />
+
+                                <!--이전 가격-->
+                                <TextView
+                                    android:id="@+id/detail_act_products_price_origin"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@+id/products_price_quantity_fix"
+                                    android:layout_marginLeft="12dp"
+                                    android:textColor="#CCCCCC"
+                                    android:textSize="22dp"
+                                    android:text="1000" />
+
+
+                                <TextView
+                                    android:id="@+id/detail_act_products_price_sale"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@+id/detail_act_products_price_origin"
+                                    android:layout_marginLeft="12dp"
+                                    android:fontFamily="@font/nanumbarungothicbold_normal"
+                                    android:textColor="#46AE7F"
+                                    android:textSize="22dp"
+                                    android:text="500" />
+
+                                <TextView
+                                    android:id="@+id/products_price_fix"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@id/detail_act_products_price_sale"
+                                    android:fontFamily="@font/nanumbarungothicbold_normal"
+                                    android:textColor="#46AE7F"
+                                    android:textSize="22dp"
+                                    android:text="원" />
+
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
