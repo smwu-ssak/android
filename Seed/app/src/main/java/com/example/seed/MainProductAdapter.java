@@ -16,9 +16,10 @@ import java.util.ArrayList;
 
 // Customized by SY
 
-public class MainProductAdapter extends RecyclerView.Adapter<MainProductAdapter.MainProductViewHolder> {
+public class MainProductAdapter extends RecyclerView.Adapter<MainProductAdapter.MainProductViewHolder> implements OnMainProductClickListener {
 
     ArrayList<MainProductData> items;
+    OnMainProductClickListener listener;
 
     public MainProductAdapter(ArrayList<MainProductData> items) {
         this.items = items;
@@ -28,7 +29,7 @@ public class MainProductAdapter extends RecyclerView.Adapter<MainProductAdapter.
     public MainProductViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View itemView = inflater.inflate(R.layout.rv_item_main_products, viewGroup, false);
-        return new MainProductViewHolder(itemView);
+        return new MainProductViewHolder(itemView, this);
     }
 
     @Override
@@ -41,6 +42,16 @@ public class MainProductAdapter extends RecyclerView.Adapter<MainProductAdapter.
         viewHolder.productSalePrice.setText(String.valueOf(item.getSalePrice()));
         viewHolder.productDiscount.setText(String.valueOf(item.getDiscount()));
         viewHolder.productPlace.setText(item.getPlace());
+    }
+
+    public void setOnItemClickListener(OnMainProductClickListener listener){
+        this.listener = listener;
+    }
+
+    @Override
+    public void onItemClick(MainProductViewHolder holder, View view, int position) {
+        if (listener != null)
+            listener.onItemClick(holder, view, position);
     }
 
     @Override
@@ -75,8 +86,9 @@ public class MainProductAdapter extends RecyclerView.Adapter<MainProductAdapter.
         protected TextView productDiscount;
         protected TextView productPlace;
 
-        public MainProductViewHolder(View itemView) {
+        public MainProductViewHolder(View itemView, final OnMainProductClickListener listener) {
             super(itemView);
+
             productImage = itemView.findViewById(R.id.rv_item_main_products_image);
             productName = itemView.findViewById(R.id.rv_item_main_products_name);
             productQuantity = itemView.findViewById(R.id.rv_item_main_products_quantity);
@@ -84,6 +96,15 @@ public class MainProductAdapter extends RecyclerView.Adapter<MainProductAdapter.
             productSalePrice = itemView.findViewById(R.id.rv_item_main_products_price_sale);
             productDiscount = itemView.findViewById(R.id.rv_item_main_products_discount);
             productPlace = itemView.findViewById(R.id.rv_item_main_products_place);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (listener != null)
+                        listener.onItemClick(MainProductViewHolder.this, view, position);
+                }
+            });
         }
     }
 
