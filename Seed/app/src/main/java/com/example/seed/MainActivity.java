@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -29,7 +33,34 @@ public class MainActivity extends AppCompatActivity {
         setflipperView();
         setProducts();
         moveToDetailView();
+        checkMyLocation();
+//        LocationService();
     }
+
+//    public void LocationService(){
+//        ImageView button = findViewById(R.id.main_act_gps_btn);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startLocationService();
+//            }
+//        });
+//    }
+//
+//    public void startLocationService(){
+//        LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        try {
+//            Location location = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//            if (location != null){
+//                double latitude = location.getLatitude();
+//                double longitude = location.getLongitude();
+//                String message = "최근 위치-> 위도: "+latitude+"\n경도: "+longitude;
+//                Log.d("message: ", message);
+//            }
+//        } catch(SecurityException e){
+//            e.printStackTrace();
+//        }
+//    }
 
     public void setScrollViewFocus(){
         final ScrollView scrollView = findViewById(R.id.main_scrollView);
@@ -47,6 +78,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 //Intent intent = new Intent(getApplicationContext(), DetailProductsActivity.class);
                 //startActivity(intent);
+            }
+        });
+    }
+
+    public void checkMyLocation(){
+        ImageView button = findViewById(R.id.main_act_gps_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SearchMyLocation.class);
+                startActivity(intent);
             }
         });
     }
