@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import net.daum.mf.map.api.MapView;
 
+// Customized by SY
+
 public class SearchMyLocation extends AppCompatActivity {
 
     @Override
@@ -18,5 +20,6 @@ public class SearchMyLocation extends AppCompatActivity {
 //
 //        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.my_location);
 //        mapViewContainer.addView(mapView);
+
     }
 }
