@@ -53,14 +53,14 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true">
+                android:layout_centerHorizontal="true">
 
                 <!--바구니 담기 버튼-->
                 <ImageView
                     android:id="@+id/detail_act_basket_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                     />
+                    android:src="@drawable/detailview_basket" />
 
                 <!--구출하기 버튼-->
                 <ImageView
@@ -68,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/detail_act_basket_btn"
-                     />
+                    android:src="@drawable/detailview_purchase" />
 
             </RelativeLayout>
 
@@ -99,7 +99,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:layout_marginLeft="18dp" />
+                    android:layout_marginLeft="18dp"
+                    android:src="@drawable/detailview_previouspage"/>
 
                 <!--이미지 아래 아이콘-->
                 <RelativeLayout
@@ -196,7 +197,8 @@
                             <ImageView
                                 android:id="@+id/detail_act_img_store"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/detailview_sellerprofile"/>
 
                             <RelativeLayout
                                 android:layout_width="wrap_content"
@@ -419,8 +421,8 @@
                     <!--지도, 지도 설명-->
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp">
+                        android:layout_height="wrap_content">
+                        //android:layout_marginTop="30dp"
 
                         <RelativeLayout
                             android:layout_width="245dp"
@@ -433,7 +435,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
-                                 />
+                                android:src="@drawable/detailview_mappreview" />
 
                             <RelativeLayout
                                 android:layout_width="match_parent"

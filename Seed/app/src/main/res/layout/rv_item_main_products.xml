@@ -54,9 +54,9 @@
                         android:id="@+id/rv_item_main_products_name_fix"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="이름"
                         android:textColor="#424242"
-                        android:textSize="18dp"
-                        android:text="이름" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/rv_item_main_products_name"
@@ -111,14 +111,29 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true">
 
-                    <TextView
-                        android:id="@+id/rv_item_main_products_price_origin"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#B4B3B3"
-                        android:textSize="18dp"
-                        android:text="1,000" />
+                        android:layout_height="wrap_content">
 
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="1dp"
+                            android:background="#000000"
+                            android:layout_centerInParent="true"/>
+
+
+                        <TextView
+                            android:id="@+id/rv_item_main_products_price_origin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#B4B3B3"
+                            android:textSize="18dp"
+                            android:text="1,000" />
+
+
+
+                    </RelativeLayout>
+<!--임시
                     <TextView
                         android:id="@+id/rv_item_main_products_price_sale"
                         android:layout_width="wrap_content"
@@ -176,7 +191,7 @@
                             </LinearLayout>
 
                     </RelativeLayout>
-
+-->
                 </RelativeLayout>
 
             </RelativeLayout>
