@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.ViewFlipper;
 
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setScrollViewFocus();
         setflipperView();
         setProducts();
+        moveToDetailView();
     }
 
     public void setScrollViewFocus(){
@@ -36,6 +37,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 scrollView.fullScroll(ScrollView.FOCUS_UP);
+            }
+        });
+    }
+
+    public void moveToDetailView(){
+        RelativeLayout button = findViewById(R.id.main_act_buy_btn);
+        button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(getApplicationContext(), DetailProductsActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -87,11 +98,4 @@ public class MainActivity extends AppCompatActivity {
         //adapter.notifyDataSetChanged();
     }
 
-    /*
-    public void onClick (View view){
-        Intent intent = new Intent(this, SubActivity.class);
-        stratActivity(intent);
-    }
-    */
-
-    }
+}
