@@ -3,19 +3,12 @@ package com.example.seed;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.Date;
-
-public class BuyProductsActivity extends AppCompatActivity {
+public class SearchStoreLocation extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buy_products);
-
+        setContentView(R.layout.activity_search_store_location);
     }
-
 }
