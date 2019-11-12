@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setScrollViewFocus();
         setflipperView();
         setProducts();
-        moveToDetailView();
         checkMyLocation();
 //        LocationService();
     }
@@ -68,16 +67,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 scrollView.fullScroll(ScrollView.FOCUS_UP);
-            }
-        });
-    }
-
-    public void moveToDetailView(){
-        RelativeLayout button = findViewById(R.id.main_act_buy_btn);
-        button.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                //Intent intent = new Intent(getApplicationContext(), DetailProductsActivity.class);
-                //startActivity(intent);
             }
         });
     }
@@ -125,12 +114,12 @@ public class MainActivity extends AppCompatActivity {
 
         final ArrayList<MainProductData> data = new ArrayList<>();
 
-        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 50, "프라임마트"));
-        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 20, "눈송마트"));
-        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 50, "프라임마트"));
-        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 20, "눈송마트"));
-        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 50, "프라임마트"));
-        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 20, "눈송마트"));
+        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 0, "프라임마트"));
+        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 0, "눈송마트"));
+        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 0, "프라임마트"));
+        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 0, "눈송마트"));
+        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 0, "프라임마트"));
+        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 0, "눈송마트"));
 
         final MainProductAdapter adapter = new MainProductAdapter(data);
 
@@ -141,8 +130,14 @@ public class MainActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new OnMainProductClickListener() {
             @Override
             public void onItemClick(MainProductAdapter.MainProductViewHolder holder, View view, int position) {
-                MainProductData item = adapter.getItem(position);
                 Intent intent = new Intent(getApplicationContext(), DetailProductsActivity.class);
+                MainProductData item = adapter.getItem(position);
+                intent.putExtra("name", item.getName());
+                intent.putExtra("quantity", item.getQuantity());
+                intent.putExtra("originPrice", item.getOriginPrice());
+                intent.putExtra("salePrice", item.getSalePrice());
+                intent.putExtra("discount", Math.round((float)(item.getOriginPrice()-item.getSalePrice())/(float)item.getOriginPrice()*100));
+                intent.putExtra("place", item.getPlace());
                 startActivity(intent);
             }
         });

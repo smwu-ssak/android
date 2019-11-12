@@ -2,6 +2,8 @@ package com.example.seed.data;
 
 import android.graphics.drawable.Drawable;
 
+import java.util.Date;
+
 // Customized by SY
 
 public class MainProductData {
@@ -11,8 +13,10 @@ public class MainProductData {
     private int quantity;
     private int originPrice;
     private int salePrice;
-    private int discount;
     private String place;
+
+    private String comments;
+    private Date timeLeft;
 
     public MainProductData(int image, String name, int quantity, int originPrice, int salePrice, int discount, String place) {
         this.image = image;
@@ -20,7 +24,6 @@ public class MainProductData {
         this.quantity = quantity;
         this.originPrice = originPrice;
         this.salePrice = salePrice;
-        this.discount = discount;
         this.place = place;
     }
 
@@ -34,9 +37,11 @@ public class MainProductData {
 
     public int getSalePrice() { return salePrice; }
 
-    public int getDiscount() { return discount; }
-
     public String getPlace() { return place; }
+
+    public String getComments() { return comments; }
+
+    public Date getTimeLeft() { return timeLeft; }
 
     public void setImage(int image) { this.image = image; }
 
@@ -48,8 +53,10 @@ public class MainProductData {
 
     public void setSalePrice(int salePrice) { this.salePrice = salePrice; }
 
-    public void setDiscount(int discount) { this.discount = discount; }
-
     public void setPlace(String place) { this.place = place; }
+
+    public void setComments(String comments) { this.comments = comments; }
+
+    public void setTimeLeft(Date timeLeft) { this.timeLeft = timeLeft; }
 
 }
