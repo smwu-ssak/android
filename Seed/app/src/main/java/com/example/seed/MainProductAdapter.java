@@ -40,7 +40,7 @@ public class MainProductAdapter extends RecyclerView.Adapter<MainProductAdapter.
         viewHolder.productQuantity.setText(String.valueOf(item.getQuantity()));
         viewHolder.productOriginPrice.setText(String.valueOf(item.getOriginPrice()));
         viewHolder.productSalePrice.setText(String.valueOf(item.getSalePrice()));
-        viewHolder.productDiscount.setText(String.valueOf(item.getDiscount()));
+        viewHolder.productDiscount.setText(String.valueOf(Math.round((float)(item.getOriginPrice()-item.getSalePrice())/(float)item.getOriginPrice()*100)));
         viewHolder.productPlace.setText(item.getPlace());
     }
 

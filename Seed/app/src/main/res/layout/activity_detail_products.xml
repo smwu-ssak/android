@@ -153,7 +153,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/detail_act_name_first"
+                        android:id="@+id/detail_act_comments"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -163,9 +163,10 @@
                         android:textSize="12dp" />
 
                     <TextView
+                        android:id="@+id/detail_act_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/detail_act_name_first"
+                        android:layout_below="@id/detail_act_comments"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="6dp"
                         android:fontFamily="@font/nanumbarungothicbold_normal"
