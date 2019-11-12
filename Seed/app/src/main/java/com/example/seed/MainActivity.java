@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setProducts() {
-        RecyclerView recyclerView = findViewById(R.id.rv_main);
+        final RecyclerView recyclerView = findViewById(R.id.rv_main);
 
         final ArrayList<MainProductData> data = new ArrayList<>();
 
@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(MainProductAdapter.MainProductViewHolder holder, View view, int position) {
                 Intent intent = new Intent(getApplicationContext(), DetailProductsActivity.class);
                 MainProductData item = adapter.getItem(position);
+                int idx = recyclerView.getChildAdapterPosition(view);
                 intent.putExtra("name", item.getName());
                 intent.putExtra("quantity", item.getQuantity());
                 intent.putExtra("originPrice", item.getOriginPrice());

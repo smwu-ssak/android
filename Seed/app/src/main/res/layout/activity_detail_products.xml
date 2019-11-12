@@ -196,7 +196,7 @@
                         android:layout_centerInParent="true">
 
                         <!--가게 사진-->
-                        <ImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/detail_act_img_store"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
