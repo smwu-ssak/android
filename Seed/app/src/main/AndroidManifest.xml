@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchMyLocation"></activity>
+        <activity android:name=".activity_buy_products"></activity>
+        <activity android:name=".SearchMyLocation" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
