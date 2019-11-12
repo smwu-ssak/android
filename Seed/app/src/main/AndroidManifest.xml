@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_buy_products"></activity>
+        <activity android:name=".BuyProductsActivity"></activity>
         <activity android:name=".SearchMyLocation" />
 
         <meta-data
