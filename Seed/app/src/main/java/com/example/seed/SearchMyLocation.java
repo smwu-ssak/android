@@ -16,6 +16,7 @@ import android.util.Log;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapReverseGeoCoder;
 import net.daum.mf.map.api.MapView;
@@ -26,6 +27,8 @@ public class SearchMyLocation extends AppCompatActivity
         implements MapView.CurrentLocationEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener {
 
     private MapView mapView;
+    private MapPoint myLocation;
+    private MapPoint.GeoCoordinate mapPointGeo;
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION};
@@ -37,7 +40,7 @@ public class SearchMyLocation extends AppCompatActivity
 
         mapView = new MapView(this);
         RelativeLayout mapViewContainer = (RelativeLayout) findViewById(R.id.my_location);
-//        mapViewContainer.removeAllViews();
+        mapViewContainer.removeAllViews();
         mapViewContainer.addView(mapView);
         mapView.setCurrentLocationEventListener(this);
 
@@ -48,12 +51,12 @@ public class SearchMyLocation extends AppCompatActivity
         }
     }
 
-//    @Override
-//    protected void onDestroy(){
-//        super.onDestroy();
-//        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
-//        mapView.setShowCurrentLocationMarker(true);
-//    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
+        mapView.setShowCurrentLocationMarker(true);
+    }
 
     @Override
     public void onReverseGeoCoderFoundAddress(MapReverseGeoCoder mapReverseGeoCoder, String s) {
@@ -67,8 +70,19 @@ public class SearchMyLocation extends AppCompatActivity
 
     @Override
     public void onCurrentLocationUpdate(MapView mapView, MapPoint mapPoint, float v) {
-        MapPoint.GeoCoordinate mapPointGeo = mapPoint.getMapPointGeoCoord();
+        mapPointGeo = mapPoint.getMapPointGeoCoord();
+        myLocation = MapPoint.mapPointWithGeoCoord(mapPointGeo.latitude, mapPointGeo.longitude);
         Log.i("Current Location: ", String.format("MapView onCurrentLocationUpdate (%f,%f) accuracy (%f)", mapPointGeo.latitude, mapPointGeo.longitude, v));
+        setMyLocation();
+    }
+
+    public void setMyLocation() {
+        MapPOIItem marker = new MapPOIItem();
+        // marker.setItemName("현재 위치");
+        marker.setMapPoint(myLocation);
+        mapView.setMapCenterPoint(myLocation, true);
+        marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
+        mapView.addPOIItem(marker);
     }
 
     @Override
@@ -101,7 +115,7 @@ public class SearchMyLocation extends AppCompatActivity
                 }
             }
             if ( check_result ) {
-                Log.d("@@@", "start");
+                //Log.d("@@@", "start");
                 //위치 값을 가져올 수 있음
                 mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
             }
@@ -153,8 +167,8 @@ public class SearchMyLocation extends AppCompatActivity
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("위치 서비스 비활성화");
-        builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
-                + "위치 설정을 수정하실래요?");
+        builder.setMessage("위치 서비스 권한 수정이 필요합니다.\n"
+                + "위치 서비스 권한을 수정하시겠습니까?");
         builder.setCancelable(true);
         builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
             @Override
@@ -181,7 +195,7 @@ public class SearchMyLocation extends AppCompatActivity
                 //사용자가 GPS 활성 시켰는지 검사
                 if (checkLocationServicesStatus()) {
                     if (checkLocationServicesStatus()) {
-                        Log.d("@@@", "onActivityResult : GPS 활성화 되있음");
+                        // Log.d("@@@", "onActivityResult : GPS 활성화 되있음");
                         checkRunTimePermission();
                         return;
                     }
