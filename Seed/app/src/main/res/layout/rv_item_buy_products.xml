@@ -58,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/buy_act_products_quantity_fix"
                     android:layout_marginRight="16dp"
+                    android:layout_marginLeft="40dp"
                     android:layout_alignParentRight="true">
 
                     <ImageView
@@ -111,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/buy_act_time_pickup_fix"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="12dp"
                     android:fontFamily="@font/nanumbarungothicbold_normal"
                     android:textColor="#3A3A3A"
                     android:textSize="16dp"
@@ -139,7 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/buy_act_product_price_fix"
-                    android:layout_marginLeft="8dp">
+                    android:layout_marginLeft="45dp">
 
                     <TextView
                         android:id="@+id/buy_act_product_price"
@@ -197,7 +198,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/purchaseview_checkbox_empty" />
+                android:src="@drawable/purchaseview_checkbox_empty"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/buy_act_option_1_selected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/purchaseview_checkbox"
+                android:visibility="invisible" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -225,7 +235,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/purchaseview_checkbox_empty" />
+                android:src="@drawable/purchaseview_checkbox_empty"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/buy_act_option_2_selected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/purchaseview_checkbox"
+                android:visibility="invisible" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -252,7 +271,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/purchaseview_checkbox_empty" />
+                android:src="@drawable/purchaseview_checkbox_empty"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/buy_act_option_3_selected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/purchaseview_checkbox"
+                android:visibility="invisible" />
 
             <TextView
                 android:layout_width="wrap_content"
