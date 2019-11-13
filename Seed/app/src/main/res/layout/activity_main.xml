@@ -64,6 +64,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
             tools:context="com.example.seed.autoviewpager.Autoscroll">
 
             <!-- 자동 이미지 슬라이드 -->

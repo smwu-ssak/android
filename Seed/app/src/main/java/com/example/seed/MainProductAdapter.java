@@ -1,13 +1,15 @@
 package com.example.seed;
 
-import android.app.Activity;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.seed.data.MainProductData;
@@ -85,8 +87,9 @@ public class MainProductAdapter extends RecyclerView.Adapter<MainProductAdapter.
         protected TextView productSalePrice;
         protected TextView productDiscount;
         protected TextView productPlace;
+        protected FrameLayout productCancelLine;
 
-        public MainProductViewHolder(View itemView, final OnMainProductClickListener listener) {
+        public MainProductViewHolder(final View itemView, final OnMainProductClickListener listener) {
             super(itemView);
 
             productImage = itemView.findViewById(R.id.rv_item_main_products_image);
@@ -96,6 +99,23 @@ public class MainProductAdapter extends RecyclerView.Adapter<MainProductAdapter.
             productSalePrice = itemView.findViewById(R.id.rv_item_main_products_price_sale);
             productDiscount = itemView.findViewById(R.id.rv_item_main_products_discount);
             productPlace = itemView.findViewById(R.id.rv_item_main_products_place);
+
+            productCancelLine = itemView.findViewById(R.id.rv_item_main_products_price_origin_cancel);
+
+            productOriginPrice.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    int len = productOriginPrice.getWidth();
+
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    params.width = len+10;
+                    params.gravity = Gravity.CENTER_VERTICAL;
+                    productCancelLine.setForegroundGravity(Gravity.CENTER_VERTICAL);
+                    productCancelLine.setLayoutParams(params);
+
+                    productOriginPrice.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }
+            });
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

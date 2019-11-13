@@ -11,6 +11,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -29,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setScrollViewFocus();
         setflipperView();
         setProducts();
         checkMyLocation();
@@ -138,10 +138,10 @@ public class MainActivity extends AppCompatActivity {
 
         final ArrayList<MainProductData> data = new ArrayList<>();
 
-        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 0, "프라임마트"));
-        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 0, "눈송마트"));
-        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 0, "프라임마트"));
-        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 0, "눈송마트"));
+        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 10000, 6000, 0, "프라임마트"));
+        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 100, 50, 0, "눈송마트"));
+        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 800, 0, "프라임마트"));
+        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 850, 0, "눈송마트"));
         data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 0, "프라임마트"));
         data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 0, "눈송마트"));
 
