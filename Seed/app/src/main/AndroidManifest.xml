@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.seed">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +13,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailProductsActivity"></activity>
+        <activity android:name=".BasketActivity"></activity>
+        <activity android:name=".SearchStoreLocation" />
+        <activity android:name=".BuyProductsActivity" />
+        <activity android:name=".SearchMyLocation" />
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="a7bd83c201bf19ef511028534cf38a14" />
+
+        <activity android:name=".MypageActivity" />
+        <activity android:name=".DetailProductsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

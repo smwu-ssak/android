@@ -4,9 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -25,11 +30,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setScrollViewFocus();
         setflipperView();
         setProducts();
-        moveToDetailView();
+        checkMyLocation();
+        moveToMypage();
+        moveToBuyProducts();
+//        LocationService();
     }
+
+//    public void LocationService(){
+//        ImageView button = findViewById(R.id.main_act_gps_btn);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startLocationService();
+//            }
+//        });
+//    }
+//
+//    public void startLocationService(){
+//        LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        try {
+//            Location location = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//            if (location != null){
+//                double latitude = location.getLatitude();
+//                double longitude = location.getLongitude();
+//                String message = "최근 위치-> 위도: "+latitude+"\n경도: "+longitude;
+//                Log.d("message: ", message);
+//            }
+//        } catch(SecurityException e){
+//            e.printStackTrace();
+//        }
+//    }
 
     public void setScrollViewFocus(){
         final ScrollView scrollView = findViewById(R.id.main_scrollView);
@@ -41,12 +73,35 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void moveToDetailView(){
+    public void moveToMypage(){
+        RelativeLayout button = findViewById(R.id.main_act_topbar_mypage_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MypageActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void checkMyLocation(){
+        ImageView button = findViewById(R.id.main_act_gps_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SearchMyLocation.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void moveToBuyProducts(){
         RelativeLayout button = findViewById(R.id.main_act_buy_btn);
-        button.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                //Intent intent = new Intent(getApplicationContext(), DetailProductsActivity.class);
-                //startActivity(intent);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BuyProductsActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -79,16 +134,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setProducts() {
-        RecyclerView recyclerView = findViewById(R.id.rv_main);
+        final RecyclerView recyclerView = findViewById(R.id.rv_main);
 
         final ArrayList<MainProductData> data = new ArrayList<>();
 
-        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 50, "프라임마트"));
-        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 20, "눈송마트"));
-        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 50, "프라임마트"));
-        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 20, "눈송마트"));
-        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 50, "프라임마트"));
-        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 20, "눈송마트"));
+        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 10000, 6000, 0, "프라임마트"));
+        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 100, 50, 0, "눈송마트"));
+        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 800, 0, "프라임마트"));
+        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 850, 0, "눈송마트"));
+        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 0, "프라임마트"));
+        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 0, "눈송마트"));
 
         final MainProductAdapter adapter = new MainProductAdapter(data);
 
@@ -99,8 +154,15 @@ public class MainActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new OnMainProductClickListener() {
             @Override
             public void onItemClick(MainProductAdapter.MainProductViewHolder holder, View view, int position) {
-                MainProductData item = adapter.getItem(position);
                 Intent intent = new Intent(getApplicationContext(), DetailProductsActivity.class);
+                MainProductData item = adapter.getItem(position);
+                int idx = recyclerView.getChildAdapterPosition(view);
+                intent.putExtra("name", item.getName());
+                intent.putExtra("quantity", item.getQuantity());
+                intent.putExtra("originPrice", item.getOriginPrice());
+                intent.putExtra("salePrice", item.getSalePrice());
+                intent.putExtra("discount", Math.round((float)(item.getOriginPrice()-item.getSalePrice())/(float)item.getOriginPrice()*100));
+                intent.putExtra("place", item.getPlace());
                 startActivity(intent);
             }
         });
