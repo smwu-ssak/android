@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         setflipperView();
         setProducts();
         checkMyLocation();
+        moveToMypage();
+        moveToBuyProducts();
 //        LocationService();
     }
 
@@ -71,12 +73,34 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void moveToMypage(){
+        RelativeLayout button = findViewById(R.id.main_act_topbar_mypage_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MypageActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     public void checkMyLocation(){
         ImageView button = findViewById(R.id.main_act_gps_btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SearchMyLocation.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void moveToBuyProducts(){
+        RelativeLayout button = findViewById(R.id.main_act_buy_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BuyProductsActivity.class);
                 startActivity(intent);
             }
         });
