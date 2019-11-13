@@ -37,10 +37,15 @@ public class SearchMyLocation extends AppCompatActivity
 
         mapView = new MapView(this);
         RelativeLayout mapViewContainer = (RelativeLayout) findViewById(R.id.my_location);
-        mapViewContainer.removeAllViews();
+//        mapViewContainer.removeAllViews();
         mapViewContainer.addView(mapView);
-
         mapView.setCurrentLocationEventListener(this);
+
+        if (!checkLocationServicesStatus()) {
+            showDialogForLocationServiceSetting();
+        }else {
+            checkRunTimePermission();
+        }
     }
 
 //    @Override
