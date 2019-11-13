@@ -8,7 +8,7 @@
     android:background="#ECECEC"
     tools:context=".DetailProductsActivity">
 
-    <!--민승-->
+    <!--Customized by MS-->
     <RelativeLayout
         android:id="@+id/detail_act_toolbar"
         android:layout_width="match_parent"
@@ -562,6 +562,28 @@
                                 android:textSize="22dp"
                                 android:text="1000" />
 
+                            <!-- Customized by SY-->
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toRightOf="@+id/products_price_quantity_fix"
+                                android:layout_marginLeft="10dp">
+
+                                <FrameLayout
+                                    android:id="@+id/detail_act_products_price_origin_cancel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <View
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="3dp"
+                                        android:background="#707070"/>
+
+                                </FrameLayout>
+
+                            </LinearLayout>
+                            <!-- Customized by SY-->
 
                             <TextView
                                 android:id="@+id/detail_act_products_price_sale"
