@@ -54,6 +54,7 @@
                         android:id="@+id/rv_item_main_products_name_fix"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanumbarungothicbold_normal"
                         android:text="이름"
                         android:textColor="#424242"
                         android:textSize="18dp" />
@@ -64,6 +65,7 @@
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/rv_item_main_products_name_fix"
                         android:layout_marginLeft="8dp"
+                        android:fontFamily="@font/nanumbarungothic_normal"
                         android:textColor="#818181"
                         android:textSize="18dp"
                         android:text="사과" />
@@ -80,6 +82,7 @@
                         android:id="@+id/rv_item_main_products_quantity_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanumbarungothicbold_normal"
                         android:textColor="#424242"
                         android:textSize="18dp"
                         android:text="포로 수" />
@@ -90,6 +93,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:layout_toRightOf="@id/rv_item_main_products_quantity_name"
+                        android:fontFamily="@font/nanumbarungothic_normal"
                         android:textColor="#818181"
                         android:textSize="18dp"
                         android:text="5"/>
@@ -99,6 +103,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/rv_item_main_products_quantity"
+                        android:fontFamily="@font/nanumbarungothic_normal"
                         android:textColor="#818181"
                         android:textSize="18dp"
                         android:text="개" />
@@ -115,6 +120,7 @@
                         android:id="@+id/rv_item_main_products_price_origin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanumbarungothic_normal"
                         android:textColor="#B4B3B3"
                         android:textSize="18dp"
                         android:text="1,000" />
@@ -132,12 +138,13 @@
 
                             <View
                                 android:layout_width="wrap_content"
-                                android:layout_height="3dp"
+                                android:layout_height="2dp"
                                 android:background="#707070"/>
 
                         </FrameLayout>
 
                     </LinearLayout>
+
                     <!-- Customized by SY-->
 
                     <TextView
@@ -146,6 +153,7 @@
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/rv_item_main_products_price_origin"
                         android:layout_marginLeft="8dp"
+                        android:fontFamily="@font/nanumbarungothicbold_normal"
                         android:textColor="#46AE7F"
                         android:textSize="18dp"
                         android:text="500" />
@@ -155,6 +163,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/rv_item_main_products_price_sale"
+                        android:fontFamily="@font/nanumbarungothicbold_normal"
                         android:textColor="#46AE7F"
                         android:textSize="18dp"
                         android:text="원" />
@@ -181,6 +190,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerInParent="true"
+                                    android:fontFamily="@font/nanumbarungothic_normal"
                                     android:textColor="#FFFFFF"
                                     android:textSize="9dp"
                                     android:text="50" />
@@ -190,6 +200,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerInParent="true"
+                                    android:fontFamily="@font/nanumbarungothic_normal"
                                     android:textColor="#FFFFFF"
                                     android:textSize="9dp"
                                     android:text="%" />
@@ -234,6 +245,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/img_location_small"
                     android:layout_marginLeft="6dp"
+                    android:fontFamily="@font/nanumbarungothicbold_normal"
                     android:textSize="14dp"
                     android:textColor="#818181"
                     android:text="프라임 마트" />
@@ -243,6 +255,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
+                    android:fontFamily="@font/nanumbarungothicbold_normal"
                     android:textSize="14dp"
                     android:textColor="#818181"
                     android:text=">" />
