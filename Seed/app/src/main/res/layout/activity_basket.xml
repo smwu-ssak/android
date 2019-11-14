@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--민승-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,6 +9,7 @@
     android:background="#ECECEC"
     tools:context=".BasketActivity">
 
+    <!--민승-->
     <RelativeLayout
         android:id="@+id/buy_act_toolbar"
         android:layout_width="match_parent"
@@ -50,7 +50,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ADADAD"
+        android:background="#BDBDBD"
         android:layout_alignBottom="@id/buy_act_toolbar"/>
 
     <!--하단 버튼-->
@@ -127,5 +127,15 @@
 
     </RelativeLayout>
 
+    <!-- Customized by SY-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_buy"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="67dp"
+        android:layout_below="@+id/buy_act_toolbar">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>
