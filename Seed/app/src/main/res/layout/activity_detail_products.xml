@@ -46,7 +46,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ADADAD"
+        android:background="#BDBDBD"
         android:layout_alignBottom="@id/detail_act_toolbar"/>
 
     <!--하단 버튼-->
@@ -249,6 +249,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/detail_act_store_box"
+                                android:layout_marginTop="1dp"
                                 android:fontFamily="@font/nanumbarungothicultralight_normal"
                                 android:text="서울특별시 용산구 청파로47길 49"
                                 android:textColor="#918B8A"
@@ -305,6 +306,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/detail_act_products_quantity_top"
+                                android:layout_marginTop="1dp"
                                 android:layout_centerInParent="true">
 
                                 <TextView
@@ -353,6 +355,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/detail_act_products_timeleft_top"
+                                android:layout_marginTop="1dp"
                                 android:layout_centerInParent="true">
 
                                 <TextView
@@ -401,6 +404,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/detail_act_products_distance_top"
+                                android:layout_marginTop="1dp"
                                 android:layout_centerInParent="true">
 
                                 <TextView
@@ -577,7 +581,7 @@
 
                                     <View
                                         android:layout_width="wrap_content"
-                                        android:layout_height="3dp"
+                                        android:layout_height="2dp"
                                         android:background="#707070"/>
 
                                 </FrameLayout>
