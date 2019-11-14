@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--민승-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,7 +10,6 @@
     android:background="#ECECEC"
     tools:context=".BuyProductsActivity">
 
-    <!--민승-->
     <RelativeLayout
         android:id="@+id/buy_act_toolbar"
         android:layout_width="match_parent"
@@ -43,14 +43,14 @@
             android:fontFamily="@font/nanumbarungothicbold_normal"
             android:textColor="#3A3A3A"
             android:textSize="24dp"
-            android:text="구출하기"/>
+            android:text="장바구니"/>
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#BDBDBD"
+        android:background="#ADADAD"
         android:layout_alignBottom="@id/buy_act_toolbar"/>
 
     <!--하단 버튼-->
@@ -127,15 +127,5 @@
 
     </RelativeLayout>
 
-    <!-- Customized by SY-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_buy"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="67dp"
-        android:layout_below="@+id/buy_act_toolbar">
-
-    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

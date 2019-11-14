@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.ViewFlipper;
 
+import com.example.seed.data.BuyProductsActivity;
 import com.example.seed.data.MainProductData;
 
 import java.util.*;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setProducts();
         checkMyLocation();
         moveToMypage();
-        moveToBuyProducts();
+        moveToBasket();
 //        LocationService();
     }
 
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void moveToBuyProducts(){
+    public void moveToBasket(){
         RelativeLayout button = findViewById(R.id.main_act_buy_btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
