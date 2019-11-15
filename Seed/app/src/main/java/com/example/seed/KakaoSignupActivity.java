@@ -3,15 +3,13 @@ package com.example.seed;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
-import com.kakao.auth.ErrorCode;
 import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.callback.MeV2ResponseCallback;
 import com.kakao.usermgmt.response.MeV2Response;
-import com.kakao.usermgmt.response.model.UserProfile;
-import com.kakao.util.helper.log.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,17 +31,19 @@ public class KakaoSignupActivity extends Activity {
         keys.add("properties.profile_image");
         keys.add("kakao_account.email");
 
-        UserManagement.getInstance().me(keys, new MeV2ResponseCallback() {
+        UserManagement.getInstance().me(new MeV2ResponseCallback() {
             @Override
             public void onSessionClosed(ErrorResult errorResult) {
+                Log.d("카카오 로그인", "실패");
                 redirectLoginActivity();
             }
 
             @Override
             public void onSuccess(MeV2Response result) {
-                Logger.d("user id : " + result.getId());
-                Logger.d("profile image : "+result.getKakaoAccount().getProfile());
-                Logger.d("email : "+result.getKakaoAccount().getEmail());
+                Log.d("카카오 로그인", "성공");
+                Log.d("카카오 user id", String.valueOf(result.getId()));
+                Log.d("카카오 profile image", String.valueOf(result.getKakaoAccount().getProfile()));
+                Log.d("카카오 email", String.valueOf(result.getKakaoAccount().getEmail()));
                 redirectMainActivity();
             }
         });

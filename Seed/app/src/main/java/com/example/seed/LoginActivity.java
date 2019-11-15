@@ -33,7 +33,8 @@ public class LoginActivity extends Activity {
         Log.d("카카오톡 로그인", "접근하였음");
         callback = new SessionCallback();
         Session.getCurrentSession().addCallback(callback);
-        getAppKeyHash();
+        //Log.e("토큰", Session.getCurrentSession().getTokenInfo().getAccessToken());
+        // getAppKeyHash();
     }
 
     private class SessionCallback implements ISessionCallback {
@@ -69,7 +70,7 @@ public class LoginActivity extends Activity {
     }
 
     protected void redirectSignupActivity() {       // 세션 연결 성공 시 SignupActivity로 넘김
-        final Intent intent = new Intent(this, KakaoSignupActivity.class);
+        Intent intent = new Intent(this, KakaoSignupActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
         finish();
@@ -80,7 +81,7 @@ public class LoginActivity extends Activity {
             PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
             for (Signature signature : info.signatures) {
                 MessageDigest md;
-                md = MessageDigest.getInstance("KeyHash");
+                md = MessageDigest.getInstance("SHA");
                 md.update(signature.toByteArray());
                 String str = new String(Base64.encode(md.digest(), 0));
                 Log.d("Hash key", str);
