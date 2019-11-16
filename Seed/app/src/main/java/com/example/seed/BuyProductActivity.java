@@ -23,17 +23,14 @@ public class BuyProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_buy_products);
 
         setProducts();
-        moveToBasket();
-
+        moveToBasketView();
     }
 
-    public void moveToBasket(){
-        RelativeLayout button = findViewById(R.id.buy_act_bottom_btn);
+    public void moveToBasketView() {
+        RelativeLayout button = findViewById(R.id.buy_act_back_basket_btn);
         button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BasketActivity.class);
-                startActivity(intent);
+            public void onClick(View v) {
+                finish();
             }
         });
     }

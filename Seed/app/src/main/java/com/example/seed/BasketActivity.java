@@ -48,10 +48,9 @@ public class BasketActivity extends AppCompatActivity {
     }
 
     public void moveToMainView() {
-        ImageView button = findViewById(R.id.basket_act_back_mainpage);
+        RelativeLayout button = findViewById(R.id.basket_act_back_mainpage_btn);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 finish();
             }
         });
@@ -84,22 +83,7 @@ public class BasketActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new ProductRecyclerViewDecoration(15));
 
-        adapter.setOnItemClickListener(new OnBasketClickListener() {
-            @Override
-            public void onItemClick(BasketAdapter.BasketViewHolder holder, View view, int position) {
-                Intent intent = new Intent(getApplicationContext(), BuyProductActivity.class);
-                BasketData item = adapter.getItem(position);
-                int idx = recyclerView.getChildAdapterPosition(view);
-                intent.putExtra("name", item.getName());
-                intent.putExtra("quantity", item.getQuantity());
-//                intent.putExtra("timePickup", item.getTimePickup());
-                intent.putExtra("salePrice", item.getSalePrice());
-                intent.putExtra("vinyl", item.isVinyl());
-                intent.putExtra("paper", item.isPaper());
-                intent.putExtra("box", item.isBox());
-                startActivity(intent);
-            }
-        });
+
         //adapter.notifyDataSetChanged();
     }
 
