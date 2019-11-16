@@ -88,7 +88,7 @@ public class DetailProductsActivity extends AppCompatActivity {
     }
 
     public void moveToMainView() {
-        ImageView button = findViewById(R.id.detail_act_back_mainpage);
+        RelativeLayout button = findViewById(R.id.detail_act_back_mainpage);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), DetailProductsActivity.class);
