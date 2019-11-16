@@ -10,6 +10,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,8 +19,12 @@ import android.widget.Toast;
 
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
+import net.daum.mf.map.api.MapPointBounds;
 import net.daum.mf.map.api.MapReverseGeoCoder;
 import net.daum.mf.map.api.MapView;
+
+import static net.daum.mf.map.n.api.internal.NativeMapLocationManager.isShowingCurrentLocationMarker;
+import static net.daum.mf.map.n.api.internal.NativeMapLocationManager.setCurrentLocationRadiusFillColor;
 
 // Customized by SY
 
@@ -76,17 +81,25 @@ public class SearchMyLocation extends AppCompatActivity
         mapPointGeo = mapPoint.getMapPointGeoCoord();
         myLocation = MapPoint.mapPointWithGeoCoord(mapPointGeo.latitude, mapPointGeo.longitude);
         Log.i("Current Location: ", String.format("MapView onCurrentLocationUpdate (%f,%f) accuracy (%f)", mapPointGeo.latitude, mapPointGeo.longitude, v));
-        mapView.setShowCurrentLocationMarker(true);
+        if (!isShowingCurrentLocationMarker()) {
+            Log.d("마커", "표시 안 되고 있음");
+            setMyLocation();
+            mapView.setShowCurrentLocationMarker(true);
+        }
+        else if (isShowingCurrentLocationMarker())
+            Log.d("마커", "표시 되는 중");
         setMyLocation();
     }
 
     public void setMyLocation() {
+        MapPointBounds mapPointBounds = new MapPointBounds();
         MapPOIItem marker = new MapPOIItem();
         // marker.setItemName("현재 위치");
         marker.setMapPoint(myLocation);
         marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
         mapView.addPOIItem(marker);
         mapView.setMapCenterPoint(myLocation, true);
+        mapPointBounds.add(myLocation);
     }
 
     @Override
@@ -104,36 +117,37 @@ public class SearchMyLocation extends AppCompatActivity
 
     }
 
-//    @Override
-//    public void onRequestPermissionsResult(int permsRequestCode,
-//                                           @NonNull String[] permissions,
-//                                           @NonNull int[] grandResults) {
-//
-//        if ( permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
-//            boolean check_result = true;
-//
-//            for (int result : grandResults) {
-//                if (result != PackageManager.PERMISSION_GRANTED) {
-//                    check_result = false;
-//                    break;
-//                }
-//            }
-//            if ( check_result ) {
-//                //Log.d("@@@", "start");
-//                //위치 값을 가져올 수 있음
-//                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
-//            }
-//            else {
-//                // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
-//                if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
-//                    Toast.makeText(this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
-//                    finish();
-//                }else {
-//                    Toast.makeText(this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        }
-//    }
+    @Override
+    public void onRequestPermissionsResult(int permsRequestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grandResults) {
+
+        if ( permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
+            boolean check_result = true;
+
+            for (int result : grandResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    check_result = false;
+                    break;
+                }
+            }
+            if ( check_result ) {
+                //Log.d("@@@", "start");
+                //위치 값을 가져올 수 있음
+                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
+            }
+            else {
+                // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
+                    Toast.makeText(this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
+                    finish();
+                }else {
+                    Toast.makeText(this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            }
+        }
+    }
 
     void checkRunTimePermission(){
         //런타임 퍼미션 처리
