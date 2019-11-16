@@ -54,20 +54,6 @@ public class BuyProductActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new ProductRecyclerViewDecoration(15));
 
-        adapter.setOnItemClickListener(new OnBuyProductClickListener() {
-            @Override
-            public void onItemClick(BuyProductAdapter.BuyProductViewHolder holder, View view, int position) {
-                Intent intent = new Intent(getApplicationContext(), BuyCompletedActivity.class);
-                BuyProductData item = adapter.getItem(position);
-                int idx = recyclerView.getChildAdapterPosition(view);
-                intent.putExtra("name", item.getName());
-                intent.putExtra("quantity", item.getQuantity());
-//                intent.putExtra("timePickup", item.getTimePickup());
-                intent.putExtra("optionSelected", item.getTotalPrice());
-                intent.putExtra("totalPrice", item.getTotalPrice());
-                startActivity(intent);
-            }
-        });
     }
 
 }

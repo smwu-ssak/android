@@ -21,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".data.BuyProductsActivity" />
+        <activity android:name=".BuyProductActivity" />
         <activity android:name=".SearchStoreLocation" />
-        <activity android:name=".BuyProductsActivity" />
+        <activity android:name=".BasketActivity" />
         <activity android:name=".SearchMyLocation" />
 
         <meta-data
