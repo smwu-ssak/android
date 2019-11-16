@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--민승-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F9F9F9"
+    tools:context=".MypageProfileActivity">
+
+    <!--상단-->
+    <RelativeLayout
+        android:id="@+id/mypage_profile_act_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ECECEC">
+
+        <RelativeLayout
+            android:id="@+id/mypage_profile_act_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:padding="6dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:background="?android:selectableItemBackground">
+
+            <!--뒤로 가기 버튼-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/purchaseview_previousarrow"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/nanumbarungothicbold_normal"
+            android:textColor="#3A3A3A"
+            android:textSize="24dp"
+            android:text="정보 수정"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BDBDBD"
+        android:layout_alignBottom="@id/mypage_profile_act_toolbar"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D8D8D8"
+        android:layout_alignTop="@id/mypage_profile_act_bottom_btn"/>
+
+    <!--하단-->
+    <RelativeLayout
+        android:id="@+id/mypage_profile_act_bottom_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#A0A0A0"
+            android:textSize="13dp"
+            android:text="legal v. 3.369.100001" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -7,14 +7,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ECECEC"
+    android:background="#F9F9F9"
     tools:context=".MypageActivity">
 
     <!--상단-->
     <RelativeLayout
         android:id="@+id/mypage_act_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:background="#ECECEC">
 
         <RelativeLayout
             android:id="@+id/mypage_act_back_btn"
@@ -97,20 +98,36 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="16dp">
 
-                <ImageView
-                    android:id="@+id/mypage_act_user_profile"
+                <RelativeLayout
+                    android:id="@+id/mypage_act_user_profile_box"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/mypage_basicprofile"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true">
+
+                    <ImageView
+                        android:id="@+id/mypage_act_user_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/mypage_basicprofile"
+                        android:layout_marginHorizontal="8dp"/>
+
+                    <ImageView
+                        android:id="@+id/mypage_act_user_profile_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/editprofile_edit"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignBottom="@id/mypage_act_user_profile"/>
+
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/mypage_act_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/mypage_act_user_profile"
-                    android:layout_marginTop="8dp"
+                    android:layout_below="@+id/mypage_act_user_profile_box"
+                    android:layout_marginTop="9dp"
                     android:fontFamily="@font/nanumbarungothiclight_normal"
                     android:textColor="#3A3A3A"
                     android:textSize="20dp"
