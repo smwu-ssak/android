@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+// Customized by MS
+
 public class BuyCompletedActivity extends AppCompatActivity {
 
     @Override
