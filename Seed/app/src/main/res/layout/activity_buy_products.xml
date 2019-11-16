@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ECECEC"
-    tools:context=".BuyProductsActivity">
+    tools:context=".BuyProductActivity">
 
     <RelativeLayout
         android:id="@+id/buy_act_toolbar"
@@ -16,7 +16,7 @@
         android:layout_height="50dp">
 
         <RelativeLayout
-            android:id="@+id/main_act_topbar_mypage_btn"
+            android:id="@+id/buy_act_back_mainpage_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -27,7 +27,7 @@
 
             <!--뒤로 가기 버튼-->
             <ImageView
-                android:id="@+id/detail_act_back_mainpage"
+                android:id="@+id/buy_act_back_mainpage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -55,13 +55,14 @@
 
     <!--하단 버튼-->
     <RelativeLayout
-        android:id="@+id/main_act_buy_btn"
+        android:id="@+id/buy_act_buy_full_btn"
         android:layout_width="match_parent"
         android:layout_height="67dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true">
 
         <RelativeLayout
+            android:id="@+id/buy_act_bottom_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true">
@@ -102,7 +103,7 @@
                     android:text="3,200" />
 
                 <TextView
-                    android:id="@+id/total_text_fix_won"
+                    android:id="@+id/price_total_text_fix_won"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/buy_act_price_total"
@@ -116,7 +117,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/total_text_fix_won"
+                    android:layout_toRightOf="@id/price_total_text_fix_won"
                     android:layout_marginLeft="12dp"
                     android:layout_centerVertical="true"
                     android:src="@drawable/purchaseview_confirm" />
@@ -127,5 +128,17 @@
 
     </RelativeLayout>
 
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_buy_products"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/buy_act_toolbar"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="67dp"
+        android:background="#F9F9F9">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

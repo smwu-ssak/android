@@ -1,7 +1,5 @@
 package com.example.seed.data;
 
-import java.util.Date;
-
 // Customized by MS
 
 public class BuyProductData {
@@ -9,23 +7,17 @@ public class BuyProductData {
     private int image;     // 추후 통신 시 자료형 수정할 것
     private String name;
     private int quantity;
-    private Date timePickup;
-    private int salePrice;
+    //    private Date timePickup;
+    private String optionSelected;
+    private int totalPrice;
 
-    private boolean vinyl;
-    private boolean paper;
-    private boolean box;
-
-    public BuyProductData(int image, String name, int quantity, Date timePickup, int salePrice, boolean vinyl, boolean paper, boolean box) {
+    public BuyProductData(int image, String name, int quantity, String optionSelected, int totalPrice) {
         this.image = image;
         this.name = name;
         this.quantity = quantity;
-        this.timePickup = timePickup;
-        this.salePrice = salePrice;
-
-        this.vinyl = vinyl;
-        this.paper = paper;
-        this.box = box;
+//        this.timePickup = timePickup;
+        this.optionSelected = optionSelected;
+        this.totalPrice = totalPrice;
     }
 
     public int getImage() { return image; }
@@ -34,15 +26,11 @@ public class BuyProductData {
 
     public int getQuantity() { return quantity; }
 
-    public Date getTimePickup() { return timePickup; }
+//    public Date getTimePickup() { return timePickup; }
 
-    public int getSalePrice() { return salePrice; }
+    public String getOptionSelected() { return optionSelected; }
 
-    public boolean isVinyl() { return vinyl; }
-
-    public boolean isPaper() { return paper; }
-
-    public boolean isBox() { return box; }
+    public int getTotalPrice() { return totalPrice; }
 
     public void setImage(int image) { this.image = image; }
 
@@ -50,14 +38,10 @@ public class BuyProductData {
 
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
-    public void setTimePickup(Date timePickup) { this.timePickup = timePickup; }
+//    public void setTimePickup(Date timePickup) { this.timePickup = timePickup; }
 
-    public void setSalePrice(int salePrice) { this.salePrice = salePrice; }
+    public void setOptionSelected(String optionSelected) { this.optionSelected = optionSelected; }
 
-    public void setVinyl(boolean vinyl) { this.vinyl = vinyl; }
-
-    public void setPaper(boolean paper) { this.paper = paper; }
-
-    public void setBox(boolean box) { this.box = box; }
+    public void setTotalPrice(int totalPrice) { this.totalPrice = totalPrice; }
 
 }

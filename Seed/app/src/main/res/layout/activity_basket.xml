@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!-- Customized by MS-->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,14 +11,13 @@
     android:background="#ECECEC"
     tools:context=".BasketActivity">
 
-    <!--민승-->
     <RelativeLayout
-        android:id="@+id/buy_act_toolbar"
+        android:id="@+id/basket_act_toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
         <RelativeLayout
-            android:id="@+id/main_act_topbar_mypage_btn"
+            android:id="@+id/basket_act_back_mainpage_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -27,7 +28,7 @@
 
             <!--뒤로 가기 버튼-->
             <ImageView
-                android:id="@+id/detail_act_back_mainpage"
+                android:id="@+id/basket_act_back_mainpage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -51,11 +52,11 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#BDBDBD"
-        android:layout_alignBottom="@id/buy_act_toolbar"/>
+        android:layout_alignBottom="@id/basket_act_toolbar"/>
 
     <!--하단 버튼-->
     <RelativeLayout
-        android:id="@+id/main_act_buy_btn"
+        android:id="@+id/basket_act_bottom_btn"
         android:layout_width="match_parent"
         android:layout_height="67dp"
         android:layout_alignParentBottom="true"
@@ -67,7 +68,7 @@
             android:layout_centerHorizontal="true">
 
             <ImageView
-                android:id="@+id/buy_act_buy_btn"
+                android:id="@+id/basket_act_buy_full_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/purchaseview_purchasebar" />
@@ -114,6 +115,7 @@
                     android:text="원" />
 
                 <ImageView
+                    android:id="@+id/basket_act_buy_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/total_text_fix_won"
@@ -133,8 +135,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="67dp"
-        android:layout_below="@+id/buy_act_toolbar">
+        android:layout_below="@+id/basket_act_toolbar">
 
     </androidx.recyclerview.widget.RecyclerView>
 

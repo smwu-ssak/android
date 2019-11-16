@@ -1,26 +1,20 @@
 package com.example.seed;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.ViewFlipper;
 
-import com.example.seed.data.BuyProductsActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.seed.data.MainProductData;
 
-import java.util.*;
+import java.util.ArrayList;
 
 // Customized by SY
 
@@ -101,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BuyProductsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), BasketActivity.class);
                 startActivity(intent);
             }
         });
