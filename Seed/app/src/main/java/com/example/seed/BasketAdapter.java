@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,7 +37,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
         viewHolder.basketImage.setImageResource(item.getImage());
         viewHolder.basketName.setText(item.getName());
         viewHolder.basketQuantity.setText(String.valueOf(item.getQuantity()));
-//        viewHolder.basketTimePickup.setText(String.);
+        viewHolder.basketTimePickup.setText(item.getTimePickup());
         viewHolder.basketSalePrice.setText(String.valueOf(item.getSalePrice()));
 //        viewHolder.basketVinyl.setText(item.isVinyl());
 //        viewHolder.basketPaper.
@@ -59,8 +60,6 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
             return 0;
         return items.size();
     }
-
-//날짜 String to Date    public void
 
     public void addItem(BasketData item){
         items.add(item);
@@ -85,9 +84,9 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
         protected TextView basketQuantity;
         protected TextView basketTimePickup;
         protected TextView basketSalePrice;
-//        protected TextView basketVinyl;
-//        protected TextView basketPaper;
-//        protected TextView basketBox;
+        protected RadioButton basketVinyl;
+        protected RadioButton basketPaper;
+        protected RadioButton basketBox;
 
         public BasketViewHolder(final View itemView, final OnBasketClickListener listener) {
             super(itemView);
@@ -95,8 +94,11 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
             basketImage = itemView.findViewById(R.id.rv_item_basket_image);
             basketName = itemView.findViewById(R.id.rv_item_basket_products_name);
             basketQuantity = itemView.findViewById(R.id.rv_item_basket_products_quantity);
-//            basketTimePickup = itemView.findViewById(R.id.rv_item_basket_time_pickup);
+            basketTimePickup = itemView.findViewById(R.id.rv_item_basket_time_pickup_btn);
             basketSalePrice = itemView.findViewById(R.id.rv_item_basket_price);
+            basketVinyl = itemView.findViewById(R.id.rv_item_basket_vinyl);
+            basketPaper = itemView.findViewById(R.id.rv_item_basket_paper);
+            basketBox = itemView.findViewById(R.id.rv_item_basket_box);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -34,9 +34,9 @@ public class BasketActivity extends AppCompatActivity {
     public void setOptionSelected() {
         RadioGroup basketOptionGroup = (RadioGroup)findViewById(R.id.rv_item_basket_optionGroup);
 
-        RadioButton basketOption1 = (RadioButton)findViewById(R.id.rv_item_basket_option_1);
-        RadioButton basketOption2 = (RadioButton)findViewById(R.id.rv_item_basket_option_2);
-        RadioButton basketOption3 = (RadioButton)findViewById(R.id.rv_item_basket_option_3);
+        RadioButton basketOption1 = (RadioButton)findViewById(R.id.rv_item_basket_vinyl);
+        RadioButton basketOption2 = (RadioButton)findViewById(R.id.rv_item_basket_paper);
+        RadioButton basketOption3 = (RadioButton)findViewById(R.id.rv_item_basket_box);
 
         basketOptionGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -72,10 +72,10 @@ public class BasketActivity extends AppCompatActivity {
 
         final ArrayList<BasketData> data = new ArrayList<>();
 
-        data.add(new BasketData(R.drawable.purchaseview_applephoto, "사과", 2, 1000, false, false, false));
-        data.add(new BasketData(R.drawable.purchaseview_broccoliphoto, "브로콜리", 2, 2000, false, false, false));
-        data.add(new BasketData(R.drawable.purchaseview_applephoto, "사과", 2, 1000, false, false, false));
-        data.add(new BasketData(R.drawable.purchaseview_broccoliphoto, "브로콜리", 2, 2000, false, false, false));
+//        data.add(new BasketData(R.drawable.purchaseview_applephoto, "사과", 2, 1000, false, false, false));
+//        data.add(new BasketData(R.drawable.purchaseview_broccoliphoto, "브로콜리", 2, 2000, false, false, false));
+//        data.add(new BasketData(R.drawable.purchaseview_applephoto, "사과", 2, 1000, false, false, false));
+//        data.add(new BasketData(R.drawable.purchaseview_broccoliphoto, "브로콜리", 2, 2000, false, false, false));
 
         final BasketAdapter adapter = new BasketAdapter(data);
 
