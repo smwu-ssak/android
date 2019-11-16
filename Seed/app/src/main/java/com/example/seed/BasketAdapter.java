@@ -1,10 +1,12 @@
 package com.example.seed;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,16 +34,95 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
     }
 
     @Override
-    public void onBindViewHolder(BasketViewHolder viewHolder, int position) {
-        BasketData item = items.get(position);
+    public void onBindViewHolder(final BasketViewHolder viewHolder, final int position) {
+        final BasketData item = items.get(position);
         viewHolder.basketImage.setImageResource(item.getImage());
         viewHolder.basketName.setText(item.getName());
-        viewHolder.basketQuantity.setText(String.valueOf(item.getQuantity()));
+        viewHolder.basketBuyNum.setText(String.valueOf(item.getBuyNum()));
         viewHolder.basketTimePickup.setText(item.getTimePickup());
         viewHolder.basketSalePrice.setText(String.valueOf(item.getSalePrice()));
-//        viewHolder.basketVinyl.setText(item.isVinyl());
-//        viewHolder.basketPaper.
-//        viewHolder.basketBox.
+        viewHolder.basketSumPrice.setText(String.valueOf(item.getSumPrice()));
+
+        viewHolder.basketTimePickup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        viewHolder.basketRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int id) {
+                switch (id) {
+                    case R.id.rv_item_basket_vinyl: {
+                        int check = Integer.parseInt(String.valueOf(item.getCheck()));
+                        int sumPrice = Integer.parseInt(String.valueOf(item.getSumPrice()));
+                        sumPrice = sumPrice - check;
+                        item.setCheck(0);
+                        check = 0;
+                        sumPrice = sumPrice + check;
+                        item.setSumPrice(sumPrice);
+                        viewHolder.basketSumPrice.setText(String.valueOf(sumPrice));
+                        break; }
+                    case R.id.rv_item_basket_paper: {
+                        int check = Integer.parseInt(String.valueOf(item.getCheck()));
+                        item.setCheck(100);
+                        int sumPrice = Integer.parseInt(String.valueOf(item.getSumPrice()));
+                        sumPrice = sumPrice - check;
+                        check = 100;
+                        sumPrice = sumPrice + check;
+                        item.setSumPrice(sumPrice);
+                        viewHolder.basketSumPrice.setText(String.valueOf(sumPrice));
+                        break; }
+                    case R.id.rv_item_basket_box: {
+                        int check = Integer.parseInt(String.valueOf(item.getCheck()));
+                        item.setCheck(1000);
+                        int sumPrice = Integer.parseInt(String.valueOf(item.getSumPrice()));
+                        sumPrice = sumPrice - check;
+                        check = 1000;
+                        sumPrice = sumPrice + check;
+                        item.setSumPrice(sumPrice);
+                        viewHolder.basketSumPrice.setText(String.valueOf(sumPrice));
+                        break; }
+                }
+            }
+        });
+
+        viewHolder.plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int sumPrice = Integer.parseInt(String.valueOf(item.getSumPrice()));
+                int maxNum = Integer.parseInt(String.valueOf(item.getQuantity()));
+                int price = Integer.parseInt(String.valueOf(item.getSalePrice()));
+                int buy = Integer.parseInt(String.valueOf(item.getBuyNum()));
+                if (buy < maxNum){
+                    buy++;
+                    item.setBuyNum(buy);
+                    viewHolder.basketBuyNum.setText(String.valueOf(buy));
+                    sumPrice = sumPrice + price;
+                    item.setSumPrice(sumPrice);
+                    viewHolder.basketSumPrice.setText(String.valueOf(sumPrice));
+                }
+            }
+        });
+
+        viewHolder.minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int sumPrice = Integer.parseInt(String.valueOf(item.getSumPrice()));
+                int price = Integer.parseInt(String.valueOf(item.getSalePrice()));
+                int buy = Integer.parseInt(String.valueOf(item.getBuyNum()));
+                if (buy > 0){
+                    buy--;
+                    item.setBuyNum(buy);
+                    viewHolder.basketBuyNum.setText(String.valueOf(buy));
+                    sumPrice = sumPrice - price;
+                    item.setSumPrice(sumPrice);
+                    viewHolder.basketSumPrice.setText(String.valueOf(sumPrice));
+                }
+            }
+        });
+
     }
 
     public void setOnItemClickListener(OnBasketClickListener listener){
@@ -77,39 +158,30 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
         items.set(position, item);
     }
 
-
     static class BasketViewHolder extends RecyclerView.ViewHolder {
         protected ImageView basketImage;
         protected TextView basketName;
-        protected TextView basketQuantity;
+        protected TextView basketBuyNum;
         protected TextView basketTimePickup;
         protected TextView basketSalePrice;
-        protected RadioButton basketVinyl;
-        protected RadioButton basketPaper;
-        protected RadioButton basketBox;
+        protected RadioGroup basketRadioGroup;
+        protected TextView basketSumPrice;
+        protected ImageView plus;
+        protected ImageView minus;
 
         public BasketViewHolder(final View itemView, final OnBasketClickListener listener) {
             super(itemView);
 
             basketImage = itemView.findViewById(R.id.rv_item_basket_image);
             basketName = itemView.findViewById(R.id.rv_item_basket_products_name);
-            basketQuantity = itemView.findViewById(R.id.rv_item_basket_products_quantity);
+            basketBuyNum = itemView.findViewById(R.id.rv_item_basket_products_buynum);
             basketTimePickup = itemView.findViewById(R.id.rv_item_basket_time_pickup_btn);
             basketSalePrice = itemView.findViewById(R.id.rv_item_basket_price);
-            basketVinyl = itemView.findViewById(R.id.rv_item_basket_vinyl);
-            basketPaper = itemView.findViewById(R.id.rv_item_basket_paper);
-            basketBox = itemView.findViewById(R.id.rv_item_basket_box);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    if (listener != null)
-                        listener.onItemClick(BasketViewHolder.this, view, position);
-                }
-            });
+            basketRadioGroup = itemView.findViewById(R.id.rv_item_basket_optionGroup);
+            basketSumPrice = itemView.findViewById(R.id.basket_sumPrice);
+            plus = itemView.findViewById(R.id.rv_item_basket_quantity_plus_btn);
+            minus = itemView.findViewById(R.id.rv_item_basket_quantity_minus_btn);
         }
     }
-
 
 }

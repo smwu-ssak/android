@@ -8,30 +8,29 @@ public class BasketData {
 
     private int image;     // 추후 통신 시 자료형 수정할 것
     private String name;
+    private int buyNum;
     private int quantity;
     private String timePickup;
     private int salePrice;
+    private int check;
+    private int sumPrice;
 
-    private RadioButton vinyl;
-    private RadioButton paper;
-    private RadioButton box;
-
-    public BasketData(int image, String name, String timePickup, int quantity, int salePrice, RadioButton vinyl, RadioButton paper, RadioButton box) {
+    public BasketData(int image, String name, String timePickup, int buyNum, int quantity, int salePrice, int check, int sumPrice) {
         this.image = image;
         this.name = name;
+        this.buyNum = buyNum;
         this.quantity = quantity;
         this.timePickup = timePickup;
         this.salePrice = salePrice;
-
-        this.vinyl = vinyl;
-        this.paper = paper;
-        this.box = box;
+        this.check = check;
+        this.sumPrice = sumPrice;
     }
-
 
     public int getImage() { return image; }
 
     public String getName() { return name; }
+
+    public int getBuyNum() { return buyNum; }
 
     public int getQuantity() { return quantity; }
 
@@ -39,15 +38,15 @@ public class BasketData {
 
     public int getSalePrice() { return salePrice; }
 
-    public RadioButton isVinyl() { return vinyl; }
+    public int getCheck() { return check; }
 
-    public RadioButton isPaper() { return paper; }
-
-    public RadioButton isBox() { return box; }
+    public int getSumPrice() { return sumPrice; }
 
     public void setImage(int image) { this.image = image; }
 
     public void setName(String name) { this.name = name; }
+
+    public void setBuyNum(int buyNum) { this.buyNum = buyNum; }
 
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
@@ -55,11 +54,9 @@ public class BasketData {
 
     public void setSalePrice(int salePrice) { this.salePrice = salePrice; }
 
-    public void setVinyl(RadioButton vinyl) { this.vinyl = vinyl; }
+    public void setCheck(int check) { this.check = check; }
 
-    public void setPaper(RadioButton paper) { this.paper = paper; }
-
-    public void setBox(RadioButton box) { this.box = box; }
+    public void setSumPrice(int sumPrice) { this.sumPrice = sumPrice; }
 
 }
 
