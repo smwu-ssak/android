@@ -8,28 +8,33 @@
     android:background="#F9F9F9"
     android:layout_marginBottom="18dp">
 
+    <!-- Customized by SY -->
     <!--박스 상단-->
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/basket_box_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:weightSum="2">
 
         <ImageView
             android:id="@+id/rv_item_basket_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/purchaseview_applephoto" />
+            android:src="@drawable/purchaseview_applephoto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+    <!--박스 상단-->
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:layout_toRightOf="@+id/rv_item_basket_image"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="16dp">
 
             <!--상품 이름-->
             <TextView
+                android:layout_alignParentRight="true"
                 android:id="@+id/rv_item_basket_products_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,42 +56,40 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumbarungothicbold_normal"
+                    android:text="개수"
                     android:textColor="#3A3A3A"
-                    android:textSize="16dp"
-                    android:text="개수" />
+                    android:textSize="16dp" />
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/rv_item_basket_products_quantity_fix"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_alignParentRight="true">
-
-                    <ImageView
-                        android:id="@+id/rv_item_basket_quantity_minus_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/purchaseview_minus" />
-
-                    <TextView
-                        android:id="@+id/rv_item_basket_products_quantity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/rv_item_basket_quantity_minus_btn"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:fontFamily="@font/nanumbarungothicbold_normal"
-                        android:textColor="#3A3A3A"
-                        android:textSize="16dp"
-                        android:text="0" />
+                    android:layout_toRightOf="@id/rv_item_basket_products_quantity_fix">
 
                     <ImageView
                         android:id="@+id/rv_item_basket_quantity_plus_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/rv_item_basket_products_quantity"
+                        android:layout_alignParentRight="true"
                         android:src="@drawable/purchaseview_plus" />
+
+                    <TextView
+                        android:id="@+id/rv_item_basket_products_quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@id/rv_item_basket_quantity_plus_btn"
+                        android:fontFamily="@font/nanumbarungothicbold_normal"
+                        android:text="0"
+                        android:textColor="#3A3A3A"
+                        android:textSize="16dp" />
+
+                    <ImageView
+                        android:id="@+id/rv_item_basket_quantity_minus_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@id/rv_item_basket_products_quantity"
+                        android:src="@drawable/purchaseview_minus" />
 
                 </RelativeLayout>
 
@@ -110,21 +113,20 @@
                     android:text="픽업 시간" />
 
                 <TextView
-                    android:id="@+id/rv_item_basket_time_pickup"
+                    android:id="@+id/rv_item_basket_time_pickup_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/rv_item_basket_time_pickup_fix"
-                    android:layout_marginLeft="12dp"
+                    android:layout_alignParentRight="true"
                     android:fontFamily="@font/nanumbarungothicbold_normal"
                     android:textColor="#3A3A3A"
                     android:textSize="16dp"
-                    android:text="time자리..." />
+                    android:text="설정" />
 
             </RelativeLayout>
 
             <!--가격-->
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/time_pickup"
                 android:layout_marginTop="9dp">
@@ -139,31 +141,29 @@
                     android:text="가격" />
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/rv_item_basket_price_fix"
-                    android:layout_marginLeft="45dp">
-
-                    <TextView
-                        android:id="@+id/rv_item_basket_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumbarungothicbold_normal"
-                        android:textColor="#46AE7F"
-                        android:textSize="16dp"
-                        android:text="0" />
+                    android:layout_toRightOf="@id/rv_item_basket_price_fix">
 
                     <TextView
                         android:id="@+id/rv_item_basket_price_won"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/rv_item_basket_price"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginLeft="1dp"
+                        android:layout_alignParentRight="true"
                         android:fontFamily="@font/nanumbarungothicbold_normal"
                         android:textColor="#46AE7F"
                         android:textSize="16dp"
                         android:text="원" />
+
+                    <TextView
+                        android:id="@+id/rv_item_basket_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/rv_item_basket_price_won"
+                        android:fontFamily="@font/nanumbarungothicbold_normal"
+                        android:textColor="#46AE7F"
+                        android:textSize="16dp"
+                        android:text="0" />
 
                 </RelativeLayout>
 
@@ -171,7 +171,8 @@
 
         </RelativeLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
+    <!-- Customized by SY -->
 
     <View
         android:layout_width="match_parent"
@@ -180,7 +181,7 @@
         android:layout_alignBottom="@id/basket_box_top"/>
 
     <!--박스 하단/체크박스-->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/basket_box_top"
@@ -198,22 +199,25 @@
                 android:id="@+id/rv_item_basket_option_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="포장 비닐 필요 없어요" />
 
             <RadioButton
                 android:id="@+id/rv_item_basket_option_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="싹 종이 봉투에 넣어 주세요 (+100)" />
 
             <RadioButton
                 android:id="@+id/rv_item_basket_option_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="싹 용기에 넣어 주세요 (+1,000)" />
 
         </RadioGroup>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>
