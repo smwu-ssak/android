@@ -52,32 +52,20 @@
     <!--하단 버튼-->
     <RelativeLayout
         android:id="@+id/detail_act_bottom_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="67dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:background="#46AE7F">
 
-        <RelativeLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
-
-            <!--바구니 담기 버튼-->
-            <ImageView
-                android:id="@+id/detail_act_basket_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/detailview_basket" />
-
-            <!--구출하기 버튼-->
-            <ImageView
-                android:id="@+id/detail_act_buy_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/detail_act_basket_btn"
-                android:src="@drawable/detailview_purchase" />
-
-        </RelativeLayout>
+            android:layout_centerInParent="true"
+            android:text="장바구니에 담기"
+            android:textSize="22dp"
+            android:fontFamily="@font/nanumbarungothicbold_normal"
+            android:textColor="#FFFFFF"/>
 
     </RelativeLayout>
 

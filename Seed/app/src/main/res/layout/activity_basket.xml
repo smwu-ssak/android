@@ -53,82 +53,27 @@
         android:background="#BDBDBD"
         android:layout_alignBottom="@id/basket_act_toolbar"/>
 
+    <!-- Customized by SY-->
     <!--하단 버튼-->
     <RelativeLayout
         android:id="@+id/basket_act_bottom_btn"
         android:layout_width="match_parent"
         android:layout_height="67dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:background="#46AE7F">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
-
-            <ImageView
-                android:id="@+id/basket_act_buy_full_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/purchaseview_purchasebar" />
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="19dp"
-                android:layout_marginRight="19dp">
-
-                <TextView
-                    android:id="@+id/total_text_fix"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/nanumbarungothiclight_normal"
-                    android:textColor="#FCFCFC"
-                    android:textSize="16dp"
-                    android:text="싹 구출해서" />
-
-                <TextView
-                    android:id="@+id/buy_act_price_total"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/total_text_fix"
-                    android:layout_marginLeft="12dp"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/nanumbarungothicbold_normal"
-                    android:textColor="#FCFCFC"
-                    android:textSize="24dp"
-                    android:text="3,200" />
-
-                <TextView
-                    android:id="@+id/total_text_fix_won"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/buy_act_price_total"
-                    android:layout_marginLeft="1dp"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/nanumbarungothicbold_normal"
-                    android:textColor="#FCFCFC"
-                    android:textSize="24dp"
-                    android:text="원" />
-
-                <ImageView
-                    android:id="@+id/basket_act_buy_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/total_text_fix_won"
-                    android:layout_marginLeft="12dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/purchaseview_purchase" />
-
-            </RelativeLayout>
-
-        </RelativeLayout>
+            android:layout_centerInParent="true"
+            android:text="싹 구출하러 가기"
+            android:textSize="22dp"
+            android:fontFamily="@font/nanumbarungothicbold_normal"
+            android:textColor="#FFFFFF"/>
 
     </RelativeLayout>
 
-    <!-- Customized by SY-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_basket"
         android:layout_width="match_parent"
@@ -139,5 +84,6 @@
         android:layout_below="@+id/basket_act_toolbar">
 
     </androidx.recyclerview.widget.RecyclerView>
+    <!-- Customized by SY-->
 
 </RelativeLayout>

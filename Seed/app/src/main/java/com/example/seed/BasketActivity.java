@@ -3,9 +3,6 @@ package com.example.seed;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.seed.data.BasketData;
-
 import java.util.ArrayList;
 
 // Customized by MS
@@ -28,22 +24,6 @@ public class BasketActivity extends AppCompatActivity {
         setProducts();
         moveToMainView();
         moveToBuyProduct();
-
-    }
-
-    public void setOptionSelected() {
-        RadioGroup basketOptionGroup = (RadioGroup)findViewById(R.id.rv_item_basket_optionGroup);
-
-        RadioButton basketOption1 = (RadioButton)findViewById(R.id.rv_item_basket_vinyl);
-        RadioButton basketOption2 = (RadioButton)findViewById(R.id.rv_item_basket_paper);
-        RadioButton basketOption3 = (RadioButton)findViewById(R.id.rv_item_basket_box);
-
-        basketOptionGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int id) {
-                RadioButton select = (RadioButton)findViewById(id);
-            }
-        });
 
     }
 
@@ -72,17 +52,16 @@ public class BasketActivity extends AppCompatActivity {
 
         final ArrayList<BasketData> data = new ArrayList<>();
 
-//        data.add(new BasketData(R.drawable.purchaseview_applephoto, "사과", 2, 1000, false, false, false));
-//        data.add(new BasketData(R.drawable.purchaseview_broccoliphoto, "브로콜리", 2, 2000, false, false, false));
-//        data.add(new BasketData(R.drawable.purchaseview_applephoto, "사과", 2, 1000, false, false, false));
-//        data.add(new BasketData(R.drawable.purchaseview_broccoliphoto, "브로콜리", 2, 2000, false, false, false));
+        data.add(new BasketData(R.drawable.purchaseview_applephoto, "사과", "00:00", 0, 5, 1000, 0, 0));
+        data.add(new BasketData(R.drawable.purchaseview_broccoliphoto, "브로콜리", "00:00", 0, 4, 1500, 0, 0));
+        data.add(new BasketData(R.drawable.purchaseview_applephoto, "사과", "00:00", 0, 7, 800, 0, 0));
+        data.add(new BasketData(R.drawable.purchaseview_broccoliphoto, "브로콜리", "00:00", 0, 3, 700, 0, 0));
 
         final BasketAdapter adapter = new BasketAdapter(data);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new ProductRecyclerViewDecoration(15));
-
 
         //adapter.notifyDataSetChanged();
     }
