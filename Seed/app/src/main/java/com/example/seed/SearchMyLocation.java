@@ -31,7 +31,7 @@ public class SearchMyLocation extends AppCompatActivity
     private MapPoint.GeoCoordinate mapPointGeo;
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
-    String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION};
+    String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +49,20 @@ public class SearchMyLocation extends AppCompatActivity
         }else {
             checkRunTimePermission();
         }
+
     }
 
     @Override
     protected void onDestroy(){
         super.onDestroy();
         mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
-        mapView.setShowCurrentLocationMarker(true);
+        mapView.setShowCurrentLocationMarker(false);
     }
 
     @Override
     public void onReverseGeoCoderFoundAddress(MapReverseGeoCoder mapReverseGeoCoder, String s) {
         mapReverseGeoCoder.toString();
+        // onFinishReverseGeoCoding(s);
     }
 
     @Override
@@ -70,9 +72,11 @@ public class SearchMyLocation extends AppCompatActivity
 
     @Override
     public void onCurrentLocationUpdate(MapView mapView, MapPoint mapPoint, float v) {
+        Log.d("위치 서비스", "성공");
         mapPointGeo = mapPoint.getMapPointGeoCoord();
         myLocation = MapPoint.mapPointWithGeoCoord(mapPointGeo.latitude, mapPointGeo.longitude);
         Log.i("Current Location: ", String.format("MapView onCurrentLocationUpdate (%f,%f) accuracy (%f)", mapPointGeo.latitude, mapPointGeo.longitude, v));
+        mapView.setShowCurrentLocationMarker(true);
         setMyLocation();
     }
 
@@ -80,9 +84,9 @@ public class SearchMyLocation extends AppCompatActivity
         MapPOIItem marker = new MapPOIItem();
         // marker.setItemName("현재 위치");
         marker.setMapPoint(myLocation);
-        mapView.setMapCenterPoint(myLocation, true);
         marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
         mapView.addPOIItem(marker);
+        mapView.setMapCenterPoint(myLocation, true);
     }
 
     @Override
@@ -100,37 +104,36 @@ public class SearchMyLocation extends AppCompatActivity
 
     }
 
-    @Override
-    public void onRequestPermissionsResult(int permsRequestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grandResults) {
-
-        if ( permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
-            boolean check_result = true;
-
-            for (int result : grandResults) {
-                if (result != PackageManager.PERMISSION_GRANTED) {
-                    check_result = false;
-                    break;
-                }
-            }
-            if ( check_result ) {
-                //Log.d("@@@", "start");
-                //위치 값을 가져올 수 있음
-                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
-            }
-            else {
-                // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
-
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
-                    Toast.makeText(this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
-                    finish();
-                }else {
-                    Toast.makeText(this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
-                }
-            }
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int permsRequestCode,
+//                                           @NonNull String[] permissions,
+//                                           @NonNull int[] grandResults) {
+//
+//        if ( permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
+//            boolean check_result = true;
+//
+//            for (int result : grandResults) {
+//                if (result != PackageManager.PERMISSION_GRANTED) {
+//                    check_result = false;
+//                    break;
+//                }
+//            }
+//            if ( check_result ) {
+//                //Log.d("@@@", "start");
+//                //위치 값을 가져올 수 있음
+//                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
+//            }
+//            else {
+//                // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
+//                if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
+//                    Toast.makeText(this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
+//                    finish();
+//                }else {
+//                    Toast.makeText(this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        }
+//    }
 
     void checkRunTimePermission(){
         //런타임 퍼미션 처리
@@ -150,7 +153,7 @@ public class SearchMyLocation extends AppCompatActivity
 
                 // 3-2. 요청을 진행하기 전에 사용자가에게 퍼미션이 필요한 이유를 설명해줄 필요가 있습니다.
                 Toast.makeText(this, "이 앱을 실행하려면 위치 접근 권한이 필요합니다.", Toast.LENGTH_LONG).show();
-                // 3-3. 사용자게에 퍼미션 요청을 합니다. 요청 결과는 onRequestPermissionResult에서 수신됩니다.
+                // 3-3. 사용자에게 퍼미션 요청을 합니다. 요청 결과는 onRequestPermissionResult에서 수신됩니다.
                 ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
             } else {
@@ -181,7 +184,7 @@ public class SearchMyLocation extends AppCompatActivity
         builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
+                finish();
             }
         });
         builder.create().show();
@@ -209,5 +212,5 @@ public class SearchMyLocation extends AppCompatActivity
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
-}
 
+}
