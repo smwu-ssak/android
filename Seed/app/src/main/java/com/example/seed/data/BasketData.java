@@ -2,23 +2,25 @@ package com.example.seed.data;
 
 // Customized by MS
 
+import android.widget.RadioButton;
+
 public class BasketData {
 
     private int image;     // 추후 통신 시 자료형 수정할 것
     private String name;
     private int quantity;
-//    private Date timePickup;
+    private String timePickup;
     private int salePrice;
 
-    private boolean vinyl;
-    private boolean paper;
-    private boolean box;
+    private RadioButton vinyl;
+    private RadioButton paper;
+    private RadioButton box;
 
-    public BasketData(int image, String name, int quantity, int salePrice, boolean vinyl, boolean paper, boolean box) {
+    public BasketData(int image, String name, String timePickup, int quantity, int salePrice, RadioButton vinyl, RadioButton paper, RadioButton box) {
         this.image = image;
         this.name = name;
         this.quantity = quantity;
-//        this.timePickup = timePickup;
+        this.timePickup = timePickup;
         this.salePrice = salePrice;
 
         this.vinyl = vinyl;
@@ -33,15 +35,15 @@ public class BasketData {
 
     public int getQuantity() { return quantity; }
 
-//    public Date getTimePickup() { return timePickup; }
+    public String getTimePickup() { return timePickup; }
 
     public int getSalePrice() { return salePrice; }
 
-    public boolean isVinyl() { return vinyl; }
+    public RadioButton isVinyl() { return vinyl; }
 
-    public boolean isPaper() { return paper; }
+    public RadioButton isPaper() { return paper; }
 
-    public boolean isBox() { return box; }
+    public RadioButton isBox() { return box; }
 
     public void setImage(int image) { this.image = image; }
 
@@ -49,15 +51,15 @@ public class BasketData {
 
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
-//    public void setTimePickup(Date timePickup) { this.timePickup = timePickup; }
+    public void setTimePickup(String timePickup) { this.timePickup = timePickup; }
 
     public void setSalePrice(int salePrice) { this.salePrice = salePrice; }
 
-    public void setVinyl(boolean vinyl) { this.vinyl = vinyl; }
+    public void setVinyl(RadioButton vinyl) { this.vinyl = vinyl; }
 
-    public void setPaper(boolean paper) { this.paper = paper; }
+    public void setPaper(RadioButton paper) { this.paper = paper; }
 
-    public void setBox(boolean box) { this.box = box; }
+    public void setBox(RadioButton box) { this.box = box; }
 
 }
 

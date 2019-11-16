@@ -196,21 +196,21 @@
             android:layout_height="wrap_content">
 
             <RadioButton
-                android:id="@+id/rv_item_basket_option_1"
+                android:id="@+id/rv_item_basket_vinyl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="포장 비닐 필요 없어요" />
 
             <RadioButton
-                android:id="@+id/rv_item_basket_option_2"
+                android:id="@+id/rv_item_basket_paper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumbarungothic_normal"
                 android:text="싹 종이 봉투에 넣어 주세요 (+100)" />
 
             <RadioButton
-                android:id="@+id/rv_item_basket_option_3"
+                android:id="@+id/rv_item_basket_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumbarungothic_normal"
