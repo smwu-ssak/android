@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--민승-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,7 +10,6 @@
     android:background="#ECECEC"
     tools:context=".DetailProductsActivity">
 
-    <!--Customized by MS-->
     <RelativeLayout
         android:id="@+id/detail_act_toolbar"
         android:layout_width="match_parent"
@@ -51,7 +52,7 @@
 
     <!--하단 버튼-->
     <RelativeLayout
-        android:id="@+id/main_act_buy_btn"
+        android:id="@+id/detail_act_bottom_btn"
         android:layout_width="wrap_content"
         android:layout_height="67dp"
         android:layout_alignParentBottom="true"
