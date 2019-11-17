@@ -33,7 +33,6 @@ public class LoginActivity extends Activity {
         Log.d("카카오톡 로그인", "접근하였음");
         callback = new SessionCallback();
         Session.getCurrentSession().addCallback(callback);
-        //Log.e("토큰", Session.getCurrentSession().getTokenInfo().getAccessToken());
         // getAppKeyHash();
     }
 

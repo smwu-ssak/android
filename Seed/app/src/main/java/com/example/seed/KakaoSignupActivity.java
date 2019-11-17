@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.kakao.auth.Session;
 import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.MeResponseCallback;
@@ -44,6 +45,7 @@ public class KakaoSignupActivity extends Activity {
                 Log.d("카카오 user id", String.valueOf(result.getId()));
                 Log.d("카카오 profile image", String.valueOf(result.getKakaoAccount().getProfile()));
                 Log.d("카카오 email", String.valueOf(result.getKakaoAccount().getEmail()));
+                Log.e("토큰", Session.getCurrentSession().getTokenInfo().getAccessToken());
                 redirectMainActivity();
             }
         });
