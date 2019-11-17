@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Customized by MS-->
-
+<!--민승-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -54,14 +53,98 @@
         android:background="#BDBDBD"
         android:layout_alignBottom="@id/buy_completed_act_toolbar"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_buy_products"
+    <!--하단 버튼-->
+    <RelativeLayout
+        android:id="@+id/buy_completed_act_bottom_btn"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="67dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:background="#46AE7F">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="19dp"
+                android:layout_marginRight="19dp"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/rv_item_buy_completed_text_1"
+                    android:fontFamily="@font/nanumbarungothiclight_normal"
+                    android:textColor="#FCFCFC"
+                    android:textSize="22dp"
+                    android:text="대단해요!" />
+
+                <TextView
+                    android:id="@+id/rv_item_buy_completed_text_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="6dp"
+                    android:layout_toLeftOf="@id/rv_item_buy_completed_price_total_bottom"
+                    android:fontFamily="@font/nanumbarungothiclight_normal"
+                    android:textColor="#FCFCFC"
+                    android:textSize="22dp"
+                    android:text="총" />
+
+                <TextView
+                    android:id="@+id/rv_item_buy_completed_price_total_bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/rv_item_buy_completed_text_won"
+                    android:layout_marginLeft="6dp"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/nanumbarungothicbold_normal"
+                    android:textColor="#FCFCFC"
+                    android:textSize="24dp"
+                    android:text="3,200" />
+
+                <TextView
+                    android:id="@+id/rv_item_buy_completed_text_won"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/rv_item_buy_completed_text_2"
+                    android:layout_marginLeft="1dp"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/nanumbarungothicbold_normal"
+                    android:textColor="#FCFCFC"
+                    android:textSize="24dp"
+                    android:text="원" />
+
+                <TextView
+                    android:id="@+id/rv_item_buy_completed_text_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="8dp"
+                    android:fontFamily="@font/nanumbarungothiclight_normal"
+                    android:textColor="#FCFCFC"
+                    android:textSize="24dp"
+                    android:text="구출" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/buy_completed_act_toolbar"
         android:layout_marginBottom="67dp">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_buy_completed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F9F9F9">
 
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
 
 </RelativeLayout>
