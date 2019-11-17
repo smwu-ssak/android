@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MypageProfileActivity"></activity>
+        <activity android:name=".MypageProfileActivity" />
         <activity android:name=".BuyCompletedActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
