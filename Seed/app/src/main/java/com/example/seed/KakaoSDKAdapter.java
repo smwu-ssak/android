@@ -3,6 +3,7 @@ package com.example.seed;
 import android.app.Activity;
 import android.content.Context;
 
+import com.example.seed.Network.ApplicationController;
 import com.kakao.auth.ApprovalType;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.IApplicationConfig;
@@ -48,7 +49,7 @@ public class KakaoSDKAdapter extends KakaoAdapter {
         return new IApplicationConfig() {
             @Override
             public Context getApplicationContext() {
-                return GlobalApplication.getGlobalApplicationContext();
+                return ApplicationController.getApplicationController();
             }
         };
     }
