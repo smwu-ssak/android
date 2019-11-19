@@ -28,8 +28,6 @@ public class ApplicationController extends Application {
         buildNetworkService();
     }
 
-    public NetworkService getNetworkService() { return networkService; }
-
     public void buildNetworkService() {
         synchronized (ApplicationController.class) {
             Gson gson = new GsonBuilder()
@@ -45,6 +43,8 @@ public class ApplicationController extends Application {
 
         networkService = retrofit.create(NetworkService.class);
     }
+
+    public NetworkService getNetworkService() { return networkService; }
 
     public static ApplicationController getApplicationController() {
         if(instance == null)
