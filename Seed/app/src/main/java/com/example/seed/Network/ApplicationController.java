@@ -3,8 +3,10 @@ package com.example.seed.Network;
 import android.app.Application;
 import android.os.Bundle;
 
+import com.example.seed.KakaoSDKAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.kakao.auth.KakaoSDK;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -22,6 +24,7 @@ public class ApplicationController extends Application {
     public void onCreate() {
         super.onCreate();
         ApplicationController.instance = this;
+        KakaoSDK.init(new KakaoSDKAdapter());
         buildNetworkService();
     }
 
@@ -41,5 +44,11 @@ public class ApplicationController extends Application {
                 .build();
 
         networkService = retrofit.create(NetworkService.class);
+    }
+
+    public static ApplicationController getApplicationController() {
+        if(instance == null)
+            throw new IllegalStateException("this application does not inherit com.kakao.ApplicationController");
+        return instance;
     }
 }
