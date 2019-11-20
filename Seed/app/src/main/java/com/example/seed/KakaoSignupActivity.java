@@ -32,6 +32,9 @@ import retrofit2.Retrofit;
 
 public class KakaoSignupActivity extends Activity {
 
+    ApplicationController applicationController = new ApplicationController();
+    NetworkService networkService = applicationController.buildNetworkService();
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +48,6 @@ public class KakaoSignupActivity extends Activity {
         keys.add("properties.id");
         keys.add("properties.profile_image");
         keys.add("kakao_account.email");
-
-        Log.d("카카오 request", "접근 성공");
 
         UserManagement.getInstance().me(new MeV2ResponseCallback() {
             @Override
@@ -63,41 +64,39 @@ public class KakaoSignupActivity extends Activity {
                 Log.d("카카오 email", String.valueOf(result.getKakaoAccount().getEmail()));
                 Log.e("토큰", Session.getCurrentSession().getTokenInfo().getAccessToken());
                 String token = Session.getCurrentSession().getTokenInfo().getAccessToken();
-//                try {
-//                    requestLoginToServer(token);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-                redirectMainActivity();
+                try {
+                    requestLoginToServer(token);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
-//    private void requestLoginToServer(String token) throws JSONException {
-//        ApplicationController applicationController = new ApplicationController();
-//
-//        JSONObject jsonObject = new JSONObject();
-//        jsonObject.put("token", token);
-//        JsonObject gsonObject = (JsonObject) new JsonParser().parse(jsonObject.toString());
-//
-//        Call<PostLoginResponse> call = applicationController.getNetworkService().postLoginResponse("application/json", gsonObject);
-//        call.enqueue(new Callback<PostLoginResponse>() {
-//            @Override
-//            public void onResponse(Call<PostLoginResponse> call, Response<PostLoginResponse> response) {
-//                if (response.isSuccessful()){
-//                    String id = response.body().toString();
-//                    Log.d("카카오 id", id);
-//                    SharedPreferenceController.setMyId(getApplicationContext(), id);
-//                    redirectMainActivity();
-//                }
-//            }
-//            @Override
-//            public void onFailure(Call<PostLoginResponse> call, Throwable t) {
-//                Log.e("로그인 통신 실패", t.toString());
-//                redirectLoginActivity();
-//            }
-//        });
-//    }
+    private void requestLoginToServer(String token) throws JSONException {
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("token", token);
+        JsonObject gsonObject = (JsonObject) new JsonParser().parse(jsonObject.toString());
+
+        Call<PostLoginResponse> call = networkService.postLoginResponse("application/json", gsonObject);
+        call.enqueue(new Callback<PostLoginResponse>() {
+            @Override
+            public void onResponse(Call<PostLoginResponse> call, Response<PostLoginResponse> response) {
+                if (response.isSuccessful()){
+                    String id = response.body().data.token;
+                    Log.d("카카오 id", id);
+                    SharedPreferenceController.setMyId(getApplicationContext(), id);
+                    redirectMainActivity();
+                }
+            }
+            @Override
+            public void onFailure(Call<PostLoginResponse> call, Throwable t) {
+                Log.e("로그인 통신 실패", t.toString());
+                redirectLoginActivity();
+            }
+        });
+    }
 
     private void redirectMainActivity() {
         startActivity(new Intent(this, MainActivity.class));
