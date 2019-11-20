@@ -2,6 +2,7 @@ package com.example.seed;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -12,13 +13,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.seed.Get.GetMainResponse;
+import com.example.seed.Network.ApplicationController;
+import com.example.seed.Network.NetworkService;
 import com.example.seed.data.MainProductData;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 // Customized by SY
 
 public class MainActivity extends AppCompatActivity {
+
+    ApplicationController applicationController = new ApplicationController();
+    NetworkService networkService = applicationController.buildNetworkService();
+    static ArrayList<MainProductData> data = new ArrayList();
+    static MainProductAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setflipperView();
-        setProducts();
+        responseFromServer();
         checkMyLocation();
         moveToMypage();
         moveToBasket();
@@ -128,40 +141,54 @@ public class MainActivity extends AppCompatActivity {
 //        v_flipper.setOutAnimation(this, android.R.anim.slide_in_left);
     }
 
-    public void setProducts() {
+    public void responseFromServer() {
         final RecyclerView recyclerView = findViewById(R.id.rv_main);
 
-        final ArrayList<MainProductData> data = new ArrayList<>();
-
-        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 10000, 6000, 0, "프라임마트"));
-        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 100, 50, 0, "눈송마트"));
-        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 800, 0, "프라임마트"));
-        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 850, 0, "눈송마트"));
-        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 0, "프라임마트"));
-        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 0, "눈송마트"));
-
-        final MainProductAdapter adapter = new MainProductAdapter(data);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new ProductRecyclerViewDecoration(15));
 
-        adapter.setOnItemClickListener(new OnMainProductClickListener() {
+        Call<GetMainResponse> getMainResponse;
+        getMainResponse = networkService.getMainResponse("application/json");
+        getMainResponse.enqueue(new Callback<GetMainResponse>() {
             @Override
-            public void onItemClick(MainProductAdapter.MainProductViewHolder holder, View view, int position) {
-                Intent intent = new Intent(getApplicationContext(), DetailProductsActivity.class);
-                MainProductData item = adapter.getItem(position);
-                int idx = recyclerView.getChildAdapterPosition(view);
-                intent.putExtra("name", item.getName());
-                intent.putExtra("quantity", item.getQuantity());
-                intent.putExtra("originPrice", item.getOriginPrice());
-                intent.putExtra("salePrice", item.getSalePrice());
-                intent.putExtra("discount", Math.round((float)(item.getOriginPrice()-item.getSalePrice())/(float)item.getOriginPrice()*100));
-                intent.putExtra("place", item.getPlace());
-                startActivity(intent);
+            public void onResponse(Call<GetMainResponse> call, Response<GetMainResponse> response) {
+                if (response.isSuccessful()) {
+                    data = response.body().getData();
+                    adapter = new MainProductAdapter(data);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.addItemDecoration(new ProductRecyclerViewDecoration(15));
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetMainResponse> call, Throwable t) {
+                Log.v("통신 실패", t.toString());
             }
         });
-        //adapter.notifyDataSetChanged();
+
+//        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 10000, 6000, 0, "프라임마트"));
+//        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 100, 50, 0, "눈송마트"));
+//        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 800, 0, "프라임마트"));
+//        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 850, 0, "눈송마트"));
+//        data.add(new MainProductData(R.drawable.rv_main_apple, "사과", 5, 1000, 500, 0, "프라임마트"));
+//        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 0, "눈송마트"));
+
+//        adapter.setOnItemClickListener(new OnMainProductClickListener() {
+//            @Override
+//            public void onItemClick(MainProductAdapter.MainProductViewHolder holder, View view, int position) {
+//                Intent intent = new Intent(getApplicationContext(), DetailProductsActivity.class);
+//                MainProductData item = adapter.getItem(position);
+//                int idx = recyclerView.getChildAdapterPosition(view);
+//                intent.putExtra("name", item.getName());
+//                intent.putExtra("quantity", item.getQuantity());
+//                intent.putExtra("originPrice", item.getOriginPrice());
+//                intent.putExtra("salePrice", item.getSalePrice());
+//                intent.putExtra("discount", Math.round((float)(item.getOriginPrice()-item.getSalePrice())/(float)item.getOriginPrice()*100));
+//                intent.putExtra("place", item.getPlace());
+//                startActivity(intent);
+//            }
+//        });
+
     }
 
 }

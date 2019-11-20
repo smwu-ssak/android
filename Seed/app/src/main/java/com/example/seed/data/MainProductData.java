@@ -1,35 +1,29 @@
 package com.example.seed.data;
 
-import android.graphics.drawable.Drawable;
-
-import java.util.Date;
-
 // Customized by SY
 
 public class MainProductData {
 
-    private int image;     // 추후 통신 시 자료형 수정할 것
-    private String name;
+    private String proName;
     private int quantity;
+    private String image;
     private int originPrice;
     private int salePrice;
-    private String place;
+    private int idProduct;
+    private String storName;
 
-    private String comments;
-    private Date timeLeft;
-
-    public MainProductData(int image, String name, int quantity, int originPrice, int salePrice, int discount, String place) {
-        this.image = image;
-        this.name = name;
+    public MainProductData(String proName, int quantity, String image, int originPrice, int salePrice, String storName) {
+        this.proName = proName;
         this.quantity = quantity;
+        this.image = image;
         this.originPrice = originPrice;
         this.salePrice = salePrice;
-        this.place = place;
+        this.storName = storName;
     }
 
-    public int getImage() { return image; }
+    public String getImage() { return image; }
 
-    public String getName() { return name; }
+    public String getName() { return proName; }
 
     public int getQuantity() { return quantity; }
 
@@ -37,15 +31,13 @@ public class MainProductData {
 
     public int getSalePrice() { return salePrice; }
 
-    public String getPlace() { return place; }
+    public int getIdProduct() { return idProduct; }
 
-    public String getComments() { return comments; }
+    public String getPlace() { return storName; }
 
-    public Date getTimeLeft() { return timeLeft; }
+    public void setImage(String image) { this.image = image; }
 
-    public void setImage(int image) { this.image = image; }
-
-    public void setName(String name) { this.name = name; }
+    public void setName(String proName) { this.proName = proName; }
 
     public void setOriginPrice(int originPrice) { this.originPrice = originPrice; }
 
@@ -53,10 +45,8 @@ public class MainProductData {
 
     public void setSalePrice(int salePrice) { this.salePrice = salePrice; }
 
-    public void setPlace(String place) { this.place = place; }
+    public void setIdProduct(int idProduct)  { this.idProduct = idProduct; }
 
-    public void setComments(String comments) { this.comments = comments; }
-
-    public void setTimeLeft(Date timeLeft) { this.timeLeft = timeLeft; }
+    public void setPlace(String storName) { this.storName = storName; }
 
 }

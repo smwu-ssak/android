@@ -6,7 +6,7 @@ import com.example.seed.data.LoginData;
 
 public class PostLoginResponse {
 
-    public Integer status;
+    public int status;
     public boolean success;
     public String message;
     public LoginData data;
