@@ -2,6 +2,7 @@ package com.example.seed.Network;
 
 import android.app.Application;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.seed.KakaoSDKAdapter;
 import com.google.gson.Gson;
@@ -28,7 +29,7 @@ public class ApplicationController extends Application {
         buildNetworkService();
     }
 
-    public void buildNetworkService() {
+    public NetworkService buildNetworkService() {
         synchronized (ApplicationController.class) {
             Gson gson = new GsonBuilder()
                     .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
@@ -42,6 +43,8 @@ public class ApplicationController extends Application {
                 .build();
 
         networkService = retrofit.create(NetworkService.class);
+        Log.d("networkService", String.valueOf(networkService));
+        return networkService;
     }
 
     public NetworkService getNetworkService() { return networkService; }

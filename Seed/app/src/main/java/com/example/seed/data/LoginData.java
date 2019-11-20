@@ -1,5 +1,7 @@
 package com.example.seed.data;
 
+// Customized by SY
+
 public class LoginData {
-    String token;
+    public String token;
 }

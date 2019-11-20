@@ -1,15 +1,15 @@
 package com.example.seed.Post;
 
-// Customized by SY
-
 import com.example.seed.data.LoginData;
 
-import java.util.ArrayList;
+// Customized by SY
 
 public class PostLoginResponse {
-    int status;
-    boolean success;
-    String message;
-    ArrayList<LoginData> data;
+
+    public Integer status;
+    public boolean success;
+    public String message;
+    public LoginData data;
+
 }
 
