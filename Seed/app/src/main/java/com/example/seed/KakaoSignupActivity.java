@@ -87,6 +87,7 @@ public class KakaoSignupActivity extends Activity {
                     String id = response.body().data.token;
                     Log.d("카카오 id", id);
                     SharedPreferenceController.setMyId(getApplicationContext(), id);
+                    // Log.d("카카오 아이디", SharedPreferenceController.getMyId(getApplicationContext()));
                     redirectMainActivity();
                 }
             }
