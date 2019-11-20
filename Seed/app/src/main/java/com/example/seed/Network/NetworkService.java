@@ -35,6 +35,4 @@ public interface NetworkService {
             @Header("Content-type") String content_type
     );
 
-    // Customized by MS
-
 }

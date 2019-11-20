@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.seed.data.MainProductData;
 
 import java.util.ArrayList;
@@ -37,7 +38,10 @@ public class MainProductAdapter extends RecyclerView.Adapter<MainProductAdapter.
     @Override
     public void onBindViewHolder(MainProductViewHolder viewHolder, int position) {
         MainProductData item = items.get(position);
-        viewHolder.productImage.setImageResource(item.getImage());
+
+        Glide.with(viewHolder.itemView.getContext())
+                .load(item.getImage())
+                .into(viewHolder.productImage);
         viewHolder.productName.setText(item.getName());
         viewHolder.productQuantity.setText(String.valueOf(item.getQuantity()));
         viewHolder.productOriginPrice.setText(String.valueOf(item.getOriginPrice()));
