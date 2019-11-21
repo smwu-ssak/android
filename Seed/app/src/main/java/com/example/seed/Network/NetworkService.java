@@ -1,5 +1,6 @@
 package com.example.seed.Network;
 
+import com.example.seed.Get.GetDetailResponse;
 import com.example.seed.Get.GetMainResponse;
 import com.example.seed.Get.GetMypageResponse;
 import com.example.seed.Post.PostLoginResponse;
@@ -32,6 +33,12 @@ public interface NetworkService {
     // 메인 페이지 상품 리스트
     @GET("main")
     Call<GetMainResponse> getMainResponse (
+            @Header("Content-type") String content_type
+    );
+
+    // 상품 상세보기
+    @GET("main/detail/{idProduct}")
+    Call<GetDetailResponse> getDetailResponse (
             @Header("Content-type") String content_type
     );
 
