@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--민승-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--상단-->
+    <RelativeLayout
+        android:id="@+id/dialog_basket_text_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#46AE7F">
+
+        <TextView
+            android:id="@+id/dialog_basket_text_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/nanumbarungothiclight_normal"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:text="바구니에 담겼습니다" />
+
+        <TextView
+            android:id="@+id/dialog_basket_text_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/dialog_basket_text_1"
+            android:fontFamily="@font/nanumbarungothiclight_normal"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp"
+            android:text="음식이 기뻐하고 있어요!" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@id/dialog_basket_text_2"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/nanumbarungothiclight_normal"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp"
+            android:text="바구니로 이동할까요?" />
+
+    </RelativeLayout>
+
+    <!--하단-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_basket_text_box"
+        android:background="#FCFCFC"
+        android:weightSum="2">
+
+        <!--네-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="4dp"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/dialog_basket_yes_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:paddingVertical="12dp"
+                    android:fontFamily="@font/nanumbarungothic_normal"
+                    android:background="#FCFCFC"
+                    android:textColor="#46AE7F"
+                    android:textSize="18dp"
+                    android:text="확인" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#46AE7F" />
+
+        <!--계속 구출-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="4dp"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/dialog_basket_later_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:paddingVertical="12dp"
+                    android:fontFamily="@font/nanumbarungothic_normal"
+                    android:background="#FCFCFC"
+                    android:textColor="#46AE7F"
+                    android:textSize="18dp"
+                    android:text="계속 구출하기" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
