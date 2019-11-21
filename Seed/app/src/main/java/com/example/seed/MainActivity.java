@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<GetMainResponse> call, Response<GetMainResponse> response) {
                 if (response.isSuccessful()) {
                     data = response.body().getData();
+                    // int i = response.body().getData().get(0).getIdProduct();
                     adapter = new MainProductAdapter(data);
                     recyclerView.setAdapter(adapter);
                     recyclerView.addItemDecoration(new ProductRecyclerViewDecoration(15));

@@ -44,22 +44,20 @@ public class MypageActivity extends AppCompatActivity {
         call.enqueue(new Callback<GetMypageResponse>() {
             @Override
             public void onResponse(Call<GetMypageResponse> call, Response<GetMypageResponse> response) {
-//                if (response == null)
-//                    Log.d("에러", "ㅋㅋㅋㅋ");
-//                if (response.isSuccessful()){
-//                    String name = response.body().data.userName;
-//                    String imgUrl = response.body().data.userProfile;
-//
-//                    Log.e("마이페이지 이름", name);
-//                    Log.e("마이페이지 이미지", imgUrl);
-//
-//                    de.hdodenhof.circleimageview.CircleImageView targetImg = (de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.mypage_act_user_profile);
-//                    Glide.with(getApplicationContext())
-//                            .load(imgUrl)
-//                            .into(targetImg);
-//                    TextView targetName = (TextView)findViewById(R.id.mypage_act_user_name);
-//                    targetName.setText(name);
-//                }
+                if (response.isSuccessful()){
+                    String name = response.body().data.userName;
+                    String imgUrl = response.body().data.userProfile;
+
+                    Log.e("마이페이지 이름", name);
+                    Log.e("마이페이지 이미지", imgUrl);
+
+                    de.hdodenhof.circleimageview.CircleImageView targetImg = (de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.mypage_act_user_profile);
+                    Glide.with(getApplicationContext())
+                            .load(imgUrl)
+                            .into(targetImg);
+                    TextView targetName = (TextView)findViewById(R.id.mypage_act_user_name);
+                    targetName.setText(name);
+                }
             }
 
             @Override
