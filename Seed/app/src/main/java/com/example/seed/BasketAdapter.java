@@ -1,19 +1,21 @@
 package com.example.seed;
 
-import android.util.Log;
+import android.app.TimePickerDialog;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.seed.data.BasketData;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 // Customized by MS
 
@@ -21,9 +23,12 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
 
     ArrayList<BasketData> items;
     OnBasketClickListener listener;
+    private Context context;
 
-    public BasketAdapter(ArrayList<BasketData> items) {
+
+    public BasketAdapter(ArrayList<BasketData> items, Context context) {
         this.items = items;
+        this.context = context;
     }
 
     @Override
@@ -46,9 +51,55 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
         viewHolder.basketTimePickup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
+                DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOf) {
+                        StringBuffer strBuf = new StringBuffer();
+                        strBuf.append(year);
+                        strBuf.append("/");
+                        strBuf.append(month + 1);
+                        strBuf.append("/");
+                        strBuf.append(dayOf);
 
+                        TextView datePickerTextView = viewHolder.basketTimePickup;
+                        datePickerTextView.setText(strBuf.toString());
+                    }
+                };
+
+                 */
+
+                TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOf, int minOf) {
+                        StringBuffer strBuf = new StringBuffer();
+                        strBuf.append(hourOf);
+                        strBuf.append("시 ");
+                        strBuf.append(minOf);
+                        strBuf.append("분");
+
+                        TextView timePickerTextView = viewHolder.basketTimePickup;
+                        timePickerTextView.setText(strBuf.toString());
+                    }
+                };
+
+                Calendar now = Calendar.getInstance();
+                int year = now.get(Calendar.YEAR);
+                int month = now.get(Calendar.MONTH);
+                int day = now.get(Calendar.DAY_OF_MONTH);
+                int hourOf = now.get(Calendar.HOUR_OF_DAY);
+                int minOf = now.get(Calendar.MINUTE);
+                boolean is24Hour = true;
+
+                //DatePickerDialog datePickerDialog = new DatePickerDialog(context, onDateSetListener, year, month, day);
+                //datePickerDialog.show();
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(context, onTimeSetListener, hourOf, minOf, is24Hour);
+                timePickerDialog.show();
             }
         });
+
+
 
         viewHolder.basketRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -63,7 +114,8 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
                         sumPrice = sumPrice + check;
                         item.setSumPrice(sumPrice);
                         viewHolder.basketSumPrice.setText(String.valueOf(sumPrice));
-                        break; }
+                        break;
+                    }
                     case R.id.rv_item_basket_paper: {
                         int check = Integer.parseInt(String.valueOf(item.getCheck()));
                         item.setCheck(100);
@@ -73,7 +125,8 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
                         sumPrice = sumPrice + check;
                         item.setSumPrice(sumPrice);
                         viewHolder.basketSumPrice.setText(String.valueOf(sumPrice));
-                        break; }
+                        break;
+                    }
                     case R.id.rv_item_basket_box: {
                         int check = Integer.parseInt(String.valueOf(item.getCheck()));
                         item.setCheck(1000);
@@ -83,7 +136,8 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
                         sumPrice = sumPrice + check;
                         item.setSumPrice(sumPrice);
                         viewHolder.basketSumPrice.setText(String.valueOf(sumPrice));
-                        break; }
+                        break;
+                    }
                 }
             }
         });
@@ -95,7 +149,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
                 int maxNum = Integer.parseInt(String.valueOf(item.getQuantity()));
                 int price = Integer.parseInt(String.valueOf(item.getSalePrice()));
                 int buy = Integer.parseInt(String.valueOf(item.getBuyNum()));
-                if (buy < maxNum){
+                if (buy < maxNum) {
                     buy++;
                     item.setBuyNum(buy);
                     viewHolder.basketBuyNum.setText(String.valueOf(buy));
@@ -112,7 +166,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
                 int sumPrice = Integer.parseInt(String.valueOf(item.getSumPrice()));
                 int price = Integer.parseInt(String.valueOf(item.getSalePrice()));
                 int buy = Integer.parseInt(String.valueOf(item.getBuyNum()));
-                if (buy > 0){
+                if (buy > 0) {
                     buy--;
                     item.setBuyNum(buy);
                     viewHolder.basketBuyNum.setText(String.valueOf(buy));
@@ -125,7 +179,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
 
     }
 
-    public void setOnItemClickListener(OnBasketClickListener listener){
+    public void setOnItemClickListener(OnBasketClickListener listener) {
         this.listener = listener;
     }
 
@@ -142,19 +196,19 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
         return items.size();
     }
 
-    public void addItem(BasketData item){
+    public void addItem(BasketData item) {
         items.add(item);
     }
 
-    public void setItems(ArrayList<BasketData> items){
+    public void setItems(ArrayList<BasketData> items) {
         this.items = items;
     }
 
-    public BasketData getItem(int position){
+    public BasketData getItem(int position) {
         return items.get(position);
     }
 
-    public void setItem(int position, BasketData item){
+    public void setItem(int position, BasketData item) {
         items.set(position, item);
     }
 
