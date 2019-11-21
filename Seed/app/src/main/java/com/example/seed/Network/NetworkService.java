@@ -1,7 +1,7 @@
 package com.example.seed.Network;
 
 import com.example.seed.Get.GetMainResponse;
-import com.example.seed.Get.GetMypageRequest;
+import com.example.seed.Get.GetMypageResponse;
 import com.example.seed.Post.PostLoginResponse;
 import com.google.gson.JsonObject;
 
@@ -24,7 +24,8 @@ public interface NetworkService {
 
     // 마이페이지 프로필 내역 확인
     @GET("mypage")
-    Call<GetMypageRequest> getMypageRequest (
+    Call<GetMypageResponse> getMypageResponse (
+            @Header("Content-type") String content_type,
             @Header("token") String token
     );
 
