@@ -1,6 +1,7 @@
 package com.example.seed.Network;
 
 import com.example.seed.Get.GetBasketAddResponse;
+import com.example.seed.Get.GetBasketShowResponse;
 import com.example.seed.Get.GetDetailResponse;
 import com.example.seed.Get.GetMainResponse;
 import com.example.seed.Get.GetMypageResponse;
@@ -51,6 +52,13 @@ public interface NetworkService {
             @Header("Content-type") String content_type,
             @Header("token") String token,
             @Path("idProduct") int idProduct
+    );
+
+    // 장바구니 확인
+    @GET("basket")
+    Call<GetBasketShowResponse> getBasketShowRespose (
+            @Header("Content-type") String content_type,
+            @Header("token") String token
     );
 
 }

@@ -14,13 +14,14 @@ import android.widget.TimePicker;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.seed.data.BasketData;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-// Customized by MS
+// Customized by SY
 
 public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketViewHolder> implements OnBasketClickListener {
 
@@ -44,57 +45,59 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
     @Override
     public void onBindViewHolder(final BasketViewHolder viewHolder, final int position) {
         final BasketData item = items.get(position);
-        viewHolder.basketImage.setImageResource(item.getImage());
+        Glide.with(viewHolder.itemView.getContext())
+                .load(item.getImage())
+                .into(viewHolder.basketImage);
         viewHolder.basketName.setText(item.getName());
         viewHolder.basketBuyNum.setText(String.valueOf(item.getBuyNum()));
-        viewHolder.basketTimePickup.setText(item.getTimePickup());
+        viewHolder.basketTimePickup.setText(String.valueOf(item.getTimePickup()));
         viewHolder.basketSalePrice.setText(String.valueOf(item.getSalePrice()));
         viewHolder.basketSumPrice.setText(String.valueOf(item.getSumPrice()));
 
-        final Calendar calendar = Calendar.getInstance();
-        viewHolder.basketTimePickup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, final int month, int dayOf) {
-                        calendar.set(Calendar.YEAR, year);
-                        calendar.set(Calendar.MONTH, month);
-                        calendar.set(Calendar.DAY_OF_MONTH, dayOf);
-
-
-                        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker timePicker, int hourOf, int minOf) {
-                                calendar.set(Calendar.HOUR_OF_DAY, hourOf);
-                                calendar.set(Calendar.MINUTE, minOf);
-
-                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH시 MM분");
-
-                                TextView timePickerTextView = viewHolder.basketTimePickup;
-                                timePickerTextView.setText(simpleDateFormat.format(calendar.getTime()));
-                            }
-                        };
-
-                        new TimePickerDialog(context, onTimeSetListener, calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),false).show();
-                    }
-                };
-
-                new DatePickerDialog(context, onDateSetListener, calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
-
-
+        // Customized by MS
+//        final Calendar calendar = Calendar.getInstance();
+//        viewHolder.basketTimePickup.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+//                    @Override
+//                    public void onDateSet(DatePicker datePicker, int year, final int month, int dayOf) {
+//                        calendar.set(Calendar.YEAR, year);
+//                        calendar.set(Calendar.MONTH, month);
+//                        calendar.set(Calendar.DAY_OF_MONTH, dayOf);
+//
+//
+//                        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+//                            @Override
+//                            public void onTimeSet(TimePicker timePicker, int hourOf, int minOf) {
+//                                calendar.set(Calendar.HOUR_OF_DAY, hourOf);
+//                                calendar.set(Calendar.MINUTE, minOf);
+//
+//                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH시 MM분");
+//
+//                                TextView timePickerTextView = viewHolder.basketTimePickup;
+//                                timePickerTextView.setText(simpleDateFormat.format(calendar.getTime()));
+//                            }
+//                        };
+//
+//                        new TimePickerDialog(context, onTimeSetListener, calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),false).show();
+//                    }
+//                };
+//
+//                new DatePickerDialog(context, onDateSetListener, calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
+//            }
+//        });
+        // Customized by MS
 
         viewHolder.basketRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int id) {
                 switch (id) {
                     case R.id.rv_item_basket_vinyl: {
-                        int check = Integer.parseInt(String.valueOf(item.getCheck()));
+                        int check = Integer.parseInt(String.valueOf(item.getPacking()));
                         int sumPrice = Integer.parseInt(String.valueOf(item.getSumPrice()));
                         sumPrice = sumPrice - check;
-                        item.setCheck(0);
+                        item.setPacking(0);
                         check = 0;
                         sumPrice = sumPrice + check;
                         item.setSumPrice(sumPrice);
@@ -102,8 +105,8 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
                         break;
                     }
                     case R.id.rv_item_basket_paper: {
-                        int check = Integer.parseInt(String.valueOf(item.getCheck()));
-                        item.setCheck(100);
+                        int check = Integer.parseInt(String.valueOf(item.getPacking()));
+                        item.setPacking(100);
                         int sumPrice = Integer.parseInt(String.valueOf(item.getSumPrice()));
                         sumPrice = sumPrice - check;
                         check = 100;
@@ -113,8 +116,8 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
                         break;
                     }
                     case R.id.rv_item_basket_box: {
-                        int check = Integer.parseInt(String.valueOf(item.getCheck()));
-                        item.setCheck(1000);
+                        int check = Integer.parseInt(String.valueOf(item.getPacking()));
+                        item.setPacking(1000);
                         int sumPrice = Integer.parseInt(String.valueOf(item.getSumPrice()));
                         sumPrice = sumPrice - check;
                         check = 1000;
