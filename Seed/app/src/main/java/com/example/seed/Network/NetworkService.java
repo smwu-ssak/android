@@ -11,6 +11,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface NetworkService {
 
@@ -39,7 +40,8 @@ public interface NetworkService {
     // 상품 상세보기
     @GET("main/detail/{idProduct}")
     Call<GetDetailResponse> getDetailResponse (
-            @Header("Content-type") String content_type
+            @Header("Content-type") String content_type,
+            @Path("idProduct") int idProduct
     );
 
 }

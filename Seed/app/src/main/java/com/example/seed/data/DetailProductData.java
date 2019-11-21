@@ -14,10 +14,11 @@ public class DetailProductData {
     public int originPrice;
     public int salePrice;
     public Date expDate;
-    public String userProfile;
     public String stoName;
     public String address;
     public double lat;
     public double log;
+    public String tel;
+    public String userProfile;
 
 }

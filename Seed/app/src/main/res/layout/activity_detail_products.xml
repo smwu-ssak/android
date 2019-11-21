@@ -81,18 +81,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!--상품 이미지-->
-            <!--flipper로 할지 viewpager로 할지-->
-            <ViewFlipper
-                android:id="@+id/detail_act_img_product"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-
             <ImageView
                 android:id="@+id/detail_act_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
                 android:src="@drawable/detailview_productphoto"
                 android:layout_centerHorizontal="true"/>
 
@@ -190,7 +183,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true">
 
-                        <!--가게 사진-->
+                        <!--가게 주인 프로필 사진-->
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/detail_act_img_store"
                             android:layout_width="wrap_content"
@@ -402,7 +395,7 @@
                                     android:fontFamily="@font/nanumbarungothicbold_normal"
                                     android:textColor="#3A3A3A"
                                     android:textSize="42dp"
-                                    android:text="400"/>
+                                    android:text="368"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -531,6 +524,7 @@
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
                             android:layout_marginTop="20dp">
 
                             <TextView
