@@ -55,22 +55,23 @@
 
     <!-- Customized by SY-->
     <!--하단 버튼-->
+
     <RelativeLayout
         android:id="@+id/basket_act_bottom_btn"
         android:layout_width="match_parent"
         android:layout_height="67dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
         android:background="#46AE7F">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="싹 구출하러 가기"
-            android:textSize="22dp"
             android:fontFamily="@font/nanumbarungothicbold_normal"
-            android:textColor="#FFFFFF"/>
+            android:text="싹 구출하러 가기"
+            android:textColor="#FFFFFF"
+            android:textSize="22dp" />
 
     </RelativeLayout>
 

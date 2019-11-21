@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.seed.data.BasketData;
+
 import java.util.ArrayList;
 
 // Customized by MS
@@ -27,6 +28,7 @@ public class BasketActivity extends AppCompatActivity {
 
     }
 
+
     public void moveToMainView() {
         RelativeLayout button = findViewById(R.id.basket_act_back_mainpage_btn);
         button.setOnClickListener(new View.OnClickListener() {
@@ -36,7 +38,7 @@ public class BasketActivity extends AppCompatActivity {
         });
     }
 
-    public void moveToBuyProduct(){
+    public void moveToBuyProduct() {
         RelativeLayout button = findViewById(R.id.basket_act_bottom_btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +48,7 @@ public class BasketActivity extends AppCompatActivity {
             }
         });
     }
+
 
     public void setProducts() {
         final RecyclerView recyclerView = findViewById(R.id.rv_basket);
@@ -57,7 +60,7 @@ public class BasketActivity extends AppCompatActivity {
         data.add(new BasketData(R.drawable.purchaseview_applephoto, "사과", "00:00", 0, 7, 800, 0, 0));
         data.add(new BasketData(R.drawable.purchaseview_broccoliphoto, "브로콜리", "00:00", 0, 3, 700, 0, 0));
 
-        final BasketAdapter adapter = new BasketAdapter(data);
+        final BasketAdapter adapter = new BasketAdapter(data, BasketActivity.this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);

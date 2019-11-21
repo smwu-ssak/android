@@ -97,6 +97,7 @@
 
             </RelativeLayout>
 
+            <!-- Customized by MS-->
             <!--픽업 시간-->
             <RelativeLayout
                 android:id="@+id/time_pickup"
@@ -114,15 +115,51 @@
                     android:textSize="16dp"
                     android:text="픽업 시간" />
 
-                <TextView
-                    android:id="@+id/rv_item_basket_time_pickup_btn"
+                <RelativeLayout
+                    android:id="@+id/rv_item_basket_time_pickup_box"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:fontFamily="@font/nanumbarungothicbold_normal"
-                    android:textColor="#3A3A3A"
-                    android:textSize="16dp"
-                    android:text="00:00 AM" />
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/rv_item_basket_time_pickup_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="HOUR.MINUTE" />
+
+
+                    <!--
+                    <TextView
+                        android:id="@+id/rv_item_basket_time_pickup_hour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/rv_item_basket_time_pickup_hour_fix"
+                        android:text="HOUR" />
+
+                    <TextView
+                        android:id="@+id/rv_item_basket_time_pickup_hour_fix"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/rv_item_basket_time_pickup_min"
+                        android:text="시" />
+
+                    <TextView
+                        android:id="@+id/rv_item_basket_time_pickup_min"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/rv_item_basket_time_pickup_min_fix"
+                        android:text="MIN" />
+
+                    <TextView
+                        android:id="@+id/rv_item_basket_time_pickup_min_fix"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="분" />
+                        -->
+
+                </RelativeLayout>
+                
 
             </RelativeLayout>
 
@@ -153,9 +190,9 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:fontFamily="@font/nanumbarungothicbold_normal"
+                        android:text="원"
                         android:textColor="#46AE7F"
-                        android:textSize="16dp"
-                        android:text="원" />
+                        android:textSize="16dp" />
 
                     <TextView
                         android:id="@+id/rv_item_basket_price"
