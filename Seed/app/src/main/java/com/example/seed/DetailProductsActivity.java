@@ -1,12 +1,11 @@
 package com.example.seed;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.DatePicker;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,11 +14,24 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Calendar;
+import com.bumptech.glide.Glide;
+import com.example.seed.Get.GetDetailResponse;
+import com.example.seed.Get.GetMypageResponse;
+import com.example.seed.Network.ApplicationController;
+import com.example.seed.Network.NetworkService;
+
+import java.util.Date;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 // Customized by SY
 
 public class DetailProductsActivity extends AppCompatActivity {
+
+    ApplicationController applicationController = new ApplicationController();
+    NetworkService networkService = applicationController.buildNetworkService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +42,9 @@ public class DetailProductsActivity extends AppCompatActivity {
         setValuesFromItems();
 
         popupDialog();
-
     }
 
-
-// Customized by MS
+    // Customized by MS
     public void popupDialog() {
         RelativeLayout button = findViewById(R.id.detail_act_bottom_btn);
         button.setOnClickListener(new View.OnClickListener() {
@@ -45,97 +55,90 @@ public class DetailProductsActivity extends AppCompatActivity {
             }
         });
     }
+    // Customized by MS
 
-    private void showDatePickerDialog() {
-
-        TextView basketTimePickup = findViewById(R.id.detail_act_name);
-        basketTimePickup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOf) {
-                        StringBuffer strBuf = new StringBuffer();
-                        strBuf.append(year);
-                        strBuf.append("/");
-                        strBuf.append(month + 1);
-                        strBuf.append("/");
-                        strBuf.append(dayOf);
-
-                        TextView datePickerTextView = findViewById(R.id.detail_act_name);
-                        datePickerTextView.setText(strBuf.toString());
-                    }
-                };
-
-                Calendar now = Calendar.getInstance();
-                int year = now.get(Calendar.YEAR);
-                int month = now.get(Calendar.MONTH);
-                int day = now.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog datePickerDialog = new DatePickerDialog(DetailProductsActivity.this, onDateSetListener, year, month, day);
-
-                datePickerDialog.show();
-            }
-        });
-    }
-
-
-
-
-    public void setValuesFromItems(){
-
-        int image;
-        String name;
-        String place;
-        int quantity;
-        String gpsStore;
-        int originPrice;
-        int salePrice;
-        int discount;
+    public void setValuesFromItems() {
 
         Bundle extras = getIntent().getExtras();
+        int idProduct = extras.getInt("idProduct");
 
-        image = extras.getInt("image");
-        name = extras.getString("name");
-        place = extras.getString("place");
-        quantity = extras.getInt("quantity");
-        gpsStore = extras.getString("place");
-        originPrice = extras.getInt("originPrice");
-        salePrice = extras.getInt("salePrice");
-        discount = extras.getInt("discount");
-
-        ImageView image_iv = (ImageView)findViewById(R.id.detail_act_img);
-        TextView name_tv = (TextView)findViewById(R.id.detail_act_name);
-        TextView place_tv = (TextView)findViewById(R.id.detail_act_store_name);
-        TextView quantity_tv = (TextView)findViewById(R.id.detail_act_products_quantity);
-        TextView gpsStore_tv = (TextView)findViewById(R.id.detail_act_gps_store_name);
+        final TextView name_tv = (TextView)findViewById(R.id.detail_act_name);
+        final TextView quantity_tv = (TextView)findViewById(R.id.detail_act_products_quantity);
+        final TextView comment_tv = (TextView)findViewById(R.id.detail_act_comments);
+        final ImageView image_iv = (ImageView)findViewById(R.id.detail_act_img);
         final TextView originPrice_tv = (TextView)findViewById(R.id.detail_act_products_price_origin);
-        TextView salePrice_tv = (TextView)findViewById(R.id.detail_act_products_price_sale);
-        TextView discount_tv = (TextView)findViewById(R.id.detail_act_products_discount);
+        final TextView salePrice_tv = (TextView)findViewById(R.id.detail_act_products_price_sale);
+        final TextView discount_tv = (TextView)findViewById(R.id.detail_act_products_discount);
+        TextView expDate_tv = (TextView)findViewById(R.id.detail_act_products_timeleft);
+        final TextView stoName_tv = (TextView)findViewById(R.id.detail_act_store_name);
+        final TextView gpsStoName_tv = (TextView)findViewById(R.id.detail_act_gps_store_name);
+        final TextView address_tv = (TextView)findViewById(R.id.detail_act_store_location);
+        final TextView gpsAddress_tv = (TextView)findViewById(R.id.detail_act_gps_store_location);
+        final TextView tel_tv = (TextView)findViewById(R.id.detail_act_store_num1);
+        final de.hdodenhof.circleimageview.CircleImageView userProfile_iv = (de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.detail_act_img_store);
 
         final FrameLayout cancel_fl = (FrameLayout)findViewById(R.id.detail_act_products_price_origin_cancel);
 
-//        image_iv.setImageResource(image);
-        name_tv.setText(name);
-        place_tv.setText(place);
-        quantity_tv.setText(String.valueOf(quantity));
-        gpsStore_tv.setText(String.valueOf(gpsStore));
-        originPrice_tv.setText(String.valueOf(originPrice));
-        salePrice_tv.setText(String.valueOf(salePrice));
-        discount_tv.setText(String.valueOf(discount));
+        // quantity_tv.setText(String.valueOf(quantity));
 
-        cancel_fl.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        Call<GetDetailResponse> call = networkService.getDetailResponse("application/json", idProduct);
+        call.enqueue(new Callback<GetDetailResponse>() {
             @Override
-            public void onGlobalLayout() {
-                int len = originPrice_tv.getWidth();
+            public void onResponse(Call<GetDetailResponse> call, Response<GetDetailResponse> response) {
+                if (response.isSuccessful()){
+                    String name = response.body().data.proName;
+                    int quantity = response.body().data.quantity;
+                    String comment = response.body().data.comment;
+                    String image = response.body().data.image;
+                    int originPrice = response.body().data.originPrice;
+                    int salePrice = response.body().data.salePrice;
+                    Date expDate = response.body().data.expDate;
+                    String stoName = response.body().data.stoName;
+                    String address = response.body().data.address;
+                    double lat = response.body().data.lat;
+                    double log = response.body().data.log;
+                    String tel = response.body().data.tel;
+                    String userProfile = response.body().data.userProfile;
 
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.width = len+10;
-                params.gravity = Gravity.CENTER_VERTICAL;
-                cancel_fl.setForegroundGravity(Gravity.CENTER_VERTICAL);
-                cancel_fl.setLayoutParams(params);
+                    name_tv.setText(name);
+                    quantity_tv.setText(String.valueOf(quantity));
+                    comment_tv.setText(comment);
+                    Glide.with(getApplicationContext())
+                            .load(image)
+                            .into(image_iv);
+                    originPrice_tv.setText(String.valueOf(originPrice));
+                    salePrice_tv.setText(String.valueOf(salePrice));
+                    discount_tv.setText(String.valueOf(Math.round((float)(originPrice-salePrice)/(float)originPrice*100)));
 
-                originPrice_tv.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    stoName_tv.setText(stoName);
+                    gpsStoName_tv.setText(stoName);
+                    address_tv.setText(address);
+                    gpsAddress_tv.setText(address);
+                    tel_tv.setText(tel);
+                    Glide.with(getApplicationContext())
+                            .load(userProfile)
+                            .into(userProfile_iv);
+
+                    cancel_fl.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                        @Override
+                        public void onGlobalLayout() {
+                            int len = originPrice_tv.getWidth();
+
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                            params.width = len+10;
+                            params.gravity = Gravity.CENTER_VERTICAL;
+                            cancel_fl.setForegroundGravity(Gravity.CENTER_VERTICAL);
+                            cancel_fl.setLayoutParams(params);
+
+                            originPrice_tv.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetDetailResponse> call, Throwable t) {
+                Log.v("통신 실패", t.toString());
             }
         });
 

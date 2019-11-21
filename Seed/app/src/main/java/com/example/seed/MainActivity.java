@@ -165,12 +165,13 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), DetailProductsActivity.class);
                             MainProductData item = adapter.getItem(position);
                             int idx = recyclerView.getChildAdapterPosition(view);
-                            intent.putExtra("name", item.getName());
-                            intent.putExtra("quantity", item.getQuantity());
-                            intent.putExtra("originPrice", item.getOriginPrice());
-                            intent.putExtra("salePrice", item.getSalePrice());
-                            intent.putExtra("discount", Math.round((float)(item.getOriginPrice()-item.getSalePrice())/(float)item.getOriginPrice()*100));
-                            intent.putExtra("place", item.getPlace());
+                            intent.putExtra("idProduct", item.getIdProduct());
+//                            intent.putExtra("name", item.getName());
+//                            intent.putExtra("quantity", item.getQuantity());
+//                            intent.putExtra("originPrice", item.getOriginPrice());
+//                            intent.putExtra("salePrice", item.getSalePrice());
+//                            intent.putExtra("discount", Math.round((float)(item.getOriginPrice()-item.getSalePrice())/(float)item.getOriginPrice()*100));
+//                            intent.putExtra("place", item.getPlace());
                             startActivity(intent);
                         }
                     });
