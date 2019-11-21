@@ -1,19 +1,21 @@
 package com.example.seed;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.DatePicker;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.seed.data.MainProductData;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Calendar;
 
 // Customized by SY
 
@@ -26,7 +28,59 @@ public class DetailProductsActivity extends AppCompatActivity {
 
         moveToMainView();
         setValuesFromItems();
+
+        popupDialog();
+
     }
+
+
+// Customized by MS
+    public void popupDialog() {
+        RelativeLayout button = findViewById(R.id.detail_act_bottom_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DetailProductDialog dialog = new DetailProductDialog(DetailProductsActivity.this);
+                dialog.show();
+            }
+        });
+    }
+
+    private void showDatePickerDialog() {
+
+        TextView basketTimePickup = findViewById(R.id.detail_act_name);
+        basketTimePickup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOf) {
+                        StringBuffer strBuf = new StringBuffer();
+                        strBuf.append(year);
+                        strBuf.append("/");
+                        strBuf.append(month + 1);
+                        strBuf.append("/");
+                        strBuf.append(dayOf);
+
+                        TextView datePickerTextView = findViewById(R.id.detail_act_name);
+                        datePickerTextView.setText(strBuf.toString());
+                    }
+                };
+
+                Calendar now = Calendar.getInstance();
+                int year = now.get(Calendar.YEAR);
+                int month = now.get(Calendar.MONTH);
+                int day = now.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(DetailProductsActivity.this, onDateSetListener, year, month, day);
+
+                datePickerDialog.show();
+            }
+        });
+    }
+
+
+
 
     public void setValuesFromItems(){
 

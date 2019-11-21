@@ -1,6 +1,5 @@
 package com.example.seed;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -24,6 +23,10 @@ public class BuyProductActivity extends AppCompatActivity {
 
         setProducts();
         moveToBasketView();
+
+        popupDialog();
+
+
     }
 
     public void moveToBasketView() {
@@ -34,6 +37,20 @@ public class BuyProductActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    public void popupDialog() {
+        RelativeLayout button = findViewById(R.id.buy_act_bottom_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BuyProductDialog dialog = new BuyProductDialog(BuyProductActivity.this);
+                dialog.show();
+            }
+        });
+
+    }
+
 
     public void setProducts() {
         final RecyclerView recyclerView = findViewById(R.id.rv_buy_products);
