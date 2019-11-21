@@ -1,10 +1,12 @@
 package com.example.seed;
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.seed.data.BasketData;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -48,54 +51,36 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
         viewHolder.basketSalePrice.setText(String.valueOf(item.getSalePrice()));
         viewHolder.basketSumPrice.setText(String.valueOf(item.getSumPrice()));
 
+        final Calendar calendar = Calendar.getInstance();
         viewHolder.basketTimePickup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
                 DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
                     @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOf) {
-                        StringBuffer strBuf = new StringBuffer();
-                        strBuf.append(year);
-                        strBuf.append("/");
-                        strBuf.append(month + 1);
-                        strBuf.append("/");
-                        strBuf.append(dayOf);
+                    public void onDateSet(DatePicker datePicker, int year, final int month, int dayOf) {
+                        calendar.set(Calendar.YEAR, year);
+                        calendar.set(Calendar.MONTH, month);
+                        calendar.set(Calendar.DAY_OF_MONTH, dayOf);
 
-                        TextView datePickerTextView = viewHolder.basketTimePickup;
-                        datePickerTextView.setText(strBuf.toString());
+
+                        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker timePicker, int hourOf, int minOf) {
+                                calendar.set(Calendar.HOUR_OF_DAY, hourOf);
+                                calendar.set(Calendar.MINUTE, minOf);
+
+                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH시 MM분");
+
+                                TextView timePickerTextView = viewHolder.basketTimePickup;
+                                timePickerTextView.setText(simpleDateFormat.format(calendar.getTime()));
+                            }
+                        };
+
+                        new TimePickerDialog(context, onTimeSetListener, calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),false).show();
                     }
                 };
 
-                 */
-
-                TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int hourOf, int minOf) {
-                        StringBuffer strBuf = new StringBuffer();
-                        strBuf.append(hourOf);
-                        strBuf.append("시 ");
-                        strBuf.append(minOf);
-                        strBuf.append("분");
-
-                        TextView timePickerTextView = viewHolder.basketTimePickup;
-                        timePickerTextView.setText(strBuf.toString());
-                    }
-                };
-
-                Calendar now = Calendar.getInstance();
-                int year = now.get(Calendar.YEAR);
-                int month = now.get(Calendar.MONTH);
-                int day = now.get(Calendar.DAY_OF_MONTH);
-                int hourOf = now.get(Calendar.HOUR_OF_DAY);
-                int minOf = now.get(Calendar.MINUTE);
-                boolean is24Hour = true;
-
-                //DatePickerDialog datePickerDialog = new DatePickerDialog(context, onDateSetListener, year, month, day);
-                //datePickerDialog.show();
-
-                TimePickerDialog timePickerDialog = new TimePickerDialog(context, onTimeSetListener, hourOf, minOf, is24Hour);
-                timePickerDialog.show();
+                new DatePickerDialog(context, onDateSetListener, calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 

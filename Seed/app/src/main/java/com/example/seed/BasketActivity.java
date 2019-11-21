@@ -55,10 +55,10 @@ public class BasketActivity extends AppCompatActivity {
 
         final ArrayList<BasketData> data = new ArrayList<>();
 
-        data.add(new BasketData(R.drawable.purchaseview_applephoto, "사과", "00:00", 0, 5, 1000, 0, 0));
-        data.add(new BasketData(R.drawable.purchaseview_broccoliphoto, "브로콜리", "00:00", 0, 4, 1500, 0, 0));
-        data.add(new BasketData(R.drawable.purchaseview_applephoto, "사과", "00:00", 0, 7, 800, 0, 0));
-        data.add(new BasketData(R.drawable.purchaseview_broccoliphoto, "브로콜리", "00:00", 0, 3, 700, 0, 0));
+        data.add(new BasketData(R.drawable.purchaseview_applephoto, "사과", "00시 00분", 0, 5, 1000, 0, 0));
+        data.add(new BasketData(R.drawable.purchaseview_broccoliphoto, "브로콜리", "00시 00분", 0, 4, 1500, 0, 0));
+        data.add(new BasketData(R.drawable.purchaseview_applephoto, "사과", "00시 00분", 0, 7, 800, 0, 0));
+        data.add(new BasketData(R.drawable.purchaseview_broccoliphoto, "브로콜리", "00시 00분", 0, 3, 700, 0, 0));
 
         final BasketAdapter adapter = new BasketAdapter(data, BasketActivity.this);
 
