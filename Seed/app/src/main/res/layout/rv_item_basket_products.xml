@@ -125,7 +125,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:text="HOUR.MINUTE" />
+                        android:fontFamily="@font/nanumbarungothic_normal"
+                        android:textColor="#3A3A3A"
+                        android:textSize="16dp"
+                        android:text="00 : 00" />
 
 
                     <!--
