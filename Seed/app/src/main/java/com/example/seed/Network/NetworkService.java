@@ -1,6 +1,6 @@
 package com.example.seed.Network;
 
-import com.example.seed.Get.GetBasketAddResponse;
+import com.example.seed.Get.GetBasketAddRequest;
 import com.example.seed.Get.GetBasketShowResponse;
 import com.example.seed.Get.GetDetailResponse;
 import com.example.seed.Get.GetMainResponse;
@@ -48,7 +48,7 @@ public interface NetworkService {
 
     // 상품 장바구니에 추가
     @GET("basket/{idProduct}")
-    Call<GetBasketAddResponse> getBasketAddResponse (
+    Call<GetBasketAddRequest> getBasketAddRequest (
             @Header("Content-type") String content_type,
             @Header("token") String token,
             @Path("idProduct") int idProduct
