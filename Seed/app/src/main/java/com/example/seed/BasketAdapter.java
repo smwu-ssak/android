@@ -3,6 +3,7 @@ package com.example.seed;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.example.seed.data.BasketData;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 // Customized by SY
 
@@ -28,7 +30,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
     ArrayList<BasketData> items;
     OnBasketClickListener listener;
     private Context context;
-
+    Date date = new Date();
 
     public BasketAdapter(ArrayList<BasketData> items, Context context) {
         this.items = items;
@@ -50,43 +52,45 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
                 .into(viewHolder.basketImage);
         viewHolder.basketName.setText(item.getName());
         viewHolder.basketBuyNum.setText(String.valueOf(item.getBuyNum()));
-        viewHolder.basketTimePickup.setText(String.valueOf(item.getTimePickup()));
+        viewHolder.basketTimePickup.setText("00:00");
         viewHolder.basketSalePrice.setText(String.valueOf(item.getSalePrice()));
         viewHolder.basketSumPrice.setText(String.valueOf(item.getSumPrice()));
 
         // Customized by MS
-//        final Calendar calendar = Calendar.getInstance();
-//        viewHolder.basketTimePickup.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-//                    @Override
-//                    public void onDateSet(DatePicker datePicker, int year, final int month, int dayOf) {
-//                        calendar.set(Calendar.YEAR, year);
-//                        calendar.set(Calendar.MONTH, month);
-//                        calendar.set(Calendar.DAY_OF_MONTH, dayOf);
-//
-//
-//                        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-//                            @Override
-//                            public void onTimeSet(TimePicker timePicker, int hourOf, int minOf) {
-//                                calendar.set(Calendar.HOUR_OF_DAY, hourOf);
-//                                calendar.set(Calendar.MINUTE, minOf);
-//
-//                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH시 MM분");
-//
-//                                TextView timePickerTextView = viewHolder.basketTimePickup;
-//                                timePickerTextView.setText(simpleDateFormat.format(calendar.getTime()));
-//                            }
-//                        };
-//
-//                        new TimePickerDialog(context, onTimeSetListener, calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),false).show();
-//                    }
-//                };
-//
-//                new DatePickerDialog(context, onDateSetListener, calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
-//            }
-//        });
+        final Calendar calendar = Calendar.getInstance();
+        viewHolder.basketTimePickup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, final int month, int dayOf) {
+                        calendar.set(Calendar.YEAR, year);
+                        calendar.set(Calendar.MONTH, month);
+                        calendar.set(Calendar.DAY_OF_MONTH, dayOf);
+
+                        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker timePicker, int hourOf, int minOf) {
+                                calendar.set(Calendar.HOUR_OF_DAY, hourOf);
+                                calendar.set(Calendar.MINUTE, minOf);
+
+                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:MM");
+
+                                TextView timePickerTextView = viewHolder.basketTimePickup;
+                                timePickerTextView.setText(simpleDateFormat.format(calendar.getTime()));
+                            }
+                        };
+                        new TimePickerDialog(view.getRootView().getContext(), onTimeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false).show();
+                        Log.d("시간T", String.valueOf(calendar.getTime()));
+                    }
+                };
+                new DatePickerDialog(view.getRootView().getContext(), onDateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+                Log.d("시간D", String.valueOf(calendar.getTime()));
+                date = calendar.getTime();
+                item.setTimePickup(date);
+                Log.d("시간최종", String.valueOf(item.getTimePickup()));
+            }
+        });
         // Customized by MS
 
         viewHolder.basketRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
