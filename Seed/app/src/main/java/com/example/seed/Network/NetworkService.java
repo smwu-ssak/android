@@ -5,8 +5,13 @@ import com.example.seed.Get.GetBasketShowResponse;
 import com.example.seed.Get.GetDetailResponse;
 import com.example.seed.Get.GetMainResponse;
 import com.example.seed.Get.GetMypageResponse;
+import com.example.seed.Post.PostBuyNowRequest;
 import com.example.seed.Post.PostLoginResponse;
 import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -59,6 +64,14 @@ public interface NetworkService {
     Call<GetBasketShowResponse> getBasketShowRespose (
             @Header("Content-type") String content_type,
             @Header("token") String token
+    );
+
+    // 구출하러 가기
+    @POST("buy/now")
+    Call<PostBuyNowRequest> postBuyNowRequest (
+            @Header("Content-type") String content_type,
+            @Header("token") String token,
+            @Body() ArrayList<JsonObject> body
     );
 
 }

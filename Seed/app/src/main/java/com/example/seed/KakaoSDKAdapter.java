@@ -1,6 +1,5 @@
 package com.example.seed;
 
-import android.app.Activity;
 import android.content.Context;
 
 import com.example.seed.Network.ApplicationController;

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,7 +15,13 @@ import com.example.seed.DB.SharedPreferenceController;
 import com.example.seed.Get.GetBasketShowResponse;
 import com.example.seed.Network.ApplicationController;
 import com.example.seed.Network.NetworkService;
+import com.example.seed.Post.PostBuyNowRequest;
 import com.example.seed.data.BasketData;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -28,7 +35,7 @@ public class BasketActivity extends AppCompatActivity {
 
     ApplicationController applicationController = new ApplicationController();
     NetworkService networkService = applicationController.buildNetworkService();
-    static ArrayList<BasketData> data = new ArrayList();
+    static ArrayList<BasketData> data;
     static BasketAdapter adapter;
 
     @Override
@@ -52,12 +59,55 @@ public class BasketActivity extends AppCompatActivity {
     }
 
     public void moveToBuyProduct() {
+        final String token = SharedPreferenceController.getMyId(this);
         RelativeLayout button = findViewById(R.id.basket_act_bottom_btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BuyProductActivity.class);
-                startActivity(intent);
+
+                if (data.size() == 0){
+                    Toast.makeText(getApplicationContext(), "장바구니가 비어있습니다!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                ArrayList<JsonObject> jsonObject = new ArrayList<>();
+                for(int i=0; i<data.size(); i++) {
+                    if (data.get(i).getBuyNum() == 0)
+                        continue;
+                    JSONObject object = new JSONObject();
+                    try {
+                        object.put("quantity", data.get(i).getBuyNum());
+                        object.put("packing", data.get(i).getPacking());
+                        object.put("timePickup", data.get(i).getTimePickup());
+                        object.put("idBasket", data.get(i).getIdBasket());
+                        JsonObject gsonObject = (JsonObject) new JsonParser().parse(object.toString());
+                        jsonObject.add(gsonObject);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                Call<PostBuyNowRequest> call = networkService.postBuyNowRequest("application/json", token, jsonObject);
+                call.enqueue(new Callback<PostBuyNowRequest>() {
+                    @Override
+                    public void onResponse(Call<PostBuyNowRequest> call, Response<PostBuyNowRequest> response) {
+                        if (response.isSuccessful()){
+                            if (response.isSuccessful()){
+                                Log.v("통신 성공", "통신 성공");
+                                Intent intent = new Intent(getApplicationContext(), BuyProductActivity.class);
+                                startActivity(intent);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostBuyNowRequest> call, Throwable t) {
+                        Log.v("통신 실패", t.toString());
+                    }
+                });
+
             }
         });
     }
