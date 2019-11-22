@@ -64,14 +64,10 @@
         <RelativeLayout
             android:id="@+id/buy_act_bottom_btn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
-
-            <ImageView
-                android:id="@+id/buy_act_buy_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/purchaseview_purchasebar" />
+            android:layout_height="67dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="#46AE7F">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
