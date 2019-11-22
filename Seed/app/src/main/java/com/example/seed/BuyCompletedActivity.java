@@ -1,20 +1,23 @@
 package com.example.seed;
 
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
+import android.widget.ExpandableListView;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.seed.data.BuyCompletedData;
+import com.example.seed.data.BuyCompletedProductData;
 
 import java.util.ArrayList;
 
-// Customized by MS
+// Customized by SY
 
 public class BuyCompletedActivity extends AppCompatActivity {
+
+    private ExpandableListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,25 +38,32 @@ public class BuyCompletedActivity extends AppCompatActivity {
         });
     }
 
-
     public void setProducts() {
-        final RecyclerView recyclerView = findViewById(R.id.rv_buy_completed);
 
-        final ArrayList<BuyCompletedData> data = new ArrayList<>();
+        Display newDisplay = getWindowManager().getDefaultDisplay();
+        int width = newDisplay.getWidth();
 
-        data.add(new BuyCompletedData("2019년 11월 14일"));
-        data.add(new BuyCompletedData("2019년 11월 15일"));
-        data.add(new BuyCompletedData("2019년 11월 16일"));
+        ArrayList<BuyCompletedData> DataList = new ArrayList<>();
+        listView = (ExpandableListView)findViewById(R.id.mylist);
 
+        BuyCompletedData temp = new BuyCompletedData("2019-11-14");
+        temp.data.add(new BuyCompletedProductData("싱그러운 영동 사과", 2600, "2019-11-14"));
+        temp.data.add(new BuyCompletedProductData("파릇한 브로콜리", 5700, "2019-11-14"));
+        DataList.add(temp);
 
-        final BuyCompletedAdapter adapter = new BuyCompletedAdapter(data);
+        temp = new BuyCompletedData("2019-11-15");
+        temp.data.add(new BuyCompletedProductData("싱그러운 영동사과", 2700, "2019-11-15"));
+        temp.data.add(new BuyCompletedProductData("파릇한 브로콜리", 1700, "2019-11-15"));
+        DataList.add(temp);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new ProductRecyclerViewDecoration(15));
+        temp = new BuyCompletedData("2019-11-16");
+        temp.data.add(new BuyCompletedProductData("영동 사과", 26050, "2019-11-16"));
+        temp.data.add(new BuyCompletedProductData("브로콜리", 500, "2019-11-16"));
+        DataList.add(temp);
 
-
-        //adapter.notifyDataSetChanged();
+        BuyCompletedExpandAdapter adapter = new BuyCompletedExpandAdapter(getApplicationContext(), R.layout.activity_buy_completed_parent, R.layout.activity_buy_completed_child, DataList);
+        listView.setIndicatorBounds(width-50, width);
+        listView.setAdapter(adapter);
     }
 
 

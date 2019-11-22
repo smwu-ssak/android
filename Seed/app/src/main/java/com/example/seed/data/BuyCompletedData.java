@@ -1,13 +1,17 @@
 package com.example.seed.data;
 
+import java.util.ArrayList;
+
 // Customized by MS
 
 public class BuyCompletedData {
 
-    private String timePickup;
+    public String timePickup;
+    public ArrayList<BuyCompletedProductData> data;
 
     public BuyCompletedData(String timePickup) {
         this.timePickup = timePickup;
+        data = new ArrayList<>();
     }
 
     public String getTimePickup() { return timePickup; }

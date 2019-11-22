@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 public class BuyCompletedProductData {
 
-    private String name;
-    private int totalPrice;
-    private String timePickup;
+    public String name;
+    public int totalPrice;
+    public String timePickup;
 
-    public BuyCompletedProductData(String name, int totalPrice, String timePickup, ArrayList<String> allItemsInSection) {
+    public BuyCompletedProductData(String name, int totalPrice, String timePickup) {
         this.name = name;
         this.totalPrice = totalPrice;
         this.timePickup = timePickup;
