@@ -15,6 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".RegisterProductActivity"></activity>
+        <activity android:name=".Main2Activity" />
         <activity android:name=".MypageProfileActivity" />
         <activity android:name=".BuyCompletedActivity" />
         <activity android:name=".LoginActivity">
