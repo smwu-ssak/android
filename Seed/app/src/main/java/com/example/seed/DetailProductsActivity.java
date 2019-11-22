@@ -90,7 +90,7 @@ public class DetailProductsActivity extends AppCompatActivity {
         final TextView originPrice_tv = (TextView)findViewById(R.id.detail_act_products_price_origin);
         final TextView salePrice_tv = (TextView)findViewById(R.id.detail_act_products_price_sale);
         final TextView discount_tv = (TextView)findViewById(R.id.detail_act_products_discount);
-        TextView expDate_tv = (TextView)findViewById(R.id.detail_act_products_timeleft);
+        final TextView expDate_tv = (TextView)findViewById(R.id.detail_act_products_timeleft);
         final TextView stoName_tv = (TextView)findViewById(R.id.detail_act_store_name);
         final TextView gpsStoName_tv = (TextView)findViewById(R.id.detail_act_gps_store_name);
         final TextView address_tv = (TextView)findViewById(R.id.detail_act_store_location);
@@ -113,7 +113,7 @@ public class DetailProductsActivity extends AppCompatActivity {
                     String image = response.body().data.image;
                     int originPrice = response.body().data.originPrice;
                     int salePrice = response.body().data.salePrice;
-                    Date expDate = response.body().data.expDate;
+                    int expDate = response.body().data.expDate;
                     String stoName = response.body().data.stoName;
                     String address = response.body().data.address;
                     double lat = response.body().data.lat;
@@ -130,6 +130,11 @@ public class DetailProductsActivity extends AppCompatActivity {
                     originPrice_tv.setText(String.valueOf(originPrice));
                     salePrice_tv.setText(String.valueOf(salePrice));
                     discount_tv.setText(String.valueOf(Math.round((float)(originPrice-salePrice)/(float)originPrice*100)));
+
+                    if (expDate == 0)
+                        expDate_tv.setText("DAY");
+                    else
+                        expDate_tv.setText(String.valueOf(expDate));
 
                     stoName_tv.setText(stoName);
                     gpsStoName_tv.setText(stoName);

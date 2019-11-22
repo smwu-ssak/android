@@ -13,7 +13,7 @@ public class DetailProductData {
     public String image;
     public int originPrice;
     public int salePrice;
-    public Date expDate;
+    public int expDate;
     public String stoName;
     public String address;
     public double lat;
