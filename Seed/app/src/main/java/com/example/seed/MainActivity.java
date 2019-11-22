@@ -118,10 +118,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void setflipperView(){
         int images[] = {
-                R.drawable.main_swiping_box,
-//                R.drawable.abc,
-                R.drawable.main_swiping_box
-//                R.drawable.abc
+                R.drawable.mainview_slide1,
+                R.drawable.mainview_slide2
         };
         v_flipper = findViewById(R.id.main_act_img_slide);
         for(int image: images){
@@ -134,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         imageView.setBackgroundResource(image);
 
         v_flipper.addView(imageView);
-        v_flipper.setFlipInterval(2000);
+        v_flipper.setFlipInterval(3500);
         v_flipper.setAutoStart(true);
 
 //        v_flipper.setInAnimation(this, android.R.anim.slide_out_right);
