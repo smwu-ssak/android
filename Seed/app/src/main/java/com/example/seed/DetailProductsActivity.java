@@ -25,7 +25,6 @@ import com.example.seed.Network.NetworkService;
 
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
-import net.daum.mf.map.api.MapPointBounds;
 import net.daum.mf.map.api.MapReverseGeoCoder;
 import net.daum.mf.map.api.MapView;
 
@@ -206,46 +205,12 @@ public class DetailProductsActivity extends AppCompatActivity implements MapView
         mapView.setMapViewEventListener(this);
     }
 
-    /*
-    public void setMapCenter(double latitude, double longitude) {
-        mapView.setMapCenterPoint(MapPoint.mapPointWithCONGCoord(latitude, longitude), true);
-        mapView.setZoomLevel(1, true);
-        mapView.zoomIn(false);
-        mapView.zoomOut(false);
-        addCenterMarker(latitude, longitude);
-    }
-
-     */
-
-    public void setMyLocation() {
-        MapPointBounds mapPointBounds = new MapPointBounds();
-        MapPOIItem marker = new MapPOIItem();
-        // marker.setItemName("현재 위치");
-        marker.setMapPoint(stLocation);
-        marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
-        mapView.addPOIItem(marker);
-        mapView.setMapCenterPoint(stLocation, true);
-        mapPointBounds.add(stLocation);
-    }
-
-    /*
-    public void addCenterMarker(double latitude, double longitude) {
-        MapPOIItem marker = new MapPOIItem();
-        marker.setMapPoint(MapPoint.mapPointWithCONGCoord(latitude, longitude));
-        marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
-        mapView.addPOIItem(marker);
-    }
-
-     */
-
     @Override
     protected void onDestroy(){
         super.onDestroy();
         mapView.setMapViewEventListener(this);
         mapView.setShowCurrentLocationMarker(false);
     }
-
-
 
     @Override
     public void onMapViewInitialized(MapView mapView) {
@@ -255,10 +220,31 @@ public class DetailProductsActivity extends AppCompatActivity implements MapView
 
         MapPOIItem marker = new MapPOIItem();
         marker.setMapPoint(MapPoint.mapPointWithCONGCoord(latitude, longitude));
-        Log.d("위치", String.valueOf(MapPoint.mapPointWithCONGCoord(latitude, longitude)));
+        //Log.d("위치", String.valueOf(MapPoint.mapPointWithCONGCoord(latitude, longitude)));
         marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
         mapView.addPOIItem(marker);
         // mapView.setMapCenterPoint(stLocation, true);
+        mapView.setPOIItemEventListener(new MapView.POIItemEventListener() {
+            @Override
+            public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
+                String name = mapPOIItem.getItemName();
+            }
+
+            @Override
+            public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
+
+            }
+
+            @Override
+            public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
+
+            }
+
+            @Override
+            public void onDraggablePOIItemMoved(MapView mapView, MapPOIItem mapPOIItem, MapPoint mapPoint) {
+
+            }
+        });
 
     }
 
