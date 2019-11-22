@@ -72,7 +72,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/rv_item_buy_completed_text_1"
                     android:fontFamily="@font/nanumbarungothiclight_normal"
                     android:textColor="#FCFCFC"
@@ -83,7 +82,6 @@
                     android:id="@+id/rv_item_buy_completed_text_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_marginLeft="6dp"
                     android:layout_toLeftOf="@id/rv_item_buy_completed_price_total_bottom"
                     android:fontFamily="@font/nanumbarungothiclight_normal"
@@ -97,7 +95,6 @@
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@id/rv_item_buy_completed_text_won"
                     android:layout_marginLeft="6dp"
-                    android:layout_centerVertical="true"
                     android:fontFamily="@font/nanumbarungothicbold_normal"
                     android:textColor="#FCFCFC"
                     android:textSize="24dp"
@@ -109,7 +106,6 @@
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@id/rv_item_buy_completed_text_2"
                     android:layout_marginLeft="1dp"
-                    android:layout_centerVertical="true"
                     android:fontFamily="@font/nanumbarungothicbold_normal"
                     android:textColor="#FCFCFC"
                     android:textSize="24dp"
@@ -119,7 +115,6 @@
                     android:id="@+id/rv_item_buy_completed_text_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginLeft="8dp"
                     android:fontFamily="@font/nanumbarungothiclight_normal"
@@ -131,20 +126,20 @@
 
     </RelativeLayout>
 
+    <!-- Customized by SY -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/buy_completed_act_toolbar"
         android:layout_marginBottom="67dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_buy_completed"
+        <ExpandableListView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#F9F9F9">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="wrap_content"
+            android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+            android:id="@+id/mylist" />
 
     </RelativeLayout>
+    <!-- Customized by SY -->
 
 </RelativeLayout>
