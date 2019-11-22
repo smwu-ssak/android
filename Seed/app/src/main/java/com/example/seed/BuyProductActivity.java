@@ -1,10 +1,12 @@
 package com.example.seed;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -52,6 +54,7 @@ public class BuyProductActivity extends AppCompatActivity {
         RelativeLayout button = findViewById(R.id.buy_act_back_basket_btn);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), BasketActivity.class));
                 finish();
             }
         });
@@ -96,19 +99,24 @@ public class BuyProductActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<GetBuyResponse> call, Response<GetBuyResponse> response) {
-                data = response.body().getData();
-                adapter = new BuyProductAdapter(data);
-                recyclerView.setAdapter(adapter);
-                recyclerView.addItemDecoration(new ProductRecyclerViewDecoration(15));
-
-                int sum = 0;
-                for (int i=0; i<data.size(); i++){
-                    int price = data.get(i).getTotalPrice();
-                    sum+=price;
+                if (response.body().data.size() == 0) {
+                    Toast.makeText(getApplicationContext(), "구출한 상품이 없습니다!", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
-                TextView total_tv = (TextView)findViewById(R.id.buy_act_price_total);
-                total_tv.setText(String.valueOf(sum));
+                else if (response.isSuccessful()){
+                    data = response.body().getData();
+                    adapter = new BuyProductAdapter(data);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.addItemDecoration(new ProductRecyclerViewDecoration(15));
 
+                    int sum = 0;
+                    for (int i=0; i<data.size(); i++){
+                        int price = data.get(i).getTotalPrice();
+                        sum+=price;
+                    }
+                    TextView total_tv = (TextView)findViewById(R.id.buy_act_price_total);
+                    total_tv.setText(String.valueOf(sum));
+                }
             }
 
             @Override
