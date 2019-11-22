@@ -294,9 +294,10 @@
                                     android:id="@+id/detail_act_products_quantity"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
                                     android:fontFamily="@font/nanumbarungothicbold_normal"
                                     android:textColor="#3A3A3A"
-                                    android:textSize="42dp"
+                                    android:textSize="40dp"
                                     android:text="5"/>
 
                                 <TextView
@@ -340,30 +341,43 @@
                                 android:layout_centerInParent="true">
 
                                 <TextView
-                                    android:id="@+id/detail_act_products_timeleft"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/nanumbarungothicbold_normal"
-                                    android:textColor="#3A3A3A"
-                                    android:textSize="42dp"
-                                    android:text="4"/>
-
-                                <TextView
+                                    android:id="@+id/detail_act_products_timeleft_fix"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="3dp"
-                                    android:layout_toRightOf="@id/detail_act_products_timeleft"
                                     android:layout_alignParentBottom="true"
                                     android:fontFamily="@font/nanumbarungothicbold_normal"
                                     android:textColor="#3A3A3A"
-                                    android:textSize="14dp"
-                                    android:text="일"/>
+                                    android:textSize="40dp"
+                                    android:text="D"/>
+
+                                <TextView
+                                    android:id="@+id/detail_act_products_timeleft_fix2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="1dp"
+                                    android:layout_toRightOf="@id/detail_act_products_timeleft_fix"
+                                    android:fontFamily="@font/nanumbarungothicbold_normal"
+                                    android:textColor="#3A3A3A"
+                                    android:textSize="30dp"
+                                    android:text="-"/>
+
+                                <TextView
+                                    android:id="@+id/detail_act_products_timeleft"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@id/detail_act_products_timeleft_fix2"
+                                    android:fontFamily="@font/nanumbarungothicbold_normal"
+                                    android:textColor="#3A3A3A"
+                                    android:textSize="40dp"
+                                    android:text="2"/>
 
                             </RelativeLayout>
 
                         </RelativeLayout>
 
-                        <!--구조 지점까지-->
+                        <!--구조 지점까지
                         <RelativeLayout
                             android:id="@+id/distance_fix"
                             android:layout_width="wrap_content"
@@ -410,6 +424,7 @@
                             </RelativeLayout>
 
                         </RelativeLayout>
+                        -->
 
                     </RelativeLayout>
 
@@ -427,6 +442,12 @@
                         android:layout_width="245dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true">
+
+                        <net.daum.mf.map.api.MapView
+                            android:id="@+id/detail_map_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
 
                         <!--지도-->
                         <ImageView
