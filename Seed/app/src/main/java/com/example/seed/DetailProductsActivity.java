@@ -35,23 +35,26 @@ import retrofit2.Response;
 
 // Customized by SY
 
-public class DetailProductsActivity extends AppCompatActivity implements MapReverseGeoCoder.ReverseGeoCodingResultListener  {
+public class DetailProductsActivity extends AppCompatActivity implements MapView.MapViewEventListener, MapView.POIItemEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener {
 
     ApplicationController applicationController = new ApplicationController();
     NetworkService networkService = applicationController.buildNetworkService();
 
     private static final String LOG_TAG = "DetailProductActivity";
+
     MapView mapView;
+    private MapPoint stLocation;
+    private MapPoint.GeoCoordinate mapPointGeo;
+    private MapPOIItem mDefaultMarker;
     ViewGroup mapViewContainer;
-    MapPOIItem marker;
-    MapPoint stLocation;
-    MapPoint.GeoCoordinate mapPointGeo;
+    public double latitude;
+    public double longitude;
+
 
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
-    String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION};
-    public double latitude;
-    public double longitude;
+    String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,6 @@ public class DetailProductsActivity extends AppCompatActivity implements MapReve
 
         popupDialog();
     }
-
 
 
     // Customized by MS
@@ -85,10 +87,11 @@ public class DetailProductsActivity extends AppCompatActivity implements MapReve
                 call.enqueue(new Callback<GetBasketAddRequest>() {
                     @Override
                     public void onResponse(Call<GetBasketAddRequest> call, Response<GetBasketAddRequest> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             Log.v("통신 성공", "통신 성공");
                         }
                     }
+
                     @Override
                     public void onFailure(Call<GetBasketAddRequest> call, Throwable t) {
                         Log.v("통신 실패", t.toString());
@@ -106,22 +109,22 @@ public class DetailProductsActivity extends AppCompatActivity implements MapReve
         Bundle extras = getIntent().getExtras();
         int idProduct = extras.getInt("idProduct");
 
-        final TextView name_tv = (TextView)findViewById(R.id.detail_act_name);
-        final TextView quantity_tv = (TextView)findViewById(R.id.detail_act_products_quantity);
-        final TextView comment_tv = (TextView)findViewById(R.id.detail_act_comments);
-        final ImageView image_iv = (ImageView)findViewById(R.id.detail_act_img);
-        final TextView originPrice_tv = (TextView)findViewById(R.id.detail_act_products_price_origin);
-        final TextView salePrice_tv = (TextView)findViewById(R.id.detail_act_products_price_sale);
-        final TextView discount_tv = (TextView)findViewById(R.id.detail_act_products_discount);
-        final TextView expDate_tv = (TextView)findViewById(R.id.detail_act_products_timeleft);
-        final TextView stoName_tv = (TextView)findViewById(R.id.detail_act_store_name);
-        final TextView gpsStoName_tv = (TextView)findViewById(R.id.detail_act_gps_store_name);
-        final TextView address_tv = (TextView)findViewById(R.id.detail_act_store_location);
-        final TextView gpsAddress_tv = (TextView)findViewById(R.id.detail_act_gps_store_location);
-        final TextView tel_tv = (TextView)findViewById(R.id.detail_act_store_num1);
-        final de.hdodenhof.circleimageview.CircleImageView userProfile_iv = (de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.detail_act_img_store);
+        final TextView name_tv = (TextView) findViewById(R.id.detail_act_name);
+        final TextView quantity_tv = (TextView) findViewById(R.id.detail_act_products_quantity);
+        final TextView comment_tv = (TextView) findViewById(R.id.detail_act_comments);
+        final ImageView image_iv = (ImageView) findViewById(R.id.detail_act_img);
+        final TextView originPrice_tv = (TextView) findViewById(R.id.detail_act_products_price_origin);
+        final TextView salePrice_tv = (TextView) findViewById(R.id.detail_act_products_price_sale);
+        final TextView discount_tv = (TextView) findViewById(R.id.detail_act_products_discount);
+        final TextView expDate_tv = (TextView) findViewById(R.id.detail_act_products_timeleft);
+        final TextView stoName_tv = (TextView) findViewById(R.id.detail_act_store_name);
+        final TextView gpsStoName_tv = (TextView) findViewById(R.id.detail_act_gps_store_name);
+        final TextView address_tv = (TextView) findViewById(R.id.detail_act_store_location);
+        final TextView gpsAddress_tv = (TextView) findViewById(R.id.detail_act_gps_store_location);
+        final TextView tel_tv = (TextView) findViewById(R.id.detail_act_store_num1);
+        final de.hdodenhof.circleimageview.CircleImageView userProfile_iv = (de.hdodenhof.circleimageview.CircleImageView) findViewById(R.id.detail_act_img_store);
 
-        final FrameLayout cancel_fl = (FrameLayout)findViewById(R.id.detail_act_products_price_origin_cancel);
+        final FrameLayout cancel_fl = (FrameLayout) findViewById(R.id.detail_act_products_price_origin_cancel);
 
         // quantity_tv.setText(String.valueOf(quantity));
 
@@ -129,7 +132,7 @@ public class DetailProductsActivity extends AppCompatActivity implements MapReve
         call.enqueue(new Callback<GetDetailResponse>() {
             @Override
             public void onResponse(Call<GetDetailResponse> call, Response<GetDetailResponse> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     String name = response.body().data.proName;
                     int quantity = response.body().data.quantity;
                     String comment = response.body().data.comment;
@@ -154,7 +157,7 @@ public class DetailProductsActivity extends AppCompatActivity implements MapReve
                             .into(image_iv);
                     originPrice_tv.setText(String.valueOf(originPrice));
                     salePrice_tv.setText(String.valueOf(salePrice));
-                    discount_tv.setText(String.valueOf(Math.round((float)(originPrice-salePrice)/(float)originPrice*100)));
+                    discount_tv.setText(String.valueOf(Math.round((float) (originPrice - salePrice) / (float) originPrice * 100)));
 
                     if (expDate == 0)
                         expDate_tv.setText("DAY");
@@ -176,7 +179,7 @@ public class DetailProductsActivity extends AppCompatActivity implements MapReve
                             int len = originPrice_tv.getWidth();
 
                             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                            params.width = len+10;
+                            params.width = len + 10;
                             params.gravity = Gravity.CENTER_VERTICAL;
                             cancel_fl.setForegroundGravity(Gravity.CENTER_VERTICAL);
                             cancel_fl.setLayoutParams(params);
@@ -195,54 +198,143 @@ public class DetailProductsActivity extends AppCompatActivity implements MapReve
 
     }
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public void onReverseGeoCoderFoundAddress(MapReverseGeoCoder mapReverseGeoCoder, String s) {
-        mapReverseGeoCoder.toString();
-        onFinishReverseGeoCoding(s);
-    }
-
-    @Override
-    public void onReverseGeoCoderFailedToFindAddress(MapReverseGeoCoder mapReverseGeoCoder) {
-        onFinishReverseGeoCoding("Fail");
-    }
-
-    private void onFinishReverseGeoCoding(String result) {
-//        Toast.makeText(LocationDemoActivity.this, "Reverse Geo-coding : " + result, Toast.LENGTH_SHORT).show();
-    }
-
-
     public void createSmallMapView() {
-        mapView = (MapView) findViewById(R.id.map_view);
+        mapView = new MapView(this);
+        mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
+        mapViewContainer.addView(mapView);
+
+        mapView.setMapViewEventListener(this);
     }
 
+    /*
     public void setMapCenter(double latitude, double longitude) {
         mapView.setMapCenterPoint(MapPoint.mapPointWithCONGCoord(latitude, longitude), true);
         mapView.setZoomLevel(1, true);
         mapView.zoomIn(false);
         mapView.zoomOut(false);
-
         addCenterMarker(latitude, longitude);
     }
 
+     */
+
+    public void setMyLocation() {
+        MapPointBounds mapPointBounds = new MapPointBounds();
+        MapPOIItem marker = new MapPOIItem();
+        // marker.setItemName("현재 위치");
+        marker.setMapPoint(stLocation);
+        marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
+        mapView.addPOIItem(marker);
+        mapView.setMapCenterPoint(stLocation, true);
+        mapPointBounds.add(stLocation);
+    }
+
+    /*
     public void addCenterMarker(double latitude, double longitude) {
         MapPOIItem marker = new MapPOIItem();
-        marker.setTag(0);
         marker.setMapPoint(MapPoint.mapPointWithCONGCoord(latitude, longitude));
         marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
         mapView.addPOIItem(marker);
     }
 
-    public void setStoreLocation() {
-        addCenterMarker(latitude, longitude);
-        MapPointBounds mapPointBounds = new MapPointBounds();
-        mapPointBounds.add(stLocation);
+     */
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        mapView.setMapViewEventListener(this);
+        mapView.setShowCurrentLocationMarker(false);
     }
+
+
+
+    @Override
+    public void onMapViewInitialized(MapView mapView) {
+        mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(latitude, longitude), true);
+        Log.d("위도", String.valueOf(latitude));
+        Log.d("경도", String.valueOf(longitude));
+
+        MapPOIItem marker = new MapPOIItem();
+        marker.setMapPoint(MapPoint.mapPointWithCONGCoord(latitude, longitude));
+        Log.d("위치", String.valueOf(MapPoint.mapPointWithCONGCoord(latitude, longitude)));
+        marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
+        mapView.addPOIItem(marker);
+        // mapView.setMapCenterPoint(stLocation, true);
+
+    }
+
+    @Override
+    public void onMapViewCenterPointMoved(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewZoomLevelChanged(MapView mapView, int i) {
+
+    }
+
+    @Override
+    public void onMapViewSingleTapped(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewDoubleTapped(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewLongPressed(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewDragStarted(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewDragEnded(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewMoveFinished(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
+
+    }
+
+    @Override
+    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
+
+    }
+
+    @Override
+    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
+
+    }
+
+    @Override
+    public void onDraggablePOIItemMoved(MapView mapView, MapPOIItem mapPOIItem, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onReverseGeoCoderFoundAddress(MapReverseGeoCoder mapReverseGeoCoder, String s) {
+        mapReverseGeoCoder.toString();
+        // onFinishReverseGeoCoding(s);
+    }
+
+    @Override
+    public void onReverseGeoCoderFailedToFindAddress(MapReverseGeoCoder mapReverseGeoCoder) {
+
+    }
+
+
+
 
 
     public void moveToMainView() {
