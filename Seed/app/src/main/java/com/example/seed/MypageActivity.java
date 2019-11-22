@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,6 +38,8 @@ public class MypageActivity extends AppCompatActivity {
 
         moveToMainView();
         moveToBuyCompleted();
+
+        popupToast();
     }
 
     public void requestMyPageDataToServer(String token){
@@ -85,6 +88,32 @@ public class MypageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+
+//    Customized by MS
+
+    public void popupToast() {
+        View.OnClickListener Listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.mypage_act_FAQ_btn:
+                        Toast.makeText(MypageActivity.this, "아직 지원하지 않는 서비스입니다.", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.mypage_act_contact_btn:
+                        Toast.makeText(MypageActivity.this, "아직 지원하지 않는 서비스입니다.", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.mypage_act_setting_btn:
+                        Toast.makeText(MypageActivity.this, "아직 지원하지 않는 서비스입니다.", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+        
+        findViewById(R.id.mypage_act_FAQ_btn).setOnClickListener(Listener);
+        findViewById(R.id.mypage_act_contact_btn).setOnClickListener(Listener);
+        findViewById(R.id.mypage_act_setting_btn).setOnClickListener(Listener);
     }
 
 }
