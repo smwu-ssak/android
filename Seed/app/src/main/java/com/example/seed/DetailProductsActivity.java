@@ -2,22 +2,19 @@ package com.example.seed;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.seed.DB.SharedPreferenceController;
@@ -26,6 +23,9 @@ import com.example.seed.Get.GetDetailResponse;
 import com.example.seed.Network.ApplicationController;
 import com.example.seed.Network.NetworkService;
 
+import net.daum.mf.map.api.MapPOIItem;
+import net.daum.mf.map.api.MapPoint;
+import net.daum.mf.map.api.MapPointBounds;
 import net.daum.mf.map.api.MapReverseGeoCoder;
 import net.daum.mf.map.api.MapView;
 
@@ -41,7 +41,11 @@ public class DetailProductsActivity extends AppCompatActivity implements MapReve
     NetworkService networkService = applicationController.buildNetworkService();
 
     private static final String LOG_TAG = "DetailProductActivity";
-    private MapView mapView;
+    MapView mapView;
+    ViewGroup mapViewContainer;
+    MapPOIItem marker;
+    MapPoint stLocation;
+    MapPoint.GeoCoordinate mapPointGeo;
 
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
@@ -54,9 +58,7 @@ public class DetailProductsActivity extends AppCompatActivity implements MapReve
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_products);
 
-        mapView = (MapView) findViewById(R.id.map_view);
-        //mapView.setMapViewEventListener(this);
-
+        createSmallMapView();
 
         moveToMainView();
         setValuesFromItems();
@@ -197,8 +199,6 @@ public class DetailProductsActivity extends AppCompatActivity implements MapReve
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
-        mapView.setShowCurrentLocationMarker(false);
     }
 
     @Override
@@ -216,52 +216,33 @@ public class DetailProductsActivity extends AppCompatActivity implements MapReve
 //        Toast.makeText(LocationDemoActivity.this, "Reverse Geo-coding : " + result, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int permsRequestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grandResults) {
 
-        if ( permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
-
-            // 요청 코드가 PERMISSIONS_REQUEST_CODE 이고, 요청한 퍼미션 개수만큼 수신되었다면
-
-            boolean check_result = true;
-
-
-            // 모든 퍼미션을 허용했는지 체크합니다.
-
-            for (int result : grandResults) {
-                if (result != PackageManager.PERMISSION_GRANTED) {
-                    check_result = false;
-                    break;
-                }
-            }
-
-
-            if ( check_result ) {
-                Log.d("@@@", "start");
-                //위치 값을 가져올 수 있음
-                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
-            }
-            else {
-                // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
-
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
-
-                    Toast.makeText(DetailProductsActivity.this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
-                    finish();
-
-
-                }else {
-
-                    Toast.makeText(DetailProductsActivity.this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
-
-                }
-            }
-
-        }
+    public void createSmallMapView() {
+        mapView = (MapView) findViewById(R.id.map_view);
     }
 
+    public void setMapCenter(double latitude, double longitude) {
+        mapView.setMapCenterPoint(MapPoint.mapPointWithCONGCoord(latitude, longitude), true);
+        mapView.setZoomLevel(1, true);
+        mapView.zoomIn(false);
+        mapView.zoomOut(false);
+
+        addCenterMarker(latitude, longitude);
+    }
+
+    public void addCenterMarker(double latitude, double longitude) {
+        MapPOIItem marker = new MapPOIItem();
+        marker.setTag(0);
+        marker.setMapPoint(MapPoint.mapPointWithCONGCoord(latitude, longitude));
+        marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
+        mapView.addPOIItem(marker);
+    }
+
+    public void setStoreLocation() {
+        addCenterMarker(latitude, longitude);
+        MapPointBounds mapPointBounds = new MapPointBounds();
+        mapPointBounds.add(stLocation);
+    }
 
 
     public void moveToMainView() {
