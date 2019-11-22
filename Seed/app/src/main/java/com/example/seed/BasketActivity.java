@@ -49,10 +49,16 @@ public class BasketActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
+    }
+
     public void moveToMainView() {
         RelativeLayout button = findViewById(R.id.basket_act_back_mainpage_btn);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             }
         });

@@ -1,5 +1,6 @@
 package com.example.seed;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -52,6 +53,7 @@ public class BuyProductActivity extends AppCompatActivity {
         RelativeLayout button = findViewById(R.id.buy_act_back_basket_btn);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), BasketActivity.class));
                 finish();
             }
         });
