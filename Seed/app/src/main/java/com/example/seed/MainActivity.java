@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -190,5 +191,21 @@ public class MainActivity extends AppCompatActivity {
 //        data.add(new MainProductData(R.drawable.rv_main_broccoli, "브로콜리", 7, 1000, 800, 0, "눈송마트"));
 
     }
+
+    // Customized by MS
+    // 뒤로 가기 버튼 두 번 눌러야 종료되게
+    private long time = 0;
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+
+        if (System.currentTimeMillis() >= 2000 + time) {
+            time = System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(), "뒤로 가기 버튼을 한 번 더 누르면 종료합니다.", Toast.LENGTH_SHORT).show();
+        } else if (System.currentTimeMillis() < 2000 + time) {
+            finish();
+        }
+    }
+
 
 }
