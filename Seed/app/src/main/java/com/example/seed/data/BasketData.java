@@ -11,12 +11,12 @@ public class BasketData {
     private String name;
     private int buyNum;
     private int quantity;
-    private Date timePickup;
+    private String timePickup;
     private int salePrice;
     private int packing;
     private int sumPrice;
 
-    public BasketData(String image, String name, Date timePickup, int buyNum, int quantity, int salePrice, int packing, int sumPrice) {
+    public BasketData(String image, String name, String timePickup, int buyNum, int quantity, int salePrice, int packing, int sumPrice) {
         this.image = image;
         this.name = name;
         this.buyNum = buyNum;
@@ -37,7 +37,7 @@ public class BasketData {
 
     public int getQuantity() { return quantity; }
 
-    public Date getTimePickup() { return timePickup; }
+    public String getTimePickup() { return timePickup; }
 
     public int getSalePrice() { return salePrice; }
 
@@ -55,7 +55,7 @@ public class BasketData {
 
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
-    public void setTimePickup(Date timePickup) { this.timePickup = timePickup; }
+    public void setTimePickup(String timePickup) { this.timePickup = timePickup; }
 
     public void setSalePrice(int salePrice) { this.salePrice = salePrice; }
 

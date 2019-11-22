@@ -25,10 +25,9 @@ import java.util.Date;
 
 // Customized by SY
 
-public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketViewHolder> implements OnBasketClickListener {
+public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketViewHolder> {
 
     ArrayList<BasketData> items;
-    OnBasketClickListener listener;
     private Context context;
     Date date = new Date();
 
@@ -41,7 +40,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
     public BasketViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View itemView = inflater.inflate(R.layout.rv_item_basket_products, viewGroup, false);
-        return new BasketViewHolder(itemView, this);
+        return new BasketViewHolder(itemView);
     }
 
     @Override
@@ -51,9 +50,12 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
                 .load(item.getImage())
                 .into(viewHolder.basketImage);
         viewHolder.basketName.setText(item.getName());
+        item.setBuyNum(0);
         viewHolder.basketBuyNum.setText(String.valueOf(item.getBuyNum()));
         viewHolder.basketTimePickup.setText("00:00");
         viewHolder.basketSalePrice.setText(String.valueOf(item.getSalePrice()));
+        item.setPacking(0);
+        item.setSumPrice(0);
         viewHolder.basketSumPrice.setText(String.valueOf(item.getSumPrice()));
 
         // Customized by MS
@@ -82,15 +84,20 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
                         };
                         new TimePickerDialog(view.getRootView().getContext(), onTimeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false).show();
                         Log.d("시간T", String.valueOf(calendar.getTime()));
+                        date = calendar.getTime();
+                        SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                        item.setTimePickup(simple.format(date));
                     }
                 };
                 new DatePickerDialog(view.getRootView().getContext(), onDateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
                 Log.d("시간D", String.valueOf(calendar.getTime()));
                 date = calendar.getTime();
-                item.setTimePickup(date);
-                Log.d("시간최종", String.valueOf(item.getTimePickup()));
+                SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                item.setTimePickup(simple.format(date));
+                Log.d("시간최종", item.getTimePickup());
             }
         });
+        Log.d("시간 키키", item.getTimePickup());
         // Customized by MS
 
         viewHolder.basketRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -171,16 +178,6 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
 
     }
 
-    public void setOnItemClickListener(OnBasketClickListener listener) {
-        this.listener = listener;
-    }
-
-    @Override
-    public void onItemClick(BasketViewHolder holder, View view, int position) {
-        if (listener != null)
-            listener.onItemClick(holder, view, position);
-    }
-
     @Override
     public int getItemCount() {
         if (items == null)
@@ -215,7 +212,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
         protected ImageView plus;
         protected ImageView minus;
 
-        public BasketViewHolder(final View itemView, final OnBasketClickListener listener) {
+        public BasketViewHolder(final View itemView) {
             super(itemView);
 
             basketImage = itemView.findViewById(R.id.rv_item_basket_image);

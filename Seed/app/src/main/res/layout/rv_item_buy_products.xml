@@ -7,181 +7,207 @@
     android:layout_height="wrap_content"
     android:background="#F9F9F9">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/buy_box_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_centerVertical="true">
+        android:layout_marginVertical="16dp"
+        android:weightSum="3">
 
         <ImageView
             android:id="@+id/rv_item_buy_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/purchaseview_apple" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/purchaseview_apple"
+            android:scaleType="center"
+            android:layout_weight="2"/>
 
-        <!--상품 설명-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_toRightOf="@+id/rv_item_buy_image"
-            android:layout_marginLeft="16dp"
-            android:layout_centerVertical="true">
+            android:layout_weight="1">
 
-            <!--상품 이름-->
-            <TextView
-                android:id="@+id/rv_item_buy_products_name"
+            <!--상품 설명-->
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumbarungothicbold_normal"
-                android:textColor="#3A3A3A"
-                android:textSize="22dp"
-                android:text="싱그러운 영동 사과" />
+                android:layout_marginLeft="16dp"
+                android:layout_centerVertical="true">
 
-            <!--상품 몇 개를 몇 시에 어디 넣어 구합니다-->
-            <RelativeLayout
-                android:id="@+id/rv_item_buy_phrase_box"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rv_item_buy_products_name"
-                android:layout_marginTop="5dp">
-
-                <!--텍스트 설명 상단-->
-                <RelativeLayout
-                    android:id="@+id/rv_item_buy_phrase_top"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/rv_item_buy_products_quantity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumbarungothicbold_normal"
-                        android:text="2"
-                        android:textColor="#7F7F7F"
-                        android:textSize="13dp" />
-
-                    <TextView
-                        android:id="@+id/rv_item_buy_products_quantity_fix"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/rv_item_buy_products_quantity"
-                        android:layout_marginLeft="2dp"
-                        android:fontFamily="@font/nanumbarungothicbold_normal"
-                        android:textColor="#7F7F7F"
-                        android:textSize="13dp"
-                        android:text="개를" />
-
-                    <TextView
-                        android:id="@+id/rv_item_buy_time_pickup_ampm"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/rv_item_buy_products_quantity_fix"
-                        android:layout_marginLeft="4dp"
-                        android:fontFamily="@font/nanumbarungothicbold_normal"
-                        android:textColor="#7F7F7F"
-                        android:textSize="13dp"
-                        android:text="오후" />
-
-                    <TextView
-                        android:id="@+id/rv_item_buy_time_pickup"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/rv_item_buy_time_pickup_ampm"
-                        android:layout_marginLeft="3dp"
-                        android:fontFamily="@font/nanumbarungothicbold_normal"
-                        android:textColor="#7F7F7F"
-                        android:textSize="13dp"
-                        android:text="7시 30분" />
-
-                    <TextView
-                        android:id="@+id/rv_item_buy_time_pickup_fix"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/rv_item_buy_time_pickup"
-                        android:fontFamily="@font/nanumbarungothicbold_normal"
-                        android:textColor="#7F7F7F"
-                        android:textSize="13dp"
-                        android:text="에 " />
-
-                </RelativeLayout>
-
-                <!--텍스트 설명 하단-->
-                <RelativeLayout
-                    android:id="@+id/rv_item_buy_phrase_bottom"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/rv_item_buy_phrase_top">
-
-                    <TextView
-                        android:id="@+id/rv_item_buy_option"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanumbarungothicbold_normal"
-                        android:textColor="#7F7F7F"
-                        android:textSize="13dp"
-                        android:text="싹 종이 봉투에 넣어" />
-
-                    <TextView
-                        android:id="@+id/rv_item_buy_option_fix"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/rv_item_buy_option"
-                        android:layout_marginLeft="2dp"
-                        android:fontFamily="@font/nanumbarungothicbold_normal"
-                        android:textColor="#7F7F7F"
-                        android:textSize="13dp"
-                        android:text="구합니다." />
-
-                </RelativeLayout>
-
-            </RelativeLayout>
-
-            <!--가격-->
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rv_item_buy_phrase_box"
-                android:layout_marginTop="12dp">
-
+                <!--상품 이름-->
                 <TextView
-                    android:id="@+id/rv_item_buy_price_fix"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/rv_item_buy_products_name"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:fontFamily="@font/nanumbarungothicbold_normal"
                     android:textColor="#3A3A3A"
-                    android:textSize="20dp"
-                    android:text="가격" />
+                    android:textSize="22dp"
+                    android:text="싱그러운 영동 사과" />
 
+                <!--상품 몇 개를 몇 시에 어디 넣어 구합니다-->
+                <RelativeLayout
+                    android:id="@+id/rv_item_buy_phrase_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rv_item_buy_products_name"
+                    android:layout_marginTop="5dp">
+
+                    <!--텍스트 설명 상단-->
+                    <RelativeLayout
+                        android:id="@+id/rv_item_buy_phrase_top"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/rv_item_buy_products_quantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothicbold_normal"
+                            android:text="2"
+                            android:textColor="#7F7F7F"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:id="@+id/rv_item_buy_products_quantity_fix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/rv_item_buy_products_quantity"
+                            android:layout_marginLeft="2dp"
+                            android:fontFamily="@font/nanumbarungothicbold_normal"
+                            android:textColor="#7F7F7F"
+                            android:textSize="13dp"
+                            android:text="개를" />
+
+                        <TextView
+                            android:id="@+id/rv_item_buy_time_pickup_hour"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/rv_item_buy_products_quantity_fix"
+                            android:layout_marginLeft="3dp"
+                            android:fontFamily="@font/nanumbarungothicbold_normal"
+                            android:textColor="#7F7F7F"
+                            android:textSize="13dp"
+                            android:text="7" />
+
+                        <TextView
+                            android:id="@+id/rv_item_buy_time_pickup_hour_fix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/rv_item_buy_time_pickup_hour"
+                            android:fontFamily="@font/nanumbarungothicbold_normal"
+                            android:textColor="#7F7F7F"
+                            android:textSize="13dp"
+                            android:text="시 " />
+
+                        <TextView
+                            android:id="@+id/rv_item_buy_time_pickup_min"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/rv_item_buy_time_pickup_hour_fix"
+                            android:fontFamily="@font/nanumbarungothicbold_normal"
+                            android:textColor="#7F7F7F"
+                            android:textSize="13dp"
+                            android:text="30" />
+
+                        <TextView
+                            android:id="@+id/rv_item_buy_time_pickup_min_fix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/rv_item_buy_time_pickup_min"
+                            android:fontFamily="@font/nanumbarungothicbold_normal"
+                            android:textColor="#7F7F7F"
+                            android:textSize="13dp"
+                            android:text="분" />
+
+                        <TextView
+                            android:id="@+id/rv_item_buy_time_pickup_fix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/rv_item_buy_time_pickup_min_fix"
+                            android:fontFamily="@font/nanumbarungothicbold_normal"
+                            android:textColor="#7F7F7F"
+                            android:textSize="13dp"
+                            android:text="에 " />
+
+                    </RelativeLayout>
+
+                    <!--텍스트 설명 하단-->
+                    <RelativeLayout
+                        android:id="@+id/rv_item_buy_phrase_bottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/rv_item_buy_phrase_top">
+
+                        <TextView
+                            android:id="@+id/rv_item_buy_option"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothicbold_normal"
+                            android:textColor="#7F7F7F"
+                            android:textSize="13dp"
+                            android:text="싹 종이 봉투에 넣어" />
+
+                        <TextView
+                            android:id="@+id/rv_item_buy_option_fix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/rv_item_buy_option"
+                            android:layout_marginLeft="2dp"
+                            android:fontFamily="@font/nanumbarungothicbold_normal"
+                            android:textColor="#7F7F7F"
+                            android:textSize="13dp"
+                            android:text="구합니다." />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <!--가격-->
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/rv_item_buy_price_fix"
-                    android:layout_marginLeft="80dp">
+                    android:layout_below="@id/rv_item_buy_phrase_box"
+                    android:layout_marginTop="12dp">
 
                     <TextView
-                        android:id="@+id/rv_item_buy_price"
+                        android:id="@+id/rv_item_buy_price_fix"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:fontFamily="@font/nanumbarungothicbold_normal"
-                        android:textColor="#46AE7F"
-                        android:textSize="22dp"
-                        android:text="1000" />
+                        android:textColor="#3A3A3A"
+                        android:textSize="20dp"
+                        android:text="가격" />
 
-                    <TextView
-                        android:id="@+id/rv_item_buy_price_won"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/rv_item_buy_price"
-                        android:layout_marginLeft="1dp"
-                        android:fontFamily="@font/nanumbarungothicbold_normal"
-                        android:textColor="#46AE7F"
-                        android:textSize="22dp"
-                        android:text="원" />
+                        android:layout_toRightOf="@id/rv_item_buy_price_fix"
+                        android:layout_marginLeft="80dp">
+
+                        <TextView
+                            android:id="@+id/rv_item_buy_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanumbarungothicbold_normal"
+                            android:textColor="#46AE7F"
+                            android:textSize="22dp"
+                            android:text="1000" />
+
+                        <TextView
+                            android:id="@+id/rv_item_buy_price_won"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/rv_item_buy_price"
+                            android:layout_marginLeft="1dp"
+                            android:fontFamily="@font/nanumbarungothicbold_normal"
+                            android:textColor="#46AE7F"
+                            android:textSize="22dp"
+                            android:text="원" />
+
+                    </RelativeLayout>
 
                 </RelativeLayout>
 
@@ -189,7 +215,7 @@
 
         </RelativeLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
