@@ -2,6 +2,7 @@ package com.example.seed.Network;
 
 import com.example.seed.Get.GetBasketAddRequest;
 import com.example.seed.Get.GetBasketShowResponse;
+import com.example.seed.Get.GetBuyCompletedItemResponse;
 import com.example.seed.Get.GetBuyResponse;
 import com.example.seed.Get.GetDetailResponse;
 import com.example.seed.Get.GetMainResponse;
@@ -10,8 +11,6 @@ import com.example.seed.Post.PostBuyCompleteResponse;
 import com.example.seed.Post.PostBuyNowRequest;
 import com.example.seed.Post.PostLoginResponse;
 import com.google.gson.JsonObject;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -76,7 +75,7 @@ public interface NetworkService {
             @Body() ArrayList<JsonObject> body
     );
 
-    // 구출내역 조회
+    // 구출할 내역 조회
     @GET("buy")
     Call<GetBuyResponse> getBuyResponse (
             @Header("Content-type") String content_type,
@@ -86,6 +85,13 @@ public interface NetworkService {
     // 구출 확정
     @POST("buy")
     Call<PostBuyCompleteResponse> postBuyCompleteResponse (
+            @Header("Content-type") String content_type,
+            @Header("token") String token
+    );
+
+    // 구출했던 내역 조회
+    @GET("mypage/buy_list")
+    Call<GetBuyCompletedItemResponse> getBuyCompletedItemResponse (
             @Header("Content-type") String content_type,
             @Header("token") String token
     );
