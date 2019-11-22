@@ -42,7 +42,6 @@ public class BasketActivity extends AppCompatActivity {
 
     }
 
-
     public void moveToMainView() {
         RelativeLayout button = findViewById(R.id.basket_act_back_mainpage_btn);
         button.setOnClickListener(new View.OnClickListener() {
@@ -86,11 +85,6 @@ public class BasketActivity extends AppCompatActivity {
                 Log.v("통신 실패", t.toString());
             }
         });
-
-//        data.add(new BasketData(R.drawable.purchaseview_applephoto, "사과", "00시 00분", 0, 5, 1000, 0, 0));
-//        data.add(new BasketData(R.drawable.purchaseview_broccoliphoto, "브로콜리", "00시 00분", 0, 4, 1500, 0, 0));
-//        data.add(new BasketData(R.drawable.purchaseview_applephoto, "사과", "00시 00분", 0, 7, 800, 0, 0));
-//        data.add(new BasketData(R.drawable.purchaseview_broccoliphoto, "브로콜리", "00시 00분", 0, 3, 700, 0, 0));
 
     }
 
