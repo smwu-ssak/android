@@ -1,20 +1,35 @@
 package com.example.seed;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.seed.DB.SharedPreferenceController;
+import com.example.seed.Get.GetBuyResponse;
+import com.example.seed.Network.ApplicationController;
+import com.example.seed.Network.NetworkService;
 import com.example.seed.data.BuyProductData;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 // Customized by MS
 
 public class BuyProductActivity extends AppCompatActivity {
+
+    ApplicationController applicationController = new ApplicationController();
+    NetworkService networkService = applicationController.buildNetworkService();
+    static ArrayList<BuyProductData> data;
+    static BuyProductAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +40,11 @@ public class BuyProductActivity extends AppCompatActivity {
         moveToBasketView();
 
         popupDialog();
+    }
 
-
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
     }
 
     public void moveToBasketView() {
@@ -38,7 +56,6 @@ public class BuyProductActivity extends AppCompatActivity {
         });
     }
 
-
     public void popupDialog() {
         RelativeLayout button = findViewById(R.id.buy_act_bottom_btn);
         button.setOnClickListener(new View.OnClickListener() {
@@ -48,25 +65,38 @@ public class BuyProductActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
-
     }
-
 
     public void setProducts() {
         final RecyclerView recyclerView = findViewById(R.id.rv_buy_products);
-
-        final ArrayList<BuyProductData> data = new ArrayList<>();
-
-        data.add(new BuyProductData(R.drawable.purchaseview_applephoto, "사과", 2, "싹 종이 봉투에 넣어", 1100));
-        data.add(new BuyProductData(R.drawable.purchaseview_broccoliphoto, "브로콜리", 2, "싹 용기에 넣어", 2100));
-        data.add(new BuyProductData(R.drawable.purchaseview_applephoto, "사과", 2, "봉투 없이", 1100));
-        data.add(new BuyProductData(R.drawable.purchaseview_broccoliphoto, "브로콜리", 2, "싹 용기에 넣어", 2100));
-
-        final BuyProductAdapter adapter = new BuyProductAdapter(data);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new ProductRecyclerViewDecoration(15));
+
+        final String token = SharedPreferenceController.getMyId(this);
+        Call<GetBuyResponse> call = networkService.getBuyResponse("application/json", token);
+        call.enqueue(new Callback<GetBuyResponse>() {
+
+            @Override
+            public void onResponse(Call<GetBuyResponse> call, Response<GetBuyResponse> response) {
+                data = response.body().getData();
+                adapter = new BuyProductAdapter(data);
+                recyclerView.setAdapter(adapter);
+                recyclerView.addItemDecoration(new ProductRecyclerViewDecoration(15));
+
+                int sum = 0;
+                for (int i=0; i<data.size(); i++){
+                    int price = data.get(i).getTotalPrice();
+                    sum+=price;
+                }
+                TextView total_tv = (TextView)findViewById(R.id.buy_act_price_total);
+                total_tv.setText(String.valueOf(sum));
+
+            }
+
+            @Override
+            public void onFailure(Call<GetBuyResponse> call, Throwable t) {
+                Log.v("통신 실패", t.toString());
+            }
+        });
 
     }
 

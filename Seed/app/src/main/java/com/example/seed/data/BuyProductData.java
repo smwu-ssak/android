@@ -2,45 +2,52 @@ package com.example.seed.data;
 
 // Customized by MS
 
+import java.util.Date;
+
 public class BuyProductData {
 
-    private int image;     // 추후 통신 시 자료형 수정할 것
+    private String image;     // 추후 통신 시 자료형 수정할 것
     private String name;
     private int quantity;
-    //    private Date timePickup;
-    private String optionSelected;
+    private String timePickup;
+    private int packing;
+    private int salePrice;
     private int totalPrice;
 
-    public BuyProductData(int image, String name, int quantity, String optionSelected, int totalPrice) {
+    public BuyProductData(String image, String name, int quantity, String timePickup, int packing, int totalPrice) {
         this.image = image;
         this.name = name;
         this.quantity = quantity;
-//        this.timePickup = timePickup;
-        this.optionSelected = optionSelected;
+        this.timePickup = timePickup;
+        this.packing = packing;
         this.totalPrice = totalPrice;
     }
 
-    public int getImage() { return image; }
+    public String getImage() { return image; }
 
     public String getName() { return name; }
 
     public int getQuantity() { return quantity; }
 
-//    public Date getTimePickup() { return timePickup; }
+    public String getTimePickup() { return timePickup; }
 
-    public String getOptionSelected() { return optionSelected; }
+    public int getPacking() { return packing; }
+
+    public int getSalePrice() { return salePrice; }
 
     public int getTotalPrice() { return totalPrice; }
 
-    public void setImage(int image) { this.image = image; }
+    public void setImage(String image) { this.image = image; }
 
     public void setName(String name) { this.name = name; }
 
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
-//    public void setTimePickup(Date timePickup) { this.timePickup = timePickup; }
+    public void setTimePickup(String timePickup) { this.timePickup = timePickup; }
 
-    public void setOptionSelected(String optionSelected) { this.optionSelected = optionSelected; }
+    public void setPacking(int packing) { this.packing = packing; }
+
+    public void setSalePrice(int salePrice) { this.salePrice = salePrice; }
 
     public void setTotalPrice(int totalPrice) { this.totalPrice = totalPrice; }
 
