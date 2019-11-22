@@ -70,7 +70,7 @@ public class BuyCompletedExpandAdapter extends BaseExpandableListAdapter {
             convertView = myinf.inflate(this.groupLayout, parent, false);
         }
         TextView groupName = (TextView)convertView.findViewById(R.id.groupName);
-        groupName.setText(DataList.get(groupPosition).timePickup);
+        groupName.setText(DataList.get(groupPosition).time);
         return convertView;
     }
 
@@ -82,7 +82,7 @@ public class BuyCompletedExpandAdapter extends BaseExpandableListAdapter {
         TextView childName = (TextView) convertView.findViewById(R.id.rv_item_buy_completed_products_name);
         childName.setText(DataList.get(groupPosition).data.get(childPosition).name);
         TextView childPrice = (TextView)convertView.findViewById(R.id.rv_item_buy_completed_products_price);
-        childPrice.setText(String.valueOf(DataList.get(groupPosition).data.get(childPosition).totalPrice));
+        childPrice.setText(String.valueOf(DataList.get(groupPosition).data.get(childPosition).sum));
         return convertView;
     }
 

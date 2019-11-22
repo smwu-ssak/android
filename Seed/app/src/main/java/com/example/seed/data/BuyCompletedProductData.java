@@ -2,30 +2,28 @@ package com.example.seed.data;
 
 // Customized by MS
 
-import java.util.ArrayList;
-
 public class BuyCompletedProductData {
 
+    public int sum;
+    public String time;
     public String name;
-    public int totalPrice;
-    public String timePickup;
 
-    public BuyCompletedProductData(String name, int totalPrice, String timePickup) {
+    public BuyCompletedProductData(int sum, String time, String name) {
+        this.sum = sum;
+        this.time = time;
         this.name = name;
-        this.totalPrice = totalPrice;
-        this.timePickup = timePickup;
     }
 
     public String getName() { return name; }
 
-    public int getTotalPrice() { return totalPrice; }
+    public int getSum() { return sum; }
 
-    public String getTimePickup() { return timePickup; }
+    public String getTime() { return time; }
 
     public void setName(String name) { this.name = name; }
 
-    public void setTotalPrice(int totalPrice) { this.totalPrice = totalPrice; }
+    public void setSum(int totalPrice) { this.sum = sum; }
 
-    public void setTimePickup(String timePickup) { this.timePickup = timePickup; }
+    public void setTime(String time) { this.time = time; }
 
 }
