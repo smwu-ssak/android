@@ -349,25 +349,14 @@
                                     android:fontFamily="@font/nanumbarungothicbold_normal"
                                     android:textColor="#3A3A3A"
                                     android:textSize="40dp"
-                                    android:text="D"/>
-
-                                <TextView
-                                    android:id="@+id/detail_act_products_timeleft_fix2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_marginLeft="1dp"
-                                    android:layout_toRightOf="@id/detail_act_products_timeleft_fix"
-                                    android:fontFamily="@font/nanumbarungothicbold_normal"
-                                    android:textColor="#3A3A3A"
-                                    android:textSize="30dp"
-                                    android:text="-"/>
+                                    android:text="D-"/>
 
                                 <TextView
                                     android:id="@+id/detail_act_products_timeleft"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_toRightOf="@id/detail_act_products_timeleft_fix2"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_toRightOf="@id/detail_act_products_timeleft_fix"
                                     android:fontFamily="@font/nanumbarungothicbold_normal"
                                     android:textColor="#3A3A3A"
                                     android:textSize="40dp"
@@ -447,7 +436,6 @@
                             android:id="@+id/detail_map_view"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
-
 
                         <!--지도-->
                         <ImageView
