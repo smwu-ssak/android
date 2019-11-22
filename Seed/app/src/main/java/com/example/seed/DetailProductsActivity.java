@@ -1,6 +1,8 @@
 package com.example.seed;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -11,8 +13,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.seed.DB.SharedPreferenceController;
@@ -21,7 +26,8 @@ import com.example.seed.Get.GetDetailResponse;
 import com.example.seed.Network.ApplicationController;
 import com.example.seed.Network.NetworkService;
 
-import java.util.Date;
+import net.daum.mf.map.api.MapReverseGeoCoder;
+import net.daum.mf.map.api.MapView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,21 +35,36 @@ import retrofit2.Response;
 
 // Customized by SY
 
-public class DetailProductsActivity extends AppCompatActivity {
+public class DetailProductsActivity extends AppCompatActivity implements MapReverseGeoCoder.ReverseGeoCodingResultListener  {
 
     ApplicationController applicationController = new ApplicationController();
     NetworkService networkService = applicationController.buildNetworkService();
+
+    private static final String LOG_TAG = "DetailProductActivity";
+    private MapView mapView;
+
+    private static final int GPS_ENABLE_REQUEST_CODE = 2001;
+    private static final int PERMISSIONS_REQUEST_CODE = 100;
+    String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION};
+    public double latitude;
+    public double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_products);
 
+        mapView = (MapView) findViewById(R.id.map_view);
+        //mapView.setMapViewEventListener(this);
+
+
         moveToMainView();
         setValuesFromItems();
 
         popupDialog();
     }
+
+
 
     // Customized by MS
     public void popupDialog() {
@@ -117,7 +138,9 @@ public class DetailProductsActivity extends AppCompatActivity {
                     String stoName = response.body().data.stoName;
                     String address = response.body().data.address;
                     double lat = response.body().data.lat;
+                    latitude = lat;
                     double log = response.body().data.log;
+                    longitude = log;
                     String tel = response.body().data.tel;
                     String userProfile = response.body().data.userProfile;
 
@@ -170,6 +193,77 @@ public class DetailProductsActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
+        mapView.setShowCurrentLocationMarker(false);
+    }
+
+    @Override
+    public void onReverseGeoCoderFoundAddress(MapReverseGeoCoder mapReverseGeoCoder, String s) {
+        mapReverseGeoCoder.toString();
+        onFinishReverseGeoCoding(s);
+    }
+
+    @Override
+    public void onReverseGeoCoderFailedToFindAddress(MapReverseGeoCoder mapReverseGeoCoder) {
+        onFinishReverseGeoCoding("Fail");
+    }
+
+    private void onFinishReverseGeoCoding(String result) {
+//        Toast.makeText(LocationDemoActivity.this, "Reverse Geo-coding : " + result, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int permsRequestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grandResults) {
+
+        if ( permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
+
+            // 요청 코드가 PERMISSIONS_REQUEST_CODE 이고, 요청한 퍼미션 개수만큼 수신되었다면
+
+            boolean check_result = true;
+
+
+            // 모든 퍼미션을 허용했는지 체크합니다.
+
+            for (int result : grandResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    check_result = false;
+                    break;
+                }
+            }
+
+
+            if ( check_result ) {
+                Log.d("@@@", "start");
+                //위치 값을 가져올 수 있음
+                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
+            }
+            else {
+                // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
+
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
+
+                    Toast.makeText(DetailProductsActivity.this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
+                    finish();
+
+
+                }else {
+
+                    Toast.makeText(DetailProductsActivity.this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+
+                }
+            }
+
+        }
+    }
+
+
+
     public void moveToMainView() {
         RelativeLayout button = findViewById(R.id.detail_act_back_mainpage);
         button.setOnClickListener(new View.OnClickListener() {
@@ -179,5 +273,7 @@ public class DetailProductsActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
 
