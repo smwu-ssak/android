@@ -6,16 +6,16 @@ import java.util.ArrayList;
 
 public class BuyCompletedData {
 
-    public String timePickup;
+    public String time;
     public ArrayList<BuyCompletedProductData> data;
 
-    public BuyCompletedData(String timePickup) {
-        this.timePickup = timePickup;
+    public BuyCompletedData(String time) {
+        this.time = time;
         data = new ArrayList<>();
     }
 
-    public String getTimePickup() { return timePickup; }
+    public String getTime() { return time; }
 
-    public void setTimePickup(String timePickup) { this.timePickup = timePickup; }
+    public void setTime(String time) { this.time = time; }
 
 }
