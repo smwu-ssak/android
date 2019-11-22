@@ -14,6 +14,7 @@ import com.example.seed.DB.SharedPreferenceController;
 import com.example.seed.Get.GetBuyResponse;
 import com.example.seed.Network.ApplicationController;
 import com.example.seed.Network.NetworkService;
+import com.example.seed.Post.PostBuyCompleteResponse;
 import com.example.seed.data.BuyProductData;
 
 import java.util.ArrayList;
@@ -58,11 +59,29 @@ public class BuyProductActivity extends AppCompatActivity {
 
     public void popupDialog() {
         RelativeLayout button = findViewById(R.id.buy_act_bottom_btn);
+
+        final String token = SharedPreferenceController.getMyId(this);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 BuyProductDialog dialog = new BuyProductDialog(BuyProductActivity.this);
+
+                Call<PostBuyCompleteResponse> call = networkService.postBuyCompleteResponse("application/json", token);
+                call.enqueue(new Callback<PostBuyCompleteResponse>() {
+                    @Override
+                    public void onResponse(Call<PostBuyCompleteResponse> call, Response<PostBuyCompleteResponse> response) {
+                        if (response.isSuccessful()){
+                            Log.v("통신 성공", "통신 성공");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostBuyCompleteResponse> call, Throwable t) {
+                        Log.v("통신 실패", t.toString());
+                    }
+                });
                 dialog.show();
+                
             }
         });
     }
