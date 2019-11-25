@@ -3,7 +3,7 @@
 마감 식품 구출 플랫폼, 싹
 <br> 
 <br> 
-![Alt text](/ReadMe_image/app_icon.png)
+![Alt text](Seed/ReadMe_image/app_icon.png)
 <br>
 <br>
 **2019 SOOKMYUNG WIC HACKERTON**
@@ -31,4 +31,4 @@
 <br>
 
 ## App View
-![Alt text](/ReadMe_image/app_view.png)
+![Alt text](Seed/ReadMe_image/app_view.jpg)
