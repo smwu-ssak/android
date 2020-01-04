@@ -1,5 +1,6 @@
 package com.example.seed;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 public class BuyProductAdapter extends RecyclerView.Adapter<BuyProductAdapter.BuyProductViewHolder> {
 
     ArrayList<BuyProductData> items;
+
 
     public BuyProductAdapter(ArrayList<BuyProductData> items) {
         this.items = items;
@@ -40,7 +42,13 @@ public class BuyProductAdapter extends RecyclerView.Adapter<BuyProductAdapter.Bu
         viewHolder.buyQuantity.setText(String.valueOf(item.getQuantity()));
         viewHolder.buyTotalPrice.setText(String.valueOf(item.getTotalPrice()));
 
-        viewHolder.buyTimePickupHour.setText(item.getTimePickup().substring(11, 13));
+        Integer pickHour = Integer.valueOf(item.getTimePickup().substring(11, 13));
+        pickHour = pickHour+9;
+        String pickHourT = String.valueOf(pickHour);
+
+        viewHolder.buyTimePickupHour.setText(pickHourT);
+        Log.d("시간아", item.getTimePickup().substring(11, 13));
+        Log.d("시간아", item.getTimePickup());
         viewHolder.buyTimePickupMin.setText(item.getTimePickup().substring(14, 16));
 
         if (item.getPacking() == 0)
