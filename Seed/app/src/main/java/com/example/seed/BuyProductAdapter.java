@@ -43,7 +43,7 @@ public class BuyProductAdapter extends RecyclerView.Adapter<BuyProductAdapter.Bu
         viewHolder.buyTotalPrice.setText(String.valueOf(item.getTotalPrice()));
 
         Integer pickHour = Integer.valueOf(item.getTimePickup().substring(11, 13));
-        pickHour = pickHour+9;
+        pickHour = (pickHour+9)%24;
         String pickHourT = String.valueOf(pickHour);
 
         viewHolder.buyTimePickupHour.setText(pickHourT);
