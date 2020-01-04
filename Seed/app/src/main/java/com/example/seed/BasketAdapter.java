@@ -3,7 +3,10 @@ package com.example.seed;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +35,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.seed.BasketActivity.adapter;
+
 // Customized by SY
 
 public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketViewHolder> {
@@ -41,10 +46,16 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
 
     ArrayList<BasketData> items;
     public static Context context;
-    Date date = new Date();
+
+    Handler handler = new Handler();
+
+    final Runnable r = new Runnable() {
+        public void run() {
+            adapter.notifyDataSetChanged();
+        }
+    };
 
     static String sendTime;
-
 
     public BasketAdapter(ArrayList<BasketData> items, Context context) {
         this.items = items;
@@ -74,11 +85,11 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
         item.setSumPrice(0);
         viewHolder.basketSumPrice.setText(String.valueOf(item.getSumPrice()));
 
-        // Customized by MS
-
         viewHolder.basketDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                Intent intent = new Intent(view.getContext(), BasketActivity.class);
+//                intent.putExtra("idProduct", item.getIdBasket());
                 int idProduct = item.getIdBasket();
                 Call<DeleteBasketItemResponse> call = networkService.deleteBasketItemResponse("application/json", SharedPreferenceController.getMyId(view.getRootView().getContext()), idProduct);
                 call.enqueue(new Callback<DeleteBasketItemResponse>() {
@@ -86,8 +97,12 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
                     public void onResponse(Call<DeleteBasketItemResponse> call, Response<DeleteBasketItemResponse> response) {
                         if (response.isSuccessful()) {
                             int status = response.body().status;
+                            Log.d("통신", String.valueOf(status));
                             if (status == 200) {
-
+                                Log.d("통신", "성공");
+                                Log.d("통신", String.valueOf(items.size()));
+                                handler.post(r);
+//                                notifyItemRemoved(position);
                             }
                         }
                     }
@@ -100,6 +115,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
             }
         });
 
+        // Customized by MS
         final Calendar calendar = Calendar.getInstance();
         viewHolder.basketDatePickup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,7 +184,6 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
                 timePickerDialog.show();
             }
         });
-
         // Customized by SY
 
         viewHolder.basketRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -298,7 +313,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
             basketSumPrice = itemView.findViewById(R.id.basket_sumPrice);
             plus = itemView.findViewById(R.id.rv_item_basket_quantity_plus_btn);
             minus = itemView.findViewById(R.id.rv_item_basket_quantity_minus_btn);
-            basketDelete = itemView.findViewById(R.id.basket_act_del_btn);
+            basketDelete = itemView.findViewById(R.id.rv_item_basket_delete);
         }
     }
 

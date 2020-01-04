@@ -108,6 +108,7 @@ public class BuyProductActivity extends AppCompatActivity {
                     adapter = new BuyProductAdapter(data);
                     recyclerView.setAdapter(adapter);
                     recyclerView.addItemDecoration(new ProductRecyclerViewDecoration(15));
+                    adapter.notifyDataSetChanged();
 
                     int sum = 0;
                     for (int i=0; i<data.size(); i++){

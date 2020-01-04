@@ -218,6 +218,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/rv_item_buy_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="16dp"
@@ -226,7 +227,6 @@
         android:layout_alignParentRight="true">
 
         <ImageView
-            android:id="@+id/basket_act_del_btn"
             android:layout_width="24dp"
             android:layout_height="27dp"
             android:layout_centerVertical="true"
