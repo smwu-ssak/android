@@ -1,5 +1,6 @@
 package com.example.seed.Network;
 
+import com.example.seed.Delete.DeleteBasketItemResponse;
 import com.example.seed.Get.GetBasketAddRequest;
 import com.example.seed.Get.GetBasketShowResponse;
 import com.example.seed.Get.GetBuyCompletedItemResponse;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -59,6 +61,14 @@ public interface NetworkService {
             @Header("token") String token,
             @Path("idProduct") int idProduct
     );
+
+    // 상품 장바구니에서 삭제
+    @DELETE("basket/{idProduct}")
+    Call<DeleteBasketItemResponse> deleteBasketItemResponse (
+            @Header("Content-type") String content_type,
+            @Header("token") String token,
+            @Path("idProduct") int idProduct
+    ) ;
 
     // 장바구니 조회
     @GET("basket")
