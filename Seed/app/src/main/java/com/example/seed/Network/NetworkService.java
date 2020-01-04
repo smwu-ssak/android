@@ -68,7 +68,7 @@ public interface NetworkService {
             @Header("Content-type") String content_type,
             @Header("token") String token,
             @Path("idProduct") int idProduct
-    ) ;
+    );
 
     // 장바구니 조회
     @GET("basket")
