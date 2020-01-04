@@ -87,6 +87,7 @@ public class BasketActivity extends AppCompatActivity {
                         object.put("quantity", data.get(i).getBuyNum());
                         object.put("packing", data.get(i).getPacking());
                         object.put("timePickup", data.get(i).getTimePickup());
+                        Log.d("시간녀석", data.get(i).getTimePickup());
                         object.put("idBasket", data.get(i).getIdBasket());
                         data.get(i).setBuyNum(0);
                         JsonObject gsonObject = (JsonObject) new JsonParser().parse(object.toString());
