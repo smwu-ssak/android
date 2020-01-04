@@ -329,12 +329,13 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/basket_act_del_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true">
 
                 <ImageView
-                    android:id="@+id/basket_act_del_btn"
+                    android:id="@+id/basket_act_del_img"
                     android:layout_width="24dp"
                     android:layout_height="27dp"
                     android:layout_centerVertical="true"
@@ -345,7 +346,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/basket_act_del_btn"
+                    android:layout_toRightOf="@id/basket_act_del_img"
                     android:fontFamily="@font/nanumbarungothic_normal"
                     android:text="삭제"
                     android:textColor="#6E6E6E"

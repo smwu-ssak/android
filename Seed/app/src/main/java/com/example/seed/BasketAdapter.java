@@ -11,21 +11,33 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.seed.DB.SharedPreferenceController;
+import com.example.seed.Delete.DeleteBasketItemResponse;
+import com.example.seed.Network.ApplicationController;
+import com.example.seed.Network.NetworkService;
 import com.example.seed.data.BasketData;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 // Customized by SY
 
 public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketViewHolder> {
+
+    ApplicationController applicationController = new ApplicationController();
+    NetworkService networkService = applicationController.buildNetworkService();
 
     ArrayList<BasketData> items;
     public static Context context;
@@ -63,6 +75,30 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
         viewHolder.basketSumPrice.setText(String.valueOf(item.getSumPrice()));
 
         // Customized by MS
+
+        viewHolder.basketDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int idProduct = item.getIdBasket();
+                Call<DeleteBasketItemResponse> call = networkService.deleteBasketItemResponse("application/json", SharedPreferenceController.getMyId(view.getRootView().getContext()), idProduct);
+                call.enqueue(new Callback<DeleteBasketItemResponse>() {
+                    @Override
+                    public void onResponse(Call<DeleteBasketItemResponse> call, Response<DeleteBasketItemResponse> response) {
+                        if (response.isSuccessful()) {
+                            int status = response.body().status;
+                            if (status == 200) {
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DeleteBasketItemResponse> call, Throwable t) {
+                        Log.d("통신", "실패");
+                    }
+                });
+            }
+        });
 
         final Calendar calendar = Calendar.getInstance();
         viewHolder.basketDatePickup.setOnClickListener(new View.OnClickListener() {
@@ -247,6 +283,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
         protected TextView basketSumPrice;
         protected ImageView plus;
         protected ImageView minus;
+        protected RelativeLayout basketDelete;
 
         public BasketViewHolder(final View itemView) {
             super(itemView);
@@ -261,6 +298,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.BasketView
             basketSumPrice = itemView.findViewById(R.id.basket_sumPrice);
             plus = itemView.findViewById(R.id.rv_item_basket_quantity_plus_btn);
             minus = itemView.findViewById(R.id.rv_item_basket_quantity_minus_btn);
+            basketDelete = itemView.findViewById(R.id.basket_act_del_btn);
         }
     }
 
