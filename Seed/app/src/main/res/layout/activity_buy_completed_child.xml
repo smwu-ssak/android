@@ -3,9 +3,9 @@
 <!-- Customized by MS -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/childName"
@@ -19,9 +19,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanumbarungothic_normal"
+            android:text="싱그러운 영동 사과"
             android:textColor="#3A3A3A"
-            android:textSize="16dp"
-            android:text="싱그러운 영동 사과" />
+            android:textSize="16dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -34,9 +34,9 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/rv_item_buy_completed_products_price_won"
                 android:fontFamily="@font/nanumbarungothic_normal"
+                android:text="1000"
                 android:textColor="#46AE7F"
-                android:textSize="16dp"
-                android:text="1000" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/rv_item_buy_completed_products_price_won"
@@ -44,9 +44,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:fontFamily="@font/nanumbarungothic_normal"
+                android:text="원"
                 android:textColor="#46AE7F"
-                android:textSize="16dp"
-                android:text="원" />
+                android:textSize="16dp" />
 
         </RelativeLayout>
 

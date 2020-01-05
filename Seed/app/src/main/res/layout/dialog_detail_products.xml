@@ -19,32 +19,32 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/nanumbarungothiclight_normal"
-            android:textColor="#FFFFFF"
             android:gravity="center"
-            android:textSize="18dp"
-            android:text="바구니에 담겼습니다" />
+            android:text="바구니에 담겼습니다"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/dialog_basket_text_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_below="@+id/dialog_basket_text_1"
             android:fontFamily="@font/nanumbarungothiclight_normal"
+            android:gravity="center"
+            android:text="음식이 기뻐하고 있어요!"
             android:textColor="#FFFFFF"
-            android:textSize="18dp"
-            android:text="음식이 기뻐하고 있어요!" />
+            android:textSize="18dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_below="@id/dialog_basket_text_2"
             android:layout_marginBottom="30dp"
             android:fontFamily="@font/nanumbarungothiclight_normal"
+            android:gravity="center"
+            android:text="바구니로 이동할까요?"
             android:textColor="#FFFFFF"
-            android:textSize="18dp"
-            android:text="바구니로 이동할까요?" />
+            android:textSize="18dp" />
 
     </RelativeLayout>
 
@@ -60,8 +60,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="4dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:paddingVertical="4dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -72,12 +72,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:paddingVertical="12dp"
-                    android:fontFamily="@font/nanumbarungothic_normal"
                     android:background="#FCFCFC"
+                    android:fontFamily="@font/nanumbarungothic_normal"
+                    android:paddingVertical="12dp"
+                    android:text="확인"
                     android:textColor="#46AE7F"
-                    android:textSize="18dp"
-                    android:text="확인" />
+                    android:textSize="18dp" />
 
             </RelativeLayout>
 
@@ -92,8 +92,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="4dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:paddingVertical="4dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -104,12 +104,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:paddingVertical="12dp"
-                    android:fontFamily="@font/nanumbarungothic_normal"
                     android:background="#FCFCFC"
+                    android:fontFamily="@font/nanumbarungothic_normal"
+                    android:paddingVertical="12dp"
+                    android:text="계속 구출하기"
                     android:textColor="#46AE7F"
-                    android:textSize="18dp"
-                    android:text="계속 구출하기" />
+                    android:textSize="18dp" />
 
             </RelativeLayout>
 

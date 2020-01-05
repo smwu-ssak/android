@@ -3,9 +3,9 @@
 <!-- Customized by MS-->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="128dp">
+    android:layout_height="128dp"
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,20 +20,20 @@
                 android:id="@+id/rv_item_main_products_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_centerInParent="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/rv_main_apple"
-                android:layout_centerInParent="true"/>
+                android:src="@drawable/rv_main_apple" />
 
         </RelativeLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="#F2F2F2">
+        android:background="#F2F2F2"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,9 +42,9 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="9dp"
-                android:layout_marginBottom="9dp"
-                android:layout_marginLeft="8dp">
+                android:layout_marginBottom="9dp">
 
                 <!--이름-->
                 <RelativeLayout
@@ -66,12 +66,12 @@
                         android:id="@+id/rv_item_main_products_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/rv_item_main_products_name_fix"
                         android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@+id/rv_item_main_products_name_fix"
                         android:fontFamily="@font/nanumbarungothic_normal"
+                        android:text="사과"
                         android:textColor="#818181"
-                        android:textSize="18dp"
-                        android:text="사과" />
+                        android:textSize="18dp" />
 
                 </RelativeLayout>
 
@@ -86,9 +86,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanumbarungothicbold_normal"
+                        android:text="포로 수"
                         android:textColor="#424242"
-                        android:textSize="18dp"
-                        android:text="포로 수" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/rv_item_main_products_quantity"
@@ -97,9 +97,9 @@
                         android:layout_marginLeft="8dp"
                         android:layout_toRightOf="@id/rv_item_main_products_quantity_name"
                         android:fontFamily="@font/nanumbarungothic_normal"
+                        android:text="5"
                         android:textColor="#818181"
-                        android:textSize="18dp"
-                        android:text="5"/>
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/rv_item_main_products_quantity_fix"
@@ -107,9 +107,9 @@
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/rv_item_main_products_quantity"
                         android:fontFamily="@font/nanumbarungothic_normal"
+                        android:text="개"
                         android:textColor="#818181"
-                        android:textSize="18dp"
-                        android:text="개" />
+                        android:textSize="18dp" />
 
                 </RelativeLayout>
 
@@ -124,9 +124,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanumbarungothic_normal"
+                        android:text="1,000"
                         android:textColor="#B4B3B3"
-                        android:textSize="18dp"
-                        android:text="1,000" />
+                        android:textSize="18dp" />
 
                     <!-- Cusotmized by SY-->
                     <LinearLayout
@@ -142,7 +142,7 @@
                             <View
                                 android:layout_width="wrap_content"
                                 android:layout_height="2dp"
-                                android:background="#707070"/>
+                                android:background="#707070" />
 
                         </FrameLayout>
 
@@ -154,12 +154,12 @@
                         android:id="@+id/rv_item_main_products_price_sale"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/rv_item_main_products_price_origin"
                         android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@+id/rv_item_main_products_price_origin"
                         android:fontFamily="@font/nanumbarungothicbold_normal"
+                        android:text="500"
                         android:textColor="#46AE7F"
-                        android:textSize="18dp"
-                        android:text="500" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/rv_item_main_products_price_fix"
@@ -167,48 +167,48 @@
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/rv_item_main_products_price_sale"
                         android:fontFamily="@font/nanumbarungothicbold_normal"
+                        android:text="원"
                         android:textColor="#46AE7F"
-                        android:textSize="18dp"
-                        android:text="원" />
+                        android:textSize="18dp" />
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/rv_item_main_products_price_fix"
-                        android:layout_marginLeft="4dp">
+                        android:layout_marginLeft="4dp"
+                        android:layout_toRightOf="@+id/rv_item_main_products_price_fix">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/main_discount_rate_circle" />
 
-                            <LinearLayout
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true">
+
+                            <TextView
+                                android:id="@+id/rv_item_main_products_discount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerInParent="true">
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/nanumbarungothic_normal"
+                                android:text="50"
+                                android:textColor="#FFFFFF"
+                                android:textSize="9dp" />
 
-                                <TextView
-                                    android:id="@+id/rv_item_main_products_discount"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:fontFamily="@font/nanumbarungothic_normal"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="9dp"
-                                    android:text="50" />
+                            <TextView
+                                android:id="@+id/rv_item_main_products_discount_fix"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/nanumbarungothic_normal"
+                                android:text="%"
+                                android:textColor="#FFFFFF"
+                                android:textSize="9dp" />
 
-                                <TextView
-                                    android:id="@+id/rv_item_main_products_discount_fix"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:fontFamily="@font/nanumbarungothic_normal"
-                                    android:textColor="#FFFFFF"
-                                    android:textSize="9dp"
-                                    android:text="%" />
-
-                            </LinearLayout>
+                        </LinearLayout>
 
                     </RelativeLayout>
 
@@ -234,10 +234,10 @@
                 android:layout_marginRight="11dp">
 
                 <ImageView
+                    android:id="@+id/img_location_small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:id="@+id/img_location_small"
                     android:src="@drawable/main_location_small" />
 
                 <!--마트 이름-->
@@ -246,22 +246,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/img_location_small"
                     android:layout_marginLeft="6dp"
+                    android:layout_toRightOf="@+id/img_location_small"
                     android:fontFamily="@font/nanumbarungothicbold_normal"
-                    android:textSize="14dp"
+                    android:text="프라임 마트"
                     android:textColor="#818181"
-                    android:text="프라임 마트" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:fontFamily="@font/nanumbarungothicbold_normal"
-                    android:textSize="14dp"
+                    android:text=">"
                     android:textColor="#818181"
-                    android:text=">" />
+                    android:textSize="14dp" />
 
             </RelativeLayout>
 
