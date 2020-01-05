@@ -17,45 +17,45 @@
             android:id="@+id/dialog_buy_products_text_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/nanumbarungothiclight_normal"
+            android:gravity="center"
+            android:text="구출이 확정되었습니다"
             android:textColor="#FFFFFF"
-            android:textSize="18dp"
-            android:text="구출이 확정되었습니다" />
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/dialog_buy_products_text_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_below="@+id/dialog_buy_products_text_1"
             android:fontFamily="@font/nanumbarungothiclight_normal"
+            android:gravity="center"
+            android:text="당신은 지구를 구하는 영웅!"
             android:textColor="#FFFFFF"
-            android:textSize="18dp"
-            android:text="당신은 지구를 구하는 영웅!" />
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/dialog_buy_products_text_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_below="@id/dialog_buy_products_text_2"
             android:fontFamily="@font/nanumbarungothiclight_normal"
+            android:gravity="center"
+            android:text="당신을 기다리는 음식들을"
             android:textColor="#FFFFFF"
-            android:textSize="18dp"
-            android:text="당신을 기다리는 음식들을" />
+            android:textSize="18dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginBottom="30dp"
             android:layout_below="@id/dialog_buy_products_text_3"
+            android:layout_marginBottom="30dp"
             android:fontFamily="@font/nanumbarungothiclight_normal"
+            android:gravity="center"
+            android:text="잠시 뒤에 데리러 가주세요 :-)"
             android:textColor="#FFFFFF"
-            android:textSize="18dp"
-            android:text="잠시 뒤에 데리러 가주세요 :-)" />
+            android:textSize="18dp" />
 
     </RelativeLayout>
 
@@ -64,19 +64,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dialog_buy_products_text_box"
-        android:paddingVertical="4dp"
-        android:background="#FCFCFC">
+        android:background="#FCFCFC"
+        android:paddingVertical="4dp">
 
         <Button
             android:id="@+id/dialog_buy_products_confirm_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nanumbarungothic_normal"
-            android:textColor="#46AE7F"
             android:background="#FCFCFC"
+            android:fontFamily="@font/nanumbarungothic_normal"
             android:gravity="center"
-            android:textSize="18dp"
-            android:text="확인" />
+            android:text="확인"
+            android:textColor="#46AE7F"
+            android:textSize="18dp" />
 
     </RelativeLayout>
 

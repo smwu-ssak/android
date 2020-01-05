@@ -14,33 +14,33 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
 
-    <ImageView
-        android:id="@+id/login_act_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="36dp"
-        android:src="@drawable/login_logo" />
+        <ImageView
+            android:id="@+id/login_act_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="36dp"
+            android:src="@drawable/login_logo" />
 
-    <TextView
-        android:id="@+id/login_act_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login_act_logo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="126dp"
-        android:fontFamily="@font/nanumbarungothic_normal"
-        android:text="마감 식품 구출 대작전"
-        android:textColor="#FFF"
-        android:textSize="25sp" />
+        <TextView
+            android:id="@+id/login_act_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_act_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="126dp"
+            android:fontFamily="@font/nanumbarungothic_normal"
+            android:text="마감 식품 구출 대작전"
+            android:textColor="#FFF"
+            android:textSize="25sp" />
 
-    <com.kakao.usermgmt.LoginButton
-        android:id="@+id/login_btn_kakaologin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login_act_text"
-        android:layout_centerInParent="true"
-        android:layout_marginHorizontal="24dp" />
-</RelativeLayout>
-
+        <com.kakao.usermgmt.LoginButton
+            android:id="@+id/login_btn_kakaologin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_act_text"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="24dp" />
     </RelativeLayout>
+
+</RelativeLayout>
