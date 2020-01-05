@@ -6,8 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#F9F9F9"
+    android:orientation="vertical"
     tools:context=".MypageActivity">
 
     <!--상단-->
@@ -21,19 +21,19 @@
             android:id="@+id/mypage_act_back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:padding="6dp"
-            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:background="?android:selectableItemBackground">
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="?android:selectableItemBackground"
+            android:padding="6dp">
 
             <!--뒤로 가기 버튼-->
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:src="@drawable/purchaseview_previousarrow"/>
+                android:layout_centerVertical="true"
+                android:src="@drawable/purchaseview_previousarrow" />
 
         </RelativeLayout>
 
@@ -42,23 +42,23 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/nanumbarungothicbold_normal"
+            android:text="마이페이지"
             android:textColor="#3A3A3A"
-            android:textSize="24dp"
-            android:text="마이페이지"/>
+            android:textSize="24dp" />
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#BDBDBD"
-        android:layout_alignBottom="@id/mypage_act_toolbar"/>
+        android:layout_alignBottom="@id/mypage_act_toolbar"
+        android:background="#BDBDBD" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#D8D8D8"
-        android:layout_alignTop="@id/mypage_act_bottom_btn"/>
+        android:layout_alignTop="@id/mypage_act_bottom_btn"
+        android:background="#D8D8D8" />
 
     <!--하단-->
     <RelativeLayout
@@ -72,9 +72,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:fontFamily="@font/nanumbarungothic_normal"
+            android:text="legal v. 3.369.100001"
             android:textColor="#A0A0A0"
-            android:textSize="13dp"
-            android:text="legal v. 3.369.100001" />
+            android:textSize="13dp" />
 
     </RelativeLayout>
 
@@ -102,20 +103,20 @@
                     android:id="@+id/mypage_act_user_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/mypage_basicprofile"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/mypage_basicprofile" />
 
                 <TextView
                     android:id="@+id/mypage_act_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:layout_below="@+id/mypage_act_user_profile"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="9dp"
                     android:fontFamily="@font/nanumbarungothiclight_normal"
+                    android:text="김구출"
                     android:textColor="#3A3A3A"
-                    android:textSize="20dp"
-                    android:text="김구출" />
+                    android:textSize="20dp" />
 
             </RelativeLayout>
 
@@ -142,109 +143,108 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true">
 
-<!--
+                    <!--
+                                        <TextView
+                                            android:id="@+id/mypage_act_user_profile_edit"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_marginTop="16dp"
+                                            android:layout_marginBottom="16dp"
+                                            android:fontFamily="@font/nanumbarungothicbold_normal"
+                                            android:textColor="#3A3A3A"
+                                            android:textSize="22dp"
+                                            android:text="프로필 설정" />
+
+                                        <View
+                                            android:layout_width="120dp"
+                                            android:layout_height="1dp"
+                                            android:layout_centerHorizontal="true"
+                                            android:background="#D8D8D8"
+                                            android:layout_below="@id/mypage_act_user_profile_edit"/>
+                    -->
+
                     <TextView
-                        android:id="@+id/mypage_act_user_profile_edit"
+                        android:id="@+id/mypage_act_buy_list_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginVertical="12dp"
                         android:fontFamily="@font/nanumbarungothicbold_normal"
+                        android:paddingHorizontal="4dp"
+                        android:paddingVertical="4dp"
+                        android:text="구출 내역"
                         android:textColor="#3A3A3A"
-                        android:textSize="22dp"
-                        android:text="프로필 설정" />
+                        android:textSize="22dp" />
 
                     <View
                         android:layout_width="120dp"
                         android:layout_height="1dp"
+                        android:layout_below="@id/mypage_act_buy_list_btn"
                         android:layout_centerHorizontal="true"
-                        android:background="#D8D8D8"
-                        android:layout_below="@id/mypage_act_user_profile_edit"/>
--->
+                        android:background="#D8D8D8" />
 
-                <TextView
-                    android:id="@+id/mypage_act_buy_list_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginVertical="12dp"
-                    android:paddingVertical="4dp"
-                    android:paddingHorizontal="4dp"
-                    android:fontFamily="@font/nanumbarungothicbold_normal"
-                    android:textColor="#3A3A3A"
-                    android:textSize="22dp"
-                    android:text="구출 내역" />
+                    <TextView
+                        android:id="@+id/mypage_act_FAQ_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/mypage_act_buy_list_btn"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginVertical="12dp"
+                        android:fontFamily="@font/nanumbarungothicbold_normal"
+                        android:paddingHorizontal="4dp"
+                        android:paddingVertical="4dp"
+                        android:text="FAQ"
+                        android:textColor="#3A3A3A"
+                        android:textSize="22dp" />
 
-                <View
-                    android:layout_width="120dp"
-                    android:layout_height="1dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="#D8D8D8"
-                    android:layout_below="@id/mypage_act_buy_list_btn"/>
+                    <View
+                        android:layout_width="120dp"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/mypage_act_FAQ_btn"
+                        android:layout_centerHorizontal="true"
+                        android:background="#D8D8D8" />
 
-                <TextView
-                    android:id="@+id/mypage_act_FAQ_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@id/mypage_act_buy_list_btn"
-                    android:layout_marginVertical="12dp"
-                    android:paddingVertical="4dp"
-                    android:paddingHorizontal="4dp"
-                    android:fontFamily="@font/nanumbarungothicbold_normal"
-                    android:textColor="#3A3A3A"
-                    android:textSize="22dp"
-                    android:text="FAQ" />
+                    <TextView
+                        android:id="@+id/mypage_act_contact_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/mypage_act_FAQ_btn"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginVertical="12dp"
+                        android:fontFamily="@font/nanumbarungothicbold_normal"
+                        android:paddingHorizontal="4dp"
+                        android:paddingVertical="4dp"
+                        android:text="본부 연락"
+                        android:textColor="#3A3A3A"
+                        android:textSize="22dp" />
 
-                <View
-                    android:layout_width="120dp"
-                    android:layout_height="1dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="#D8D8D8"
-                    android:layout_below="@id/mypage_act_FAQ_btn"/>
+                    <View
+                        android:layout_width="120dp"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/mypage_act_contact_btn"
+                        android:layout_centerHorizontal="true"
+                        android:background="#D8D8D8" />
 
-                <TextView
-                    android:id="@+id/mypage_act_contact_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@id/mypage_act_FAQ_btn"
-                    android:layout_marginVertical="12dp"
-                    android:paddingVertical="4dp"
-                    android:paddingHorizontal="4dp"
-                    android:fontFamily="@font/nanumbarungothicbold_normal"
-                    android:textColor="#3A3A3A"
-                    android:textSize="22dp"
-                    android:text="본부 연락" />
-
-                <View
-                    android:layout_width="120dp"
-                    android:layout_height="1dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="#D8D8D8"
-                    android:layout_below="@id/mypage_act_contact_btn"/>
-
-                <TextView
-                    android:id="@+id/mypage_act_setting_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@id/mypage_act_contact_btn"
-                    android:layout_marginVertical="12dp"
-                    android:paddingVertical="4dp"
-                    android:paddingHorizontal="4dp"
-                    android:fontFamily="@font/nanumbarungothicbold_normal"
-                    android:textColor="#3A3A3A"
-                    android:textSize="22dp"
-                    android:text="어플 설정" />
+                    <TextView
+                        android:id="@+id/mypage_act_setting_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/mypage_act_contact_btn"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginVertical="12dp"
+                        android:fontFamily="@font/nanumbarungothicbold_normal"
+                        android:paddingHorizontal="4dp"
+                        android:paddingVertical="4dp"
+                        android:text="어플 설정"
+                        android:textColor="#3A3A3A"
+                        android:textSize="22dp" />
 
                 </RelativeLayout>
 
             </RelativeLayout>
 
         </LinearLayout>
-
 
 
     </LinearLayout>
